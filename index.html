@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>'26 전략소재구매팀 워크샵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#fff;padding:20px;padding-bottom:100px}
+.wrap{max-width:1100px;margin:0 auto}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:10px 16px 14px;background:rgba(15,12,41,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);gap:6px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:14px;text-decoration:none;font-size:.68em;font-weight:700;color:#475569;border:1px solid transparent;transition:all .2s;min-width:64px}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
+.ni .ic{font-size:1.3em;line-height:1}
+.ah{color:#c4b5fd;background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.35)}
+.ar{color:#a78bfa;background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.35)}
+.av{color:#60a5fa;background:rgba(96,165,250,.15);border-color:rgba(96,165,250,.35)}
+.ab{color:#34d399;background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35)}
+.ac{color:#fb923c;background:rgba(251,146,60,.15);border-color:rgba(251,146,60,.4)}
+.hdr{text-align:center;padding:60px 20px 40px;position:relative}
+.hdr::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:40px;background:linear-gradient(to bottom,transparent,#a78bfa)}
+.bdg{display:inline-block;background:rgba(167,139,250,.2);border:1px solid rgba(167,139,250,.5);color:#c4b5fd;padding:6px 20px;border-radius:20px;font-size:13px;letter-spacing:2px;margin-bottom:20px}
+.hdr h1{font-size:3em;font-weight:900;background:linear-gradient(135deg,#fff 0%,#a78bfa 50%,#60a5fa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:15px;line-height:1.2}
+.catch{font-size:1.8em;font-weight:700;color:#e2e8f0;margin-bottom:12px}
+.csub{font-size:1em;color:#94a3b8;letter-spacing:1px}
+.sec{margin-bottom:30px}
+.stit{font-size:1.3em;font-weight:700;color:#c4b5fd;border-left:4px solid #a78bfa;padding-left:15px;margin-bottom:20px;letter-spacing:1px}
+.lmsg{background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(96,165,250,.08));border:1px solid rgba(167,139,250,.4);border-radius:24px;padding:36px 40px;margin-bottom:30px;position:relative;overflow:hidden}
+.lmsg::before{content:'"';position:absolute;top:-10px;left:24px;font-size:8em;color:rgba(167,139,250,.15);font-family:Georgia,serif;line-height:1}
+.lttl{font-size:.8em;letter-spacing:2px;color:#a78bfa;margin-bottom:18px;font-weight:700}
+.lbdy{position:relative;z-index:1}
+.lbdy p{font-size:.97em;color:#e2e8f0;line-height:1.9;margin-bottom:12px}
+.lbdy p:last-child{margin-bottom:0}
+.kp{color:#c4b5fd;font-weight:700}.kb{color:#7dd3fc;font-weight:700}.kg{color:#6ee7b7;font-weight:700}.ka{color:#fcd34d;font-weight:700}
+.lfrm{margin-top:20px;text-align:right;font-size:.88em;color:#94a3b8;border-top:1px solid rgba(255,255,255,.07);padding-top:16px}
+.lfrm b{color:#c4b5fd;font-weight:700}
+.olbl{font-size:.75em;letter-spacing:1.5px;color:#64748b;font-weight:600;margin:22px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:8px;font-size:.72em;font-weight:700;border:1px solid;white-space:nowrap;transition:transform .15s;cursor:default}
+.chip:hover{transform:translateY(-2px)}
+.chip .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.cp{background:rgba(0,56,147,.25);color:#7db3f5;border-color:rgba(0,56,147,.5)}.cp .dot{background:#7db3f5}
+.cl{background:rgba(165,0,52,.25);color:#f9a8c0;border-color:rgba(165,0,52,.5)}.cl .dot{background:#f9a8c0}
+.ce{background:rgba(165,0,52,.2);color:#f9a8c0;border-color:rgba(165,0,52,.45)}.ce .dot{background:#f9a8c0}
+.cs{background:rgba(20,40,160,.25);color:#93c5fd;border-color:rgba(20,40,160,.5)}.cs .dot{background:#93c5fd}
+.cd{background:rgba(165,0,52,.2);color:#f9a8c0;border-color:rgba(165,0,52,.4)}.cd .dot{background:#f9a8c0}
+.csi{background:rgba(0,48,135,.25);color:#93c5fd;border-color:rgba(0,48,135,.5)}.csi .dot{background:#93c5fd}
+.ch{background:rgba(0,44,95,.3);color:#93c5fd;border-color:rgba(0,44,95,.6)}.ch .dot{background:#93c5fd}
+.ck{background:rgba(5,20,31,.5);color:#e2e8f0;border-color:rgba(255,255,255,.2)}.ck .dot{background:#e2e8f0}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:30px}
+.pc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:28px 22px;text-align:center;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pr::before{background:linear-gradient(90deg,#a78bfa,#7c3aed)}.pv::before{background:linear-gradient(90deg,#60a5fa,#2563eb)}.pb::before{background:linear-gradient(90deg,#34d399,#059669)}.pch::before{background:linear-gradient(90deg,#fb923c,#f59e0b)}
+.pc:hover{transform:translateY(-5px)}
+.pr:hover{border-color:rgba(167,139,250,.5);box-shadow:0 15px 40px rgba(167,139,250,.2)}
+.pv:hover{border-color:rgba(96,165,250,.5);box-shadow:0 15px 40px rgba(96,165,250,.2)}
+.pb:hover{border-color:rgba(52,211,153,.5);box-shadow:0 15px 40px rgba(52,211,153,.15)}
+.pch:hover{border-color:rgba(251,146,60,.5);box-shadow:0 15px 40px rgba(251,146,60,.2)}
+.pc .ico{font-size:2.5em;margin-bottom:12px}
+.pc h3{font-size:1.2em;font-weight:700;margin-bottom:10px}
+.pr h3{color:#a78bfa}.pv h3{color:#60a5fa}.pb h3{color:#34d399}.pch h3{color:#fb923c}
+.pc p{font-size:.88em;color:#94a3b8;line-height:1.7}
+.lhint{margin-top:14px;font-size:.75em;font-weight:700;opacity:.6;transition:opacity .2s}
+.pr .lhint{color:#a78bfa}.pv .lhint{color:#60a5fa}.pb .lhint{color:#34d399}.pch .lhint{color:#fb923c}
+.pc:hover .lhint{opacity:1}
+.kmsg{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:20px;padding:30px;margin-bottom:30px}
+.mi{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.mi:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.mic{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9em;flex-shrink:0}
+.mip{background:rgba(167,139,250,.2)}.mib{background:rgba(96,165,250,.2)}.mig{background:rgba(52,211,153,.2)}.mia{background:rgba(251,191,36,.2)}
+.mt{font-size:.95em;color:#e2e8f0;line-height:1.6}
+.mt strong{color:#c4b5fd}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.dcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:24px;overflow:hidden}
+.dhead{padding:22px 28px}
+.d1 .dhead{background:linear-gradient(135deg,rgba(167,139,250,.3),rgba(124,58,237,.2));border-bottom:1px solid rgba(167,139,250,.3)}
+.d2 .dhead{background:linear-gradient(135deg,rgba(96,165,250,.3),rgba(37,99,235,.2));border-bottom:1px solid rgba(96,165,250,.3)}
+.dlbl{font-size:.8em;letter-spacing:2px;color:rgba(255,255,255,.6);margin-bottom:5px}
+.dttl{font-size:1.4em;font-weight:900;color:#fff;margin-bottom:6px}
+.dcpt{font-size:.85em;color:rgba(255,255,255,.7)}
+.dbody{padding:24px}
+.tl{display:flex;gap:15px;margin-bottom:18px;position:relative}
+.tl::before{content:'';position:absolute;left:46px;top:30px;bottom:-18px;width:1px;background:rgba(255,255,255,.08)}
+.tl:last-child::before{display:none}
+.tb{flex-shrink:0;width:92px;text-align:center}
+.tb span{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:4px 6px;font-size:.72em;color:#94a3b8;white-space:nowrap}
+.tc h4{font-size:.95em;font-weight:700;color:#e2e8f0;margin-bottom:5px}
+.tc p{font-size:.85em;color:#64748b;line-height:1.6}
+.tg{display:inline-block;font-size:.68em;padding:2px 8px;border-radius:4px;margin-left:6px;font-weight:700;vertical-align:middle}
+.tp{background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.3)}
+.tr{background:rgba(52,211,153,.2);color:#34d399;border:1px solid rgba(52,211,153,.3)}
+.ti{background:rgba(56,189,248,.2);color:#38bdf8;border:1px solid rgba(56,189,248,.35)}
+.cbnr{display:flex;align-items:center;gap:20px;background:linear-gradient(135deg,rgba(251,146,60,.15),rgba(245,158,11,.1));border:1px solid rgba(251,146,60,.35);border-radius:20px;padding:24px 28px;margin-bottom:30px;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
+.cbnr:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(251,146,60,.2)}
+.cbi{font-size:2.5em;flex-shrink:0}
+.cbt h3{font-size:1.05em;font-weight:900;color:#fdba74;margin-bottom:6px}
+.cbt p{font-size:.85em;color:#64748b;line-height:1.6}
+.cba{font-size:1.3em;color:#fb923c;margin-left:auto;opacity:.7}
+.final{background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(96,165,250,.1),rgba(52,211,153,.1));border:1px solid rgba(167,139,250,.3);border-radius:24px;padding:40px;text-align:center;margin-bottom:30px;position:relative;overflow:hidden}
+.final::after{content:'✦';position:absolute;font-size:8em;opacity:.03;top:50%;left:50%;transform:translate(-50%,-50%)}
+.final h2{font-size:1.6em;font-weight:900;color:#fff;margin-bottom:24px}
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;position:relative;z-index:1}
+.gc{background:rgba(255,255,255,.07);border-radius:16px;padding:20px 16px;text-align:left}
+.gcl{font-size:.72em;letter-spacing:1.5px;font-weight:700;margin-bottom:8px}
+.gcp .gcl{color:#a78bfa}.gcb .gcl{color:#60a5fa}.gcg .gcl{color:#34d399}
+.gct{font-size:.88em;color:#cbd5e1;line-height:1.7}
+.ftag{position:relative;z-index:1;font-size:1.05em;color:#e2e8f0;font-weight:700;padding:16px 24px;background:rgba(255,255,255,.05);border-radius:12px;display:inline-block;border:1px solid rgba(255,255,255,.1)}
+.ftag span{color:#a78bfa}
+.atlas-bnr{position:relative;border-radius:24px;overflow:hidden;margin-bottom:30px;height:220px}
+.atlas-bnr img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.atlas-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,30,.88) 40%,rgba(10,8,30,.3));display:flex;flex-direction:column;justify-content:center;padding:36px 40px}
+.atlas-tag{font-size:.7em;letter-spacing:3px;color:#a78bfa;font-weight:700;margin-bottom:10px}
+.atlas-ov h3{font-size:1.5em;font-weight:900;color:#fff;line-height:1.35;margin-bottom:10px}
+.atlas-ov p{font-size:.83em;color:#94a3b8;line-height:1.7}
+.atlas-ov strong{color:#c4b5fd}
+.hlogo{position:absolute;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:8px}
+.hlogo-l{left:24px}.hlogo-r{right:24px}
+.hlogo-wrap{background:#fff;border-radius:10px;padding:7px 14px;box-shadow:0 4px 24px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.08)}
+.hlogo-wrap img{height:30px;width:auto;display:block}
+.hlogo-nm{font-size:.58em;color:#64748b;letter-spacing:2px;font-weight:700}
+@media(max-width:900px){.hlogo{display:none}}
+@media(max-width:768px){.hdr h1{font-size:2em}.pgrid{grid-template-columns:1fr 1fr}.dgrid{grid-template-columns:1fr}.catch{font-size:1.3em}.ggrid{grid-template-columns:1fr}.lmsg{padding:28px 24px}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
+@media(max-width:480px){.pgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <!-- 현대자동차 로고 (좌) -->
+  <div class="hlogo hlogo-l">
+    <div class="hlogo-wrap"><img src="hyundai.webp" alt="Hyundai"></div>
+    <span class="hlogo-nm">현대자동차</span>
+  </div>
+
+  <div class="bdg">STRATEGIC MATERIALS PURCHASING TEAM</div>
+  <h1>'26 전략소재구매팀<br>워크샵</h1>
+  <div class="catch"><span style="color:#a78bfa">R</span> + <span style="color:#60a5fa">R²</span></div>
+  <div class="csub"><span style="color:#a78bfa;font-weight:700">Refresh</span> &nbsp;+&nbsp; <span style="color:#60a5fa;font-weight:700">Review</span> &nbsp;×&nbsp; <span style="color:#34d399;font-weight:700">Reboot</span></div>
+
+  <!-- 기아 로고 (우) -->
+  <div class="hlogo hlogo-r">
+    <div class="hlogo-wrap"><img src="kia.webp" alt="Kia"></div>
+    <span class="hlogo-nm">기아</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">✉️ 팀장 메시지</div>
+  <div class="lmsg">
+    <div class="lttl">FROM. 팀장</div>
+    <div class="lbdy">
+      <p>우리 팀은 <span class="kp">다양한 경험을 가진 구성원들이 서로의 의견을 존중하며 즐겁게 일하는 문화</span>를 만들어왔습니다.</p>
+      <p>이제 다음 단계는 <span class="kb">회사의 프로세스와 기준, 그리고 전반적인 움직임에 대한 이해를 함께 높여</span> 팀 전체의 <span class="kb">실행력과 연결감</span>을 더 키우는 것입니다.</p>
+      <p>이번 워크샵은 <span class="ka">부족함을 지적하는 자리가 아닙니다.</span> 서로의 경험을 나누고 반복적으로 배우며 더 빠르게 성장하는 방법을 <span class="kg">함께 찾는 자리</span>입니다.</p>
+      <p>이를 통해 우리 팀이 <span class="kg">공동체 의식을 바탕으로 더 유기적이고 강한 조직</span>이 되기를 바랍니다.</p>
+    </div>
+    <div class="lfrm">전략소재구매팀 팀장 &nbsp;<b>정다운</b></div>
+    <div class="olbl">OUR TEAM — 다양한 경험이 모인 곳</div>
+    <div class="chips">
+      <span class="chip cp"><span class="dot"></span>POSCO</span>
+      <span class="chip cl"><span class="dot"></span>LG화학</span>
+      <span class="chip ce"><span class="dot"></span>LG에너지솔루션</span>
+      <span class="chip cs"><span class="dot"></span>삼성SDI</span>
+      <span class="chip cd"><span class="dot"></span>LG디스플레이</span>
+      <span class="chip csi"><span class="dot"></span>삼성중공업</span>
+      <span class="chip ch"><span class="dot"></span>현대자동차</span>
+      <span class="chip ck"><span class="dot"></span>기아</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">🎯 워크샵 목적 &amp; 캐치프레이즈</div>
+  <div class="pgrid">
+    <a href="refresh.html" class="pc pr">
+      <div class="ico">✨</div><h3>Refresh</h3>
+      <p>일상과 업무에서 잠시 벗어나<br>팀의 에너지를 새롭게 환기하는 시간</p>
+      <div class="lhint">↗ DAY 1 액티비티 보기</div>
+    </a>
+    <a href="review.html" class="pc pv">
+      <div class="ico">🔍</div><h3>Review</h3>
+      <p>'25년 워크샵 이후<br>실제로 실행해 온 변화들을<br>객관적으로 돌아보는 과정</p>
+      <div class="lhint">↗ DAY 2 Review 보기</div>
+    </a>
+    <a href="reboot.html" class="pc pb">
+      <div class="ico">🚀</div><h3>Reboot</h3>
+      <p>'26년 완주를 향해<br>개인과 팀의 방향과 방식을<br>다시 정렬하는 시간</p>
+      <div class="lhint">↗ 하반기 나침반 보기</div>
+    </a>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">💡 이번 워크샵 핵심 메시지</div>
+  <div class="kmsg">
+    <div class="mi"><div class="mic mip">⭐</div><div class="mt">우리는 이미 <strong>서로를 존중하며 즐겁게 일하는 문화</strong>를 만들어온 팀 — 이제 그 위에 <strong>실행력과 연결감</strong>을 더 쌓는다</div></div>
+    <div class="mi"><div class="mic mib">🤝</div><div class="mt">이번 워크샵은 <strong>지적이 아닌 공유의 자리</strong> — 서로의 경험을 나누고 반복적으로 배우며 <strong>함께 더 빠르게 성장</strong>하는 방법을 찾는다</div></div>
+    <div class="mi"><div class="mic mig">🔗</div><div class="mt"><strong>회사의 프로세스·기준·전반적인 방향</strong>에 대한 이해를 함께 높여, 팀 모두가 <strong>같은 맥락 위에서 유기적으로 움직이는 조직</strong>을 만든다</div></div>
+    <div class="mi"><div class="mic mia">🌱</div><div class="mt"><strong>공동체 의식</strong>을 바탕으로 — 개인의 성장이 팀의 성장으로, 팀의 성장이 <strong>더 강한 조직</strong>으로 이어진다</div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">📅 주요 일정</div>
+  <div class="dgrid">
+    <div class="dcard d1">
+      <div class="dhead"><div class="dlbl">DAY 1</div><div class="dttl">친해지고, 웃고,<br>팀 에너지 만들기</div><div class="dcpt">🔥 감사와 칭찬의 날</div></div>
+      <div class="dbody">
+        <div class="tl"><div class="tb"><span>15:00~16:50</span></div><div class="tc"><h4>🚌 이동 및 집결</h4><p>사무실 → 워크샵 장소 이동</p></div></div>
+        <div class="tl"><div class="tb"><span>16:50~18:30</span></div><div class="tc"><h4>🏃 액티비티 / 단합 프로그램</h4><p>몸을 쓰는 액티비티로 직급·그룹을 섞은 팀 구성, 자연스러운 교류 유도</p></div></div>
+        <div class="tl"><div class="tb"><span>19:00~21:00</span></div><div class="tc"><h4>🔥 바비큐 &amp; 칭찬합시다 세션 <span class="tg ti">MC : 백동훈 매니저</span></h4><p>하나로마트 장보기(규진·규동 차량) → 바비큐 식사<br>칭찬카드 또는 실시간 대화로 서로의 고마웠던 점 공유</p></div></div>
+        <div class="tl"><div class="tb"><span>21:00~22:00</span></div><div class="tc"><h4>🎮 단합 게임 <span class="tg ti">MC : 동현·선영 매니저</span></h4><p>팀별 게임 4종 진행 · 경쟁보다 웃음과 협업 중심</p></div></div>
+      </div>
+    </div>
+    <div class="dcard d2">
+      <div class="dhead"><div class="dlbl">DAY 2</div><div class="dttl">돌아보고,<br>함께 정렬하기</div><div class="dcpt">📋 Review &amp; Reboot의 날</div></div>
+      <div class="dbody">
+        <div class="tl"><div class="tb"><span>오전</span></div><div class="tc"><h4>🌅 조식 &amp; 가벼운 일정</h4><p>침구 정리 및 대관 장소 정리 후 이동</p></div></div>
+        <div class="tl"><div class="tb"><span>10:30~12:00</span></div><div class="tc"><h4>🍽️ 브런치 / 점심</h4><p>세미나 전 휴식 및 집중력 회복</p></div></div>
+        <div class="tl"><div class="tb"><span>12:00~15:00</span></div><div class="tc"><h4>📊 팀 세미나</h4><p>
+          <strong style="color:#60a5fa">① 25년 Review &amp; Reboot</strong> <span class="tg ti">MC : 김규진 매니저 / 각 그룹장</span><br>→ 변화·실행 결과 공유 &amp; 26년 과제 토론 (약 40분)<br><br>
+          <strong style="color:#a78bfa">② 서로를 더 알아가기</strong> <span class="tg ti">MC : 류지상 매니저</span><br>→ '내가 보는 나' vs '동료가 보는 나' (약 50분)<br><br>
+          <a href="quiz.html" style="text-decoration:none"><strong style="color:#34d399;text-decoration:underline;text-underline-offset:3px;text-decoration-style:dashed">③ 전략소재구매팀 퀴즈</strong> <span style="display:inline-block;font-size:.68em;padding:2px 10px;border-radius:4px;font-weight:700;vertical-align:middle;background:rgba(52,211,153,.2);color:#6ee7b7;border:1px solid rgba(52,211,153,.4)">▶ 퀴즈 시작</span></a> <span class="tg ti">MC : 백동훈 매니저</span><br>→ 전략소재구매팀 퀴즈 (약 30분)<br><br>
+          <strong style="color:#fbbf24">④ 팀장 마무리 세션</strong> (약 20분)
+        </p></div></div>
+      </div>
+    </div>
+  </div>
+  <a href="cheer.html" class="cbnr">
+    <div class="cbi">🔥</div>
+    <div class="cbt"><h3>칭찬합시다 세션 — 지금 바로 참여하기</h3><p>고마웠던 순간, 멋있었던 모습을 팀원에게 따뜻하게 전해보세요</p></div>
+    <div class="cba">↗</div>
+  </a>
+</div>
+
+<div class="atlas-bnr">
+  <img src="atlas.jpg" alt="Atlas by Boston Dynamics — Hyundai">
+  <div class="atlas-ov">
+    <div class="atlas-tag">HYUNDAI × BOSTON DYNAMICS</div>
+    <h3>전략소재가 만드는<br>미래의 모습</h3>
+    <p>우리가 구매하는 <strong>소재 하나하나</strong>가<br>이런 미래를 가능하게 합니다</p>
+  </div>
+</div>
+
+<div class="final">
+  <h2>🎯 워크샵을 마치며<br><span style="font-size:.65em;color:#a78bfa">우리가 함께 만들어왔고, 만들어 갈 것</span></h2>
+  <div class="ggrid">
+    <div class="gc gcp"><div class="gcl">✨ REFRESH — 문화의 힘</div><div class="gct">다양한 경험과 서로에 대한 존중,<br>즐겁게 일하는 문화는<br>우리가 이미 만들어온 것</div></div>
+    <div class="gc gcb"><div class="gcl">🔗 REBOOT — 연결의 힘</div><div class="gct">회사의 프로세스·기준·방향을<br>함께 이해하고, 같은 맥락 위에서<br>실행력과 연결감을 키운다</div></div>
+    <div class="gc gcg"><div class="gcl">🌱 GROW — 공동체의 힘</div><div class="gct">서로의 경험을 나누고<br>반복적으로 배우며 더 빠르게 성장하는<br>유기적이고 강한 조직으로</div></div>
+  </div>
+  <div class="ftag">부족함을 지적하는 자리가 아니라, <span>함께 성장하는 방법을 찾는 자리</span></div>
+</div>
+</div>
+
+<nav class="bnav">
+  <a href="index.html"   class="ni ah"><span class="ic">🏠</span>메인</a>
+  <a href="refresh.html" class="ni"><span class="ic">✨</span>Refresh</a>
+  <a href="review.html"  class="ni"><span class="ic">🔍</span>Review</a>
+  <a href="reboot.html"  class="ni"><span class="ic">🚀</span>Reboot</a>
+  <a href="cheer.html"   class="ni"><span class="ic">🔥</span>칭찬</a>
+</nav>
+</body>
+</html>
