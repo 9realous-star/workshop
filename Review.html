@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review | '26 전략소재구매팀 워크샵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#fff;padding:20px;padding-bottom:100px}
+.wrap{max-width:1100px;margin:0 auto}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:10px 16px 14px;background:rgba(15,12,41,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);gap:6px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:14px;text-decoration:none;font-size:.68em;font-weight:700;color:#475569;border:1px solid transparent;transition:all .2s;min-width:64px}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
+.ni .ic{font-size:1.3em;line-height:1}
+.ah{color:#c4b5fd;background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.35)}
+.ar{color:#a78bfa;background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.35)}
+.av{color:#60a5fa;background:rgba(96,165,250,.15);border-color:rgba(96,165,250,.35)}
+.ab{color:#34d399;background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35)}
+.ac{color:#fb923c;background:rgba(251,146,60,.15);border-color:rgba(251,146,60,.4)}
+.hdr{text-align:center;padding:40px 20px 50px}
+.bdg{display:inline-block;background:rgba(96,165,250,.2);border:1px solid rgba(96,165,250,.5);color:#93c5fd;padding:6px 20px;border-radius:20px;font-size:13px;letter-spacing:2px;margin-bottom:20px}
+.hdr h1{font-size:2.8em;font-weight:900;background:linear-gradient(135deg,#fff 0%,#60a5fa 50%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;line-height:1.2}
+.hsub{font-size:.95em;color:#64748b;letter-spacing:1px}
+.sec{margin-bottom:36px}
+.stit{font-size:1.2em;font-weight:700;color:#93c5fd;border-left:4px solid #60a5fa;padding-left:15px;margin-bottom:20px;letter-spacing:1px}
+.gbox{background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.25);border-radius:20px;padding:28px 32px;margin-bottom:30px}
+.gbox p{font-size:.95em;color:#cbd5e1;line-height:1.85}
+.gbox strong{color:#93c5fd}
+.lgnd{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;font-size:.8em;color:#64748b}
+.li{display:flex;align-items:center;gap:6px}
+.ds{width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.65em}
+.tblk{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;overflow:hidden;margin-bottom:24px}
+.thead{padding:16px 22px;font-size:.88em;font-weight:700;display:flex;align-items:center;gap:10px}
+.tnum{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8em;font-weight:900;flex-shrink:0}
+.t1 .thead{background:linear-gradient(90deg,rgba(167,139,250,.25),transparent);border-bottom:1px solid rgba(167,139,250,.2)}
+.t1 .tnum{background:rgba(167,139,250,.3);color:#a78bfa}.t1 .thead span{color:#c4b5fd}
+.t2 .thead{background:linear-gradient(90deg,rgba(96,165,250,.25),transparent);border-bottom:1px solid rgba(96,165,250,.2)}
+.t2 .tnum{background:rgba(96,165,250,.3);color:#60a5fa}.t2 .thead span{color:#93c5fd}
+.t3 .thead{background:linear-gradient(90deg,rgba(52,211,153,.25),transparent);border-bottom:1px solid rgba(52,211,153,.2)}
+.t3 .tnum{background:rgba(52,211,153,.3);color:#34d399}.t3 .thead span{color:#6ee7b7}
+.t4 .thead{background:linear-gradient(90deg,rgba(251,191,36,.25),transparent);border-bottom:1px solid rgba(251,191,36,.2)}
+.t4 .tnum{background:rgba(251,191,36,.3);color:#fbbf24}.t4 .thead span{color:#fde68a}
+.tbody{padding:20px 22px}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.rch{text-align:center;padding:14px 20px;border-radius:14px;font-size:.85em;font-weight:700;letter-spacing:1.5px;margin-bottom:16px}
+.cpl .rch{background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.3)}
+.crs .rch{background:rgba(52,211,153,.15);color:#34d399;border:1px solid rgba(52,211,153,.3)}
+.il{list-style:none}
+.il li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88em;color:#cbd5e1;line-height:1.6}
+.il li:last-child{border-bottom:none;padding-bottom:0}
+.il li .dt{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7em;flex-shrink:0;margin-top:2px}
+.dp{background:rgba(251,191,36,.2);color:#fbbf24}
+.dd{background:rgba(52,211,153,.2);color:#34d399}
+.dpt{background:rgba(251,146,60,.2);color:#fb923c}
+.dm{background:rgba(148,163,184,.15);color:#64748b}
+.psec{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:28px 32px;margin-bottom:30px}
+.pttl{font-size:.8em;letter-spacing:1.5px;color:#64748b;font-weight:700;margin-bottom:20px}
+.pi{margin-bottom:18px}.pi:last-child{margin-bottom:0}
+.plbl{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.88em;color:#e2e8f0}
+.pct{font-weight:700}
+.pg{color:#34d399}.pb2{color:#60a5fa}.po{color:#fb923c}.pp{color:#a78bfa}
+.pbg{height:8px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
+.pbar{height:100%;border-radius:4px;transition:width 1.2s ease}
+.bg{background:linear-gradient(90deg,#34d399,#059669)}
+.bb{background:linear-gradient(90deg,#60a5fa,#2563eb)}
+.bo{background:linear-gradient(90deg,#fb923c,#ea580c)}
+.bp{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
+.retro{background:linear-gradient(135deg,rgba(96,165,250,.12),rgba(167,139,250,.08));border:1px solid rgba(96,165,250,.3);border-radius:24px;padding:36px 40px;margin-bottom:30px}
+.retro h3{font-size:1.1em;font-weight:900;color:#fff;margin-bottom:20px}
+.rgrd{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rc{background:rgba(255,255,255,.05);border-radius:14px;padding:18px 20px}
+.rcl{font-size:.75em;font-weight:700;letter-spacing:1.2px;margin-bottom:10px}
+.rk .rcl{color:#34d399}.ri .rcl{color:#fb923c}
+.rc ul{list-style:none}
+.rc ul li{font-size:.86em;color:#cbd5e1;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5}
+.rc ul li:last-child{border-bottom:none}
+.rk ul li::before{content:'✓ ';color:#34d399}
+.ri ul li::before{content:'→ ';color:#fb923c}
+.nxt{background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(96,165,250,.1),rgba(52,211,153,.1));border:1px solid rgba(167,139,250,.3);border-radius:20px;padding:30px 36px;text-align:center;margin-bottom:20px}
+.nxt p{font-size:1em;color:#e2e8f0;line-height:1.8}
+.nxt strong{color:#c4b5fd}
+.bbar{display:flex;justify-content:center;align-items:center;gap:16px;padding-bottom:20px}
+.bbar img{height:20px;width:auto;background:#fff;border-radius:6px;padding:3px 8px;opacity:.75;transition:opacity .2s}
+.bbar img:hover{opacity:1}
+@media(max-width:768px){.hdr h1{font-size:2em}.rgrid{grid-template-columns:1fr}.rgrd{grid-template-columns:1fr}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <div class="bdg">REVIEW 2025 → 2026</div>
+  <h1>'25 워크샵, 우리는<br>무엇을 계획하고 무엇을 했나?</h1>
+  <div class="hsub">'25년 워크샵 약속 → '26년 현재 시점 돌아보기</div>
+</div>
+<div class="bbar">
+  <img src="hyundai.webp" alt="Hyundai">
+  <img src="kia.webp" alt="Kia">
+</div>
+
+<div class="sec">
+  <div class="stit">📌 '25년 워크샵에서 우리가 그린 그림</div>
+  <div class="gbox"><p>'25년 워크샵은 <strong>팀 구성원 간 신뢰와 소통</strong>을 핵심 과제로 삼았습니다.<br>다양한 배경과 경험을 가진 구성원들이 함께 일하며 <strong>자신의 의견을 자유롭게 낼 수 있는 환경</strong>을 만들고,<br>팀이 단순한 업무 집합이 아닌 <strong>하나의 공동체</strong>로 움직이는 것을 목표로 했습니다.</p></div>
+</div>
+
+<div class="sec">
+  <div class="stit">🔍 테마별 계획 vs 실행</div>
+  <div class="lgnd">
+    <div class="li"><span class="ds" style="background:rgba(52,211,153,.2);color:#34d399">✓</span>완료</div>
+    <div class="li"><span class="ds" style="background:rgba(251,146,60,.2);color:#fb923c">△</span>부분 진행</div>
+    <div class="li"><span class="ds" style="background:rgba(148,163,184,.15);color:#64748b">–</span>미진행</div>
+  </div>
+
+  <div class="tblk t1">
+    <div class="thead"><div class="tnum">1</div><span>소통 &amp; 팀 문화 만들기</span></div>
+    <div class="tbody"><div class="rgrid">
+      <div class="cpl"><div class="rch">📋 우리가 계획했던 것</div><ul class="il"><li><div class="dt dp">▷</div>정기적인 팀 내 소통 채널 운영 (월 1회 이상)</li><li><div class="dt dp">▷</div>직급·그룹을 넘은 자유로운 의견 개진 문화 정착</li><li><div class="dt dp">▷</div>신규 입사자 온보딩 프로그램 수립</li></ul></div>
+      <div class="crs"><div class="rch">✅ 실제로 한 것</div><ul class="il"><li><div class="dt dd">✓</div>팀 정기 미팅 정례화 및 안건 공유 문화 정착</li><li><div class="dt dd">✓</div>구성원 의견이 업무에 반영되는 사례 증가</li><li><div class="dt dpt">△</div>온보딩 체계 일부 정비 — 문서화 추가 필요</li></ul></div>
+    </div></div>
+  </div>
+
+  <div class="tblk t2">
+    <div class="thead"><div class="tnum">2</div><span>업무 실행력 &amp; 프로세스 개선</span></div>
+    <div class="tbody"><div class="rgrid">
+      <div class="cpl"><div class="rch">📋 우리가 계획했던 것</div><ul class="il"><li><div class="dt dp">▷</div>구매 프로세스 표준화 및 공유</li><li><div class="dt dp">▷</div>그룹 간 업무 연계 포인트 명확화</li><li><div class="dt dp">▷</div>반복 업무 자동화 방안 검토</li></ul></div>
+      <div class="crs"><div class="rch">✅ 실제로 한 것</div><ul class="il"><li><div class="dt dpt">△</div>일부 프로세스 정비 — 전체 표준화 진행 중</li><li><div class="dt dd">✓</div>그룹 간 협업 케이스 증가, 연계 업무 경험 축적</li><li><div class="dt dm">–</div>자동화 검토 우선순위 조정으로 미착수</li></ul></div>
+    </div></div>
+  </div>
+
+  <div class="tblk t3">
+    <div class="thead"><div class="tnum">3</div><span>전문성 강화 &amp; 지식 공유</span></div>
+    <div class="tbody"><div class="rgrid">
+      <div class="cpl"><div class="rch">📋 우리가 계획했던 것</div><ul class="il"><li><div class="dt dp">▷</div>전략소재·배터리 관련 사내 스터디 운영</li><li><div class="dt dp">▷</div>외부 동향·시장 정보 팀 내 공유 체계 구축</li><li><div class="dt dp">▷</div>구성원별 역량 개발 목표 수립</li></ul></div>
+      <div class="crs"><div class="rch">✅ 실제로 한 것</div><ul class="il"><li><div class="dt dd">✓</div>비정기적 정보 공유 및 현황 브리핑 진행</li><li><div class="dt dpt">△</div>외부 동향 공유는 개인 단위에서 일부 진행</li><li><div class="dt dm">–</div>개인별 역량 목표 설정 형식화 필요</li></ul></div>
+    </div></div>
+  </div>
+
+  <div class="tblk t4">
+    <div class="thead"><div class="tnum">4</div><span>개인 &amp; 팀 웰빙 / 에너지 관리</span></div>
+    <div class="tbody"><div class="rgrid">
+      <div class="cpl"><div class="rch">📋 우리가 계획했던 것</div><ul class="il"><li><div class="dt dp">▷</div>서로의 강점을 인식하고 칭찬하는 문화</li><li><div class="dt dp">▷</div>업무 부하 분산 및 서로 돕는 문화 정착</li><li><div class="dt dp">▷</div>팀 내 즐거운 이벤트 정기 기획</li></ul></div>
+      <div class="crs"><div class="rch">✅ 실제로 한 것</div><ul class="il"><li><div class="dt dd">✓</div>서로 배려하고 존중하는 분위기 자연스럽게 형성</li><li><div class="dt dd">✓</div>업무 피크 타임에 자발적 협업 사례 다수</li><li><div class="dt dpt">△</div>팀 이벤트 비정기 진행 — 정례화 검토 필요</li></ul></div>
+    </div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">📊 테마별 이행 수준</div>
+  <div class="psec">
+    <div class="pttl">EXECUTION LEVEL — '25년 계획 대비 '26년 현재 시점</div>
+    <div class="pi"><div class="plbl"><span>① 소통 &amp; 팀 문화</span><span class="pct pg">80%</span></div><div class="pbg"><div class="pbar bg" style="width:0" data-w="80%"></div></div></div>
+    <div class="pi"><div class="plbl"><span>② 업무 실행력 &amp; 프로세스</span><span class="pct pb2">55%</span></div><div class="pbg"><div class="pbar bb" style="width:0" data-w="55%"></div></div></div>
+    <div class="pi"><div class="plbl"><span>③ 전문성 강화 &amp; 지식 공유</span><span class="pct po">45%</span></div><div class="pbg"><div class="pbar bo" style="width:0" data-w="45%"></div></div></div>
+    <div class="pi"><div class="plbl"><span>④ 개인 &amp; 팀 웰빙</span><span class="pct pp">75%</span></div><div class="pbg"><div class="pbar bp" style="width:0" data-w="75%"></div></div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">💬 돌아보며 — Keep &amp; Improve</div>
+  <div class="retro">
+    <h3>우리가 잘 해온 것, 그리고 더 키워야 할 것</h3>
+    <div class="rgrd">
+      <div class="rc rk"><div class="rcl">✓ KEEP — 계속 강화할 것</div><ul><li>서로를 존중하고 의견을 경청하는 팀 분위기</li><li>어려울 때 자발적으로 돕는 협업 문화</li><li>직급과 그룹을 넘어 편하게 소통하는 관계</li><li>다양한 경험이 공존하는 팀의 강점</li></ul></div>
+      <div class="rc ri"><div class="rcl">→ IMPROVE — '26년에 더 키울 것</div><ul><li>회사 프로세스·기준에 대한 팀 전체의 공통 이해</li><li>그룹 간 연결감 및 업무 맥락 공유 강화</li><li>지식·경험의 체계적인 축적과 공유 방식 정립</li><li>개인 역량 성장 목표의 가시화</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="nxt"><p>이 Review는 <strong>반성이 아닌 출발점</strong>입니다.<br>우리가 함께 만들어온 것을 확인하고,<br><strong>'26년을 더 유기적이고 강한 조직으로</strong> 나아가기 위한 첫 걸음입니다.</p></div>
+</div>
+
+<nav class="bnav">
+  <a href="index.html"   class="ni"><span class="ic">🏠</span>메인</a>
+  <a href="refresh.html" class="ni"><span class="ic">✨</span>Refresh</a>
+  <a href="review.html"  class="ni av"><span class="ic">🔍</span>Review</a>
+  <a href="reboot.html"  class="ni"><span class="ic">🚀</span>Reboot</a>
+  <a href="cheer.html"   class="ni"><span class="ic">🔥</span>칭찬</a>
+</nav>
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{document.querySelectorAll('.pbar[data-w]').forEach(b=>{b.style.width=b.dataset.w})},300)
+})
+</script>
+</body>
+</html>

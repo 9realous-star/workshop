@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전략소재구매팀 퀴즈 | '26 전략소재구매팀 워크샵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#fff;padding:20px;padding-bottom:100px}
+.wrap{max-width:960px;margin:0 auto}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:10px 16px 14px;background:rgba(15,12,41,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);gap:6px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:14px;text-decoration:none;font-size:.68em;font-weight:700;color:#475569;border:1px solid transparent;transition:all .2s;min-width:64px}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
+.ni .ic{font-size:1.3em;line-height:1}
+.ah{color:#c4b5fd;background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.35)}
+.hdr{text-align:center;padding:48px 20px 32px;position:relative}
+.hdr::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:40px;background:linear-gradient(to bottom,transparent,#34d399)}
+.bdg{display:inline-block;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.4);color:#6ee7b7;padding:5px 18px;border-radius:20px;font-size:11px;letter-spacing:2.5px;margin-bottom:18px;font-weight:700}
+.hdr h1{font-size:2.6em;font-weight:900;background:linear-gradient(135deg,#fff 0%,#34d399 55%,#06b6d4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;line-height:1.2}
+.hsub{font-size:.92em;color:#94a3b8;line-height:1.8}
+.score-box{display:flex;align-items:center;justify-content:center;gap:16px;background:linear-gradient(90deg,rgba(52,211,153,.1),rgba(6,182,212,.08));border:1px solid rgba(52,211,153,.25);border-radius:14px;padding:13px 24px;margin-bottom:32px;font-size:.9em;color:#94a3b8}
+.score-box strong{color:#34d399;font-size:1.3em}
+.qlist{display:flex;flex-direction:column;gap:20px;margin-bottom:32px}
+.qcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;overflow:hidden;transition:border-color .3s}
+.qcard.correct{border-color:rgba(52,211,153,.5)}
+.qcard.wrong{border-color:rgba(251,146,60,.5)}
+.qhead{padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:flex-start;gap:14px}
+.qnum{width:36px;height:36px;border-radius:10px;background:rgba(52,211,153,.2);color:#34d399;font-size:1em;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qtxt{font-size:.97em;font-weight:700;color:#f1f5f9;line-height:1.55;flex:1}
+.qbody{padding:18px 24px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);cursor:pointer;font-size:.88em;color:#cbd5e1;transition:all .2s;user-select:none}
+.opt:hover{border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.06);color:#e2e8f0}
+.opt.selected{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.1);color:#e2e8f0}
+.opt.correct-ans{border-color:rgba(52,211,153,.7);background:rgba(52,211,153,.18);color:#6ee7b7;font-weight:700}
+.opt.wrong-ans{border-color:rgba(251,146,60,.6);background:rgba(251,146,60,.12);color:#fdba74}
+.opt-icon{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);font-size:.75em;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#64748b}
+.fbk{margin-top:14px;padding:12px 16px;border-radius:10px;font-size:.83em;line-height:1.6;display:none}
+.fbk.show{display:block}
+.fbk.ok{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:#6ee7b7}
+.fbk.ng{background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.3);color:#fdba74}
+.sbtn-wrap{text-align:center;margin-bottom:32px}
+.sbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;border-radius:24px;font-size:.92em;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;background:rgba(52,211,153,.2);border:1px solid rgba(52,211,153,.5);color:#34d399;transition:all .2s}
+.sbtn:hover{background:rgba(52,211,153,.32)}
+.rbtn{background:rgba(167,139,250,.2);border-color:rgba(167,139,250,.5);color:#a78bfa}
+.rbtn:hover{background:rgba(167,139,250,.32)}
+.result-box{background:linear-gradient(135deg,rgba(52,211,153,.12),rgba(6,182,212,.08));border:1px solid rgba(52,211,153,.3);border-radius:20px;padding:32px;text-align:center;display:none;margin-bottom:24px}
+.result-box.show{display:block}
+.result-box h2{font-size:2em;font-weight:900;color:#34d399;margin-bottom:10px}
+.result-box p{color:#94a3b8;font-size:.95em;line-height:1.8}
+.result-box .grade{font-size:3em;margin-bottom:12px}
+.bbar{display:flex;justify-content:center;align-items:center;gap:16px;padding-bottom:16px}
+.bbar img{height:20px;width:auto;background:#fff;border-radius:6px;padding:3px 8px;opacity:.75;transition:opacity .2s}
+.bbar img:hover{opacity:1}
+@media(max-width:600px){.hdr h1{font-size:1.9em}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <div class="bdg">TEAM QUIZ</div>
+  <h1>🎯 전략소재구매팀 퀴즈</h1>
+  <p class="hsub">우리 팀을 얼마나 알고 있나요? 5문제에 도전해보세요!</p>
+</div>
+<div class="bbar">
+  <img src="hyundai.webp" alt="Hyundai">
+  <img src="kia.webp" alt="Kia">
+</div>
+
+<div class="score-box">
+  <span>현재 점수</span>
+  <strong id="score">0</strong>
+  <span>/ 5</span>
+</div>
+
+<div class="qlist" id="qlist"></div>
+
+<div class="sbtn-wrap">
+  <button class="sbtn" id="submitBtn" onclick="submit()">📝 채점하기</button>
+</div>
+
+<div class="result-box" id="resultBox">
+  <div class="grade" id="resultGrade"></div>
+  <h2 id="resultTitle"></h2>
+  <p id="resultMsg"></p>
+  <br>
+  <button class="sbtn rbtn" onclick="reset()">🔄 다시 풀기</button>
+</div>
+</div>
+
+<nav class="bnav">
+  <a href="index.html"   class="ni ah"><span class="ic">🏠</span>메인</a>
+  <a href="refresh.html" class="ni"><span class="ic">✨</span>Refresh</a>
+  <a href="review.html"  class="ni"><span class="ic">🔍</span>Review</a>
+  <a href="reboot.html"  class="ni"><span class="ic">🚀</span>Reboot</a>
+  <a href="cheer.html"   class="ni"><span class="ic">🔥</span>칭찬</a>
+</nav>
+
+<script>
+const QS=[
+  {
+    q:'전략소재구매팀의 팀장 이름은?',
+    opts:['한병주','정다운','김규진','백동훈'],
+    ans:1,
+    fbk:'정다운 팀장님이 이끄시는 팀입니다!'
+  },
+  {
+    q:"'25년 워크샵에서 우리 팀이 핵심 과제로 삼은 것은?",
+    opts:['비용 절감','팀 구성원 간 신뢰와 소통','신규 공급망 확보','자동화 시스템 도입'],
+    ans:1,
+    fbk:"'25년 워크샵은 팀 구성원 간 신뢰와 소통을 핵심 과제로 삼았습니다."
+  },
+  {
+    q:'이번 워크샵의 캐치프레이즈는? (R + ___)',
+    opts:['Refresh + Recharge','Rest + Restart','Refresh + Review × Reboot','Rebuild + Rethink'],
+    ans:2,
+    fbk:'Refresh + Review × Reboot — 환기하고, 돌아보고, 재정렬하는 시간!'
+  },
+  {
+    q:"DAY 1 '칭찬합시다 세션'의 MC를 맡은 분은?",
+    opts:['류지상 매니저','김규진 매니저','백동훈 매니저','이동현 매니저'],
+    ans:2,
+    fbk:'백동훈 매니저가 DAY 1 칭찬합시다 세션 MC를 맡았습니다!'
+  },
+  {
+    q:"'26년 하반기 Reboot의 핵심 목표는?",
+    opts:['팀 인원 확대','26년 완주를 향한 하반기 재정렬','예산 최적화','신입사원 온보딩'],
+    ans:1,
+    fbk:"'26년 완주를 향해 — 개인과 팀의 방향과 방식을 다시 정렬하는 시간입니다!"
+  }
+];
+
+let answered=[];
+let submitted=false;
+
+function build(){
+  answered=new Array(QS.length).fill(-1);
+  submitted=false;
+  const list=document.getElementById('qlist');
+  list.innerHTML='';
+  document.getElementById('score').textContent='0';
+  document.getElementById('resultBox').classList.remove('show');
+  document.getElementById('submitBtn').style.display='inline-flex';
+
+  QS.forEach((q,qi)=>{
+    const card=document.createElement('div');
+    card.className='qcard';
+    card.id='q'+qi;
+    const labels=['①','②','③','④'];
+    const optsHtml=q.opts.map((o,oi)=>`
+      <div class="opt" id="opt-${qi}-${oi}" onclick="pick(${qi},${oi})">
+        <span class="opt-icon">${labels[oi]}</span>${o}
+      </div>`).join('');
+    card.innerHTML=`
+      <div class="qhead">
+        <div class="qnum">Q${qi+1}</div>
+        <div class="qtxt">${q.q}</div>
+      </div>
+      <div class="qbody">
+        <div class="opts">${optsHtml}</div>
+        <div class="fbk" id="fbk-${qi}"></div>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function pick(qi,oi){
+  if(submitted)return;
+  answered[qi]=oi;
+  QS[qi].opts.forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.classList.toggle('selected',i===oi);
+  });
+}
+
+function submit(){
+  if(submitted)return;
+  submitted=true;
+  let score=0;
+  QS.forEach((q,qi)=>{
+    const card=document.getElementById('q'+qi);
+    const fbk=document.getElementById('fbk-'+qi);
+    const sel=answered[qi];
+    if(sel===q.ans){
+      score++;
+      card.classList.add('correct');
+      document.getElementById(`opt-${qi}-${sel}`).classList.add('correct-ans');
+      fbk.textContent='✅ 정답! '+q.fbk;
+      fbk.className='fbk show ok';
+    } else {
+      card.classList.add('wrong');
+      if(sel>=0) document.getElementById(`opt-${qi}-${sel}`).classList.add('wrong-ans');
+      document.getElementById(`opt-${qi}-${q.ans}`).classList.add('correct-ans');
+      fbk.textContent='❌ 오답! 정답: '+q.opts[q.ans]+' — '+q.fbk;
+      fbk.className='fbk show ng';
+    }
+  });
+  document.getElementById('score').textContent=score;
+  document.getElementById('submitBtn').style.display='none';
+
+  const rb=document.getElementById('resultBox');
+  const grades=['😢','😅','😊','😄','🎉','🏆'];
+  const msgs=[
+    '아직 우리 팀을 더 알아가는 중!','조금 더 집중해봐요!',
+    '절반 성공! 한 번 더 도전해보세요','잘 하셨어요! 거의 다 왔어요',
+    '훌륭해요! 팀을 정말 잘 알고 계시네요','완벽한 점수! 전략소재구매팀 박사님 🎓'
+  ];
+  document.getElementById('resultGrade').textContent=grades[score];
+  document.getElementById('resultTitle').textContent=score+'점 / 5점';
+  document.getElementById('resultMsg').textContent=msgs[score];
+  rb.classList.add('show');
+  rb.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function reset(){build();}
+
+window.addEventListener('DOMContentLoaded',build);
+</script>
+</body>
+</html>
