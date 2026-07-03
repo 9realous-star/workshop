@@ -197,9 +197,41 @@ async function loadIndividuals(skipIfEditing){
   renderSlots();
 }
 
+const RB_TEAM_API='/api/reboot-team';
+let teamData={ta:'',tb:'',t1:'',t2:'',t3:''};
+
+function teamFieldFocused(){
+  const ids=['ta','tb','t1','t2','t3'];
+  return document.activeElement&&ids.includes(document.activeElement.id);
+}
+
+function applyTeamData(){
+  ['ta','tb','t1','t2','t3'].forEach(id=>{document.getElementById(id).value=teamData[id]||''});
+  bindGrow();
+}
+
+async function loadTeam(skipIfEditing){
+  if(skipIfEditing&&teamFieldFocused())return;
+  try{
+    const r=await fetch(RB_TEAM_API);
+    if(!r.ok)throw new Error('fail');
+    teamData=await r.json();
+  }catch(e){/* 오프라인이면 화면에 있는 값 유지 */}
+  applyTeamData();
+}
+
+async function saveTeam(section){
+  teamData={ta:document.getElementById('ta').value,tb:document.getElementById('tb').value,t1:document.getElementById('t1').value,t2:document.getElementById('t2').value,t3:document.getElementById('t3').value};
+  try{
+    const r=await fetch(RB_TEAM_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(teamData)});
+    if(!r.ok)throw new Error('fail');
+    teamData=await r.json();
+    ok(section===1?'h1':'h2');
+  }catch(e){alert('저장 중 오류가 발생했어요. 다시 시도해주세요.')}
+}
+
 async function sv(n){
-  if(n===1){localStorage.setItem('rb-ta',document.getElementById('ta').value);localStorage.setItem('rb-tb',document.getElementById('tb').value);ok('h1')}
-  if(n===2){[1,2,3].forEach(i=>localStorage.setItem(`rb-t${i}`,document.getElementById(`t${i}`).value));ok('h2')}
+  if(n===1||n===2){await saveTeam(n);return}
   if(n===3){
     const cnt=document.querySelectorAll('#islots .pslot').length;
     const payload=[];
@@ -216,10 +248,13 @@ async function sv(n){
   }
 }
 
-function ld(n){if(n===1){const a=localStorage.getItem('rb-ta'),b=localStorage.getItem('rb-tb');if(a)document.getElementById('ta').value=a;if(b)document.getElementById('tb').value=b}if(n===2){[1,2,3].forEach(i=>{const v=localStorage.getItem(`rb-t${i}`);if(v)document.getElementById(`t${i}`).value=v})}}
 function ok(id){const el=document.getElementById(id);const o=el.textContent;el.textContent='✅ 저장되었습니다!';el.classList.add('ok');setTimeout(()=>{el.textContent=o;el.classList.remove('ok')},2200)}
 function bindGrow(){document.querySelectorAll('textarea').forEach(t=>{t.style.height='auto';t.style.height=t.scrollHeight+'px';t.addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px'})})}
-window.addEventListener('DOMContentLoaded',()=>{loadIndividuals(false);setInterval(()=>loadIndividuals(true),8000);ld(1);ld(2);document.querySelectorAll('#ta,#tb,#t1,#t2,#t3').forEach(t=>t.addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px'}))})
+window.addEventListener('DOMContentLoaded',()=>{
+  loadIndividuals(false);loadTeam(false);
+  setInterval(()=>{loadIndividuals(true);loadTeam(true)},8000);
+  document.querySelectorAll('#ta,#tb,#t1,#t2,#t3').forEach(t=>t.addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px'}))
+})
 </script>
 </body>
 </html>
