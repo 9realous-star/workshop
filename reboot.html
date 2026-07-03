@@ -157,13 +157,69 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 
 <script>
 const MBS=['정다운','한병주','김군주','이은솔','김규진','류지상','백동훈','김민재','신민호','김규동','한성영','백종관','황승하','이동현','박선영','김규진(팀관리)'];
-function mkSlot(i){const n=MBS[i]?MBS[i]+' 님':'';const d=document.createElement('div');d.className='pslot am';d.innerHTML=`<div class="plbl pa">🙋 ${i+1}번째</div><input class="ninp" id="in-${i}" placeholder="이름을 입력하세요" value="${n}"><textarea class="pinp" id="ip-${i}" placeholder="하반기에 내가 실천할 최소 두 가지..."></textarea>`;return d}
-function addSlot(){const g=document.getElementById('islots');const b=g.querySelector('.addbtn');const c=g.querySelectorAll('.pslot').length;g.insertBefore(mkSlot(c),b);localStorage.setItem('rb-ic',c+1)}
-function build(){const g=document.getElementById('islots');g.innerHTML='';const sc=parseInt(localStorage.getItem('rb-ic')||MBS.length);const tot=Math.max(sc,MBS.length);for(let i=0;i<tot;i++)g.appendChild(mkSlot(i));const b=document.createElement('button');b.className='addbtn';b.innerHTML='＋<br><span style="font-size:.85em">참여자 추가</span>';b.onclick=addSlot;g.appendChild(b);ld(3)}
-function sv(n){if(n===1){localStorage.setItem('rb-ta',document.getElementById('ta').value);localStorage.setItem('rb-tb',document.getElementById('tb').value);ok('h1')}if(n===2){[1,2,3].forEach(i=>localStorage.setItem(`rb-t${i}`,document.getElementById(`t${i}`).value));ok('h2')}if(n===3){document.querySelectorAll('#islots .pslot').forEach((_,i)=>{const ne=document.getElementById(`in-${i}`);const te=document.getElementById(`ip-${i}`);if(ne)localStorage.setItem(`rb-in-${i}`,ne.value);if(te)localStorage.setItem(`rb-ip-${i}`,te.value)});localStorage.setItem('rb-ic',document.querySelectorAll('#islots .pslot').length);ok('h3')}}
-function ld(n){if(n===1){const a=localStorage.getItem('rb-ta'),b=localStorage.getItem('rb-tb');if(a)document.getElementById('ta').value=a;if(b)document.getElementById('tb').value=b}if(n===2){[1,2,3].forEach(i=>{const v=localStorage.getItem(`rb-t${i}`);if(v)document.getElementById(`t${i}`).value=v})}if(n===3){document.querySelectorAll('#islots .pslot').forEach((_,i)=>{const sn=localStorage.getItem(`rb-in-${i}`);const st=localStorage.getItem(`rb-ip-${i}`);const ne=document.getElementById(`in-${i}`);const te=document.getElementById(`ip-${i}`);if(sn&&ne)ne.value=sn;if(st&&te)te.value=st})}}
+const RB_API='/api/reboot';
+let iSlots=[];
+
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function mkSlot(i,data){
+  const n=data&&data.name!==undefined?data.name:(MBS[i]?MBS[i]+' 님':'');
+  const t=data&&data.text!==undefined?data.text:'';
+  const d=document.createElement('div');d.className='pslot am';
+  d.innerHTML=`<div class="plbl pa">🙋 ${i+1}번째</div><input class="ninp" id="in-${i}" placeholder="이름을 입력하세요" value="${esc(n)}"><textarea class="pinp" id="ip-${i}" placeholder="하반기에 내가 실천할 최소 두 가지...">${esc(t)}</textarea>`;
+  return d;
+}
+
+function addSlot(){
+  const g=document.getElementById('islots');const b=g.querySelector('.addbtn');const c=g.querySelectorAll('.pslot').length;
+  iSlots.push({name:'',text:''});
+  g.insertBefore(mkSlot(c,iSlots[c]),b);
+  bindGrow();
+}
+
+function renderSlots(){
+  const g=document.getElementById('islots');g.innerHTML='';
+  iSlots.forEach((s,i)=>g.appendChild(mkSlot(i,s)));
+  const b=document.createElement('button');b.className='addbtn';b.innerHTML='＋<br><span style="font-size:.85em">참여자 추가</span>';b.onclick=addSlot;g.appendChild(b);
+  bindGrow();
+}
+
+async function loadIndividuals(skipIfEditing){
+  if(skipIfEditing&&document.activeElement&&document.activeElement.closest('#islots'))return;
+  try{
+    const r=await fetch(RB_API);
+    if(!r.ok)throw new Error('fail');
+    iSlots=await r.json();
+  }catch(e){
+    if(iSlots.length)return;
+    iSlots=MBS.map(name=>({name:name+' 님',text:''}));
+  }
+  renderSlots();
+}
+
+async function sv(n){
+  if(n===1){localStorage.setItem('rb-ta',document.getElementById('ta').value);localStorage.setItem('rb-tb',document.getElementById('tb').value);ok('h1')}
+  if(n===2){[1,2,3].forEach(i=>localStorage.setItem(`rb-t${i}`,document.getElementById(`t${i}`).value));ok('h2')}
+  if(n===3){
+    const cnt=document.querySelectorAll('#islots .pslot').length;
+    const payload=[];
+    for(let i=0;i<cnt;i++){
+      const ne=document.getElementById(`in-${i}`);const te=document.getElementById(`ip-${i}`);
+      payload.push({name:ne?ne.value:'',text:te?te.value:''});
+    }
+    try{
+      const r=await fetch(RB_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      if(!r.ok)throw new Error('fail');
+      iSlots=await r.json();
+      ok('h3');
+    }catch(e){alert('저장 중 오류가 발생했어요. 다시 시도해주세요.')}
+  }
+}
+
+function ld(n){if(n===1){const a=localStorage.getItem('rb-ta'),b=localStorage.getItem('rb-tb');if(a)document.getElementById('ta').value=a;if(b)document.getElementById('tb').value=b}if(n===2){[1,2,3].forEach(i=>{const v=localStorage.getItem(`rb-t${i}`);if(v)document.getElementById(`t${i}`).value=v})}}
 function ok(id){const el=document.getElementById(id);const o=el.textContent;el.textContent='✅ 저장되었습니다!';el.classList.add('ok');setTimeout(()=>{el.textContent=o;el.classList.remove('ok')},2200)}
-window.addEventListener('DOMContentLoaded',()=>{build();ld(1);ld(2);document.querySelectorAll('textarea').forEach(t=>t.addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px'}))})
+function bindGrow(){document.querySelectorAll('textarea').forEach(t=>{t.style.height='auto';t.style.height=t.scrollHeight+'px';t.addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px'})})}
+window.addEventListener('DOMContentLoaded',()=>{loadIndividuals(false);setInterval(()=>loadIndividuals(true),8000);ld(1);ld(2);document.querySelectorAll('#ta,#tb,#t1,#t2,#t3').forEach(t=>t.addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px'}))})
 </script>
 </body>
 </html>
