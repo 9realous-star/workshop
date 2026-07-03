@@ -25,6 +25,20 @@ module.exports = async (req, res) => {
     return res.status(200).json(list);
   }
 
+  if (req.method === 'PATCH') {
+    const { id } = req.query;
+    const patch = req.body;
+    if (!id || !patch || typeof patch !== 'object') {
+      return res.status(400).json({ error: 'invalid payload' });
+    }
+    const list = (await redis.get(KEY)) || [];
+    const idx = list.findIndex((p) => String(p.id) === String(id));
+    if (idx === -1) return res.status(404).json({ error: 'not found' });
+    list[idx] = { ...list[idx], ...patch };
+    await redis.set(KEY, list);
+    return res.status(200).json(list);
+  }
+
   if (req.method === 'DELETE') {
     const { id, pw } = req.query;
     let list = (await redis.get(KEY)) || [];

@@ -22,15 +22,29 @@ module.exports = async (req, res) => {
 
   if (req.method === 'POST') {
     const body = req.body;
-    if (!Array.isArray(body)) {
-      return res.status(400).json({ error: 'invalid payload' });
+
+    if (body && typeof body === 'object' && !Array.isArray(body) && typeof body.index === 'number') {
+      const slots = await getSlots();
+      const idx = body.index;
+      while (slots.length <= idx) slots.push({ name: '', text: '' });
+      slots[idx] = {
+        name: typeof body.name === 'string' ? body.name.slice(0, 30) : '',
+        text: typeof body.text === 'string' ? body.text.slice(0, 500) : '',
+      };
+      await redis.set(KEY, slots);
+      return res.status(200).json(slots);
     }
-    const clean = body.map((s) => ({
-      name: typeof s?.name === 'string' ? s.name.slice(0, 30) : '',
-      text: typeof s?.text === 'string' ? s.text.slice(0, 500) : '',
-    }));
-    await redis.set(KEY, clean);
-    return res.status(200).json(clean);
+
+    if (Array.isArray(body)) {
+      const clean = body.map((s) => ({
+        name: typeof s?.name === 'string' ? s.name.slice(0, 30) : '',
+        text: typeof s?.text === 'string' ? s.text.slice(0, 500) : '',
+      }));
+      await redis.set(KEY, clean);
+      return res.status(200).json(clean);
+    }
+
+    return res.status(400).json({ error: 'invalid payload' });
   }
 
   res.status(405).end();
