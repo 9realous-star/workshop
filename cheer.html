@@ -209,11 +209,21 @@ const MBS=[
   {name:'이동현', role:'매니저',      wg:'2',     emoji:'🚀',color:'#60a5fa',bg:'rgba(96,165,250,.14)', ldr:false,tl:false},
   {name:'박선영', role:'매니저',      wg:'2',     emoji:'🌸',color:'#60a5fa',bg:'rgba(96,165,250,.14)', ldr:false,tl:false},
 ];
-const SK='ws_praises_v4';
+const API='/api/praises';
+let PRAISES=[];
 let sel=null,emj='🔥',view='all',wg='all',curPage=1;
 
-window.addEventListener('DOMContentLoaded',()=>{
+async function loadPraises(){
+  try{
+    const r=await fetch(API);
+    PRAISES=await r.json();
+  }catch(e){PRAISES=[]}
   rGrid();rFeed();rStats();rCnt();
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  loadPraises();
+  setInterval(loadPraises,6000);
   document.getElementById('msg').addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px';tBtn()});
   document.getElementById('from').addEventListener('input',tBtn);
 });
@@ -227,7 +237,7 @@ function fWG(w,btn){
 
 function rGrid(){
   const g=document.getElementById('mgrid');
-  const ps=lPs();
+  const ps=PRAISES;
   const list=wg==='all'?MBS:MBS.filter(m=>m.wg===wg);
   g.innerHTML=list.map(m=>{
     const ri=MBS.indexOf(m);
@@ -272,13 +282,21 @@ function tBtn(){
   document.getElementById('sbtn').disabled=!(sel!==null&&f&&t);
 }
 
-function submit(){
+async function submit(){
   const f=document.getElementById('from').value.trim();
   const t=document.getElementById('msg').value.trim();
   if(!f||!t||sel===null)return;
   const m=MBS[sel];
   const p={id:Date.now(),from:f,to:m.name,tr:m.role,ti:sel,emoji:emj,text:t,time:new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})};
-  const ps=lPs();ps.unshift(p);sPs(ps);
+  document.getElementById('sbtn').disabled=true;
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+    if(!r.ok)throw new Error('fail');
+    PRAISES=await r.json();
+  }catch(e){
+    alert('전송 중 오류가 발생했어요. 다시 시도해주세요.');
+    tBtn();return;
+  }
   document.getElementById('msg').value='';
   document.getElementById('msg').style.height='auto';
   updCC(document.getElementById('msg'));tBtn();
@@ -288,7 +306,7 @@ function submit(){
 
 function rFeed(){
   const fd=document.getElementById('feed');
-  let ps=lPs();
+  let ps=PRAISES;
   if(view==='filter'&&sel!==null)ps=ps.filter(p=>p.to===MBS[sel].name);
   if(!ps.length){fd.innerHTML=`<div class="empty"><div class="eico">💌</div>아직 칭찬이 없어요.<br>${view==='filter'&&sel!==null?`<strong style="color:#fdba74">${MBS[sel].name}</strong> 님께 첫 번째 칭찬을 남겨보세요!`:'위에서 대상을 선택하고 첫 번째 칭찬을 남겨보세요! 🔥'}</div>`;return}
   const total=ps.length;
@@ -307,20 +325,38 @@ function rFeed(){
 }
 
 function rStats(){
-  const bar=document.getElementById('sbar');const ps=lPs();
+  const bar=document.getElementById('sbar');const ps=PRAISES;
   if(!ps.length){bar.innerHTML='<span style="font-size:.78em;color:#334155">아직 칭찬이 없어요 🔥</span>';return}
   const items=MBS.map((m,i)=>{const c=ps.filter(p=>p.to===m.name).length;if(!c)return'';return`<div class="si"><div class="sav" style="background:${m.bg};color:${m.color}">${m.emoji}</div><span class="sn">${m.name}</span><span class="sc2">${c}</span></div>`;}).join('');
   bar.innerHTML=items||'<span style="font-size:.78em;color:#334155">아직 칭찬이 없어요!</span>';
 }
 
-function del(id){if(!confirm('이 칭찬을 삭제할까요?'))return;sPs(lPs().filter(p=>p.id!==id));rGrid();rFeed();rStats();rCnt()}
-function clrAll(){if(!confirm('칭찬을 모두 삭제할까요?'))return;sPs([]);rGrid();rFeed();rStats();rCnt();toast('🗑️ 전체 초기화 완료')}
+async function del(id){
+  if(!confirm('이 칭찬을 삭제할까요?'))return;
+  try{
+    const r=await fetch(`${API}?id=${id}`,{method:'DELETE'});
+    PRAISES=await r.json();
+  }catch(e){alert('삭제 중 오류가 발생했어요.');return}
+  rGrid();rFeed();rStats();rCnt();
+}
+
+async function clrAll(){
+  const pw=prompt('관리자 비밀번호를 입력하세요');
+  if(pw===null)return;
+  if(pw!=='0512'){alert('비밀번호가 올바르지 않습니다.');return}
+  if(!confirm('칭찬을 모두 삭제할까요?'))return;
+  try{
+    const r=await fetch(`${API}?pw=${encodeURIComponent(pw)}`,{method:'DELETE'});
+    if(!r.ok)throw new Error('fail');
+    PRAISES=await r.json();
+  }catch(e){alert('초기화에 실패했어요.');return}
+  rGrid();rFeed();rStats();rCnt();toast('🗑️ 전체 초기화 완료')
+}
+
 function goPg(p){curPage=p;rFeed();document.getElementById('feed').scrollIntoView({behavior:'smooth',block:'start'})}
 function sView(v){view=v;curPage=1;document.getElementById('va').classList.toggle('on',v==='all');document.getElementById('vf').classList.toggle('on',v==='filter');rFeed()}
-function rCnt(){document.getElementById('fcnt').textContent=`${lPs().length}개`}
+function rCnt(){document.getElementById('fcnt').textContent=`${PRAISES.length}개`}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2600)}
-function lPs(){try{return JSON.parse(localStorage.getItem(SK))||[]}catch{return[]}}
-function sPs(d){localStorage.setItem(SK,JSON.stringify(d))}
 function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/\n/g,'<br>')}
 </script>
 </body>
