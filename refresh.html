@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refresh | '26 전략소재구매팀 워크샵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#fff;padding:20px;padding-bottom:100px}
+.wrap{max-width:1100px;margin:0 auto}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:10px 16px 14px;background:rgba(15,12,41,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);gap:6px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:14px;text-decoration:none;font-size:.68em;font-weight:700;color:#475569;border:1px solid transparent;transition:all .2s;min-width:64px}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
+.ni .ic{font-size:1.3em;line-height:1}
+.ah{color:#c4b5fd;background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.35)}
+.ar{color:#a78bfa;background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.35)}
+.av{color:#60a5fa;background:rgba(96,165,250,.15);border-color:rgba(96,165,250,.35)}
+.ab{color:#34d399;background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35)}
+.ac{color:#fb923c;background:rgba(251,146,60,.15);border-color:rgba(251,146,60,.4)}
+.hdr{text-align:center;padding:40px 20px 50px}
+.bdg{display:inline-block;background:rgba(167,139,250,.2);border:1px solid rgba(167,139,250,.5);color:#c4b5fd;padding:6px 20px;border-radius:20px;font-size:13px;letter-spacing:2px;margin-bottom:20px}
+.hdr h1{font-size:2.8em;font-weight:900;background:linear-gradient(135deg,#fff 0%,#a78bfa 60%,#60a5fa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;line-height:1.2}
+.hsub{font-size:.95em;color:#64748b;letter-spacing:1px}
+.sec{margin-bottom:36px}
+.stit{font-size:1.2em;font-weight:700;color:#c4b5fd;border-left:4px solid #a78bfa;padding-left:15px;margin-bottom:20px;letter-spacing:1px}
+.ibox{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:20px;padding:28px 32px;margin-bottom:30px}
+.ibox p{font-size:.97em;color:#cbd5e1;line-height:1.9}
+.ibox strong{color:#c4b5fd}
+.agrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-bottom:30px}
+.acard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:24px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.acard:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.athumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:4em;position:relative}
+.a1{background:linear-gradient(135deg,rgba(167,139,250,.35),rgba(124,58,237,.2))}
+.a2{background:linear-gradient(135deg,rgba(251,146,60,.35),rgba(234,88,12,.2))}
+.a3{background:linear-gradient(135deg,rgba(52,211,153,.35),rgba(5,150,105,.2))}
+.a4{background:linear-gradient(135deg,rgba(96,165,250,.35),rgba(37,99,235,.2))}
+.wbdg{position:absolute;top:10px;right:14px;font-size:.28em;background:rgba(52,211,153,.25);border:1px solid rgba(52,211,153,.4);color:#34d399;padding:3px 10px;border-radius:20px;font-weight:700}
+.abody{padding:24px 26px}
+.anum{font-size:.72em;letter-spacing:2px;color:#64748b;font-weight:700;margin-bottom:6px}
+.attl{font-size:1.25em;font-weight:900;margin-bottom:10px}
+.a1 .attl{color:#c4b5fd}.a2 .attl{color:#fdba74}.a3 .attl{color:#6ee7b7}.a4 .attl{color:#93c5fd}
+.adesc{font-size:.87em;color:#94a3b8;line-height:1.75;margin-bottom:16px}
+.atags{display:flex;gap:8px;flex-wrap:wrap}
+.ct{display:inline-block;font-size:.72em;padding:3px 10px;border-radius:6px;font-weight:700}
+.ctp{background:rgba(167,139,250,.2);color:#c4b5fd;border:1px solid rgba(167,139,250,.3)}
+.cta{background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.3)}
+.ctg{background:rgba(52,211,153,.2);color:#34d399;border:1px solid rgba(52,211,153,.3)}
+.ctb{background:rgba(96,165,250,.2);color:#93c5fd;border:1px solid rgba(96,165,250,.3)}
+.cto{background:rgba(251,146,60,.2);color:#fdba74;border:1px solid rgba(251,146,60,.3)}
+.wsplit{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:30px}
+.wcard{background:rgba(255,255,255,.04);border-radius:18px;padding:22px 24px;border:1px solid rgba(255,255,255,.08)}
+.wlbl{font-size:.8em;font-weight:700;letter-spacing:1.5px;margin-bottom:12px}
+.ws .wlbl{color:#34d399}.wr .wlbl{color:#60a5fa}
+.wcard ul{list-style:none}
+.wcard ul li{font-size:.87em;color:#cbd5e1;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5}
+.wcard ul li:last-child{border-bottom:none}
+.ws ul li::before{content:'☀️ '}.wr ul li::before{content:'🌧 '}
+.tlbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:28px 32px;margin-bottom:30px}
+.tli{display:flex;gap:16px;margin-bottom:20px;align-items:flex-start}
+.tli:last-child{margin-bottom:0}
+.tldot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1em;flex-shrink:0;margin-top:2px}
+.td1{background:rgba(167,139,250,.2)}.td2{background:rgba(251,146,60,.2)}.td3{background:rgba(52,211,153,.2)}.td4{background:rgba(96,165,250,.2)}
+.tltime{font-size:.75em;color:#64748b;font-weight:700;letter-spacing:1px;margin-bottom:4px}
+.tlttl{font-size:.97em;font-weight:700;color:#e2e8f0;margin-bottom:4px}
+.tldesc{font-size:.83em;color:#64748b;line-height:1.6}
+.clink{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(251,146,60,.15),rgba(245,158,11,.1));border:1px solid rgba(251,146,60,.35);border-radius:20px;padding:22px 28px;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s;margin-bottom:24px}
+.clink:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(251,146,60,.2)}
+.cli{font-size:2em;flex-shrink:0}
+.clt h3{font-size:1em;font-weight:900;color:#fdba74;margin-bottom:4px}
+.clt p{font-size:.82em;color:#64748b}
+.cla{font-size:1.2em;color:#fb923c;margin-left:auto}
+.rbnr{background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(96,165,250,.1),rgba(52,211,153,.1));border:1px solid rgba(167,139,250,.3);border-radius:24px;padding:36px 40px;text-align:center;margin-bottom:20px}
+.rbnr p{font-size:1.05em;color:#e2e8f0;line-height:1.85}
+.rbnr strong{color:#c4b5fd}
+.bbar{display:flex;justify-content:center;align-items:center;gap:16px;padding-bottom:20px}
+.bbar img{height:20px;width:auto;background:#fff;border-radius:6px;padding:3px 8px;opacity:.75;transition:opacity .2s}
+.bbar img:hover{opacity:1}
+@media(max-width:768px){.hdr h1{font-size:2em}.agrid{grid-template-columns:1fr}.wsplit{grid-template-columns:1fr}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <div class="bdg">DAY 1 · REFRESH ACTIVITIES</div>
+  <h1>✨ 함께 웃고,<br>에너지를 채우다</h1>
+  <div class="hsub">DAY 1 — 감사와 칭찬의 날 · 활동 소개</div>
+</div>
+<div class="bbar">
+  <img src="hyundai.webp" alt="Hyundai">
+  <img src="kia.webp" alt="Kia">
+</div>
+
+<div class="sec">
+  <div class="stit">💬 이 날의 목표</div>
+  <div class="ibox">
+    <p>DAY 1은 <strong>일상에서 완전히 벗어나</strong> 팀의 에너지를 새롭게 충전하는 날입니다.<br>업무·직급·그룹의 경계 없이 <strong>함께 몸을 움직이고, 먹고, 웃으며</strong><br>서로를 더 깊이 알아가는 시간을 만들어갑니다.<br>이 에너지가 DAY 2의 Review &amp; Reboot을 <strong>더 따뜻하고 강하게</strong> 만들어줍니다.</p>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">🎯 DAY 1 액티비티 4종</div>
+  <div class="agrid">
+    <div class="acard a1">
+      <div class="athumb a1">🎲</div>
+      <div class="abody"><div class="anum">ACTIVITY 01</div><div class="attl">보드게임</div><div class="adesc">직급과 그룹을 섞어 팀을 구성하고 다양한 보드게임을 즐깁니다. 전략과 협력, 그리고 웃음이 넘치는 시간 — 서로를 새로운 눈으로 보게 되는 계기가 됩니다.</div><div class="atags"><span class="ct ctp">팀 믹싱</span><span class="ct ctp">전략 게임</span><span class="ct ctp">협력</span></div></div>
+    </div>
+    <div class="acard a2">
+      <div class="athumb a2">🍲</div>
+      <div class="abody"><div class="anum">ACTIVITY 02</div><div class="attl">몸 보신 음식 만들기</div><div class="adesc">함께 장을 보고, 직접 몸에 좋은 음식을 만들어 먹는 시간. 요리 과정에서 자연스럽게 대화가 이어지고, 함께 만들어 먹는 밥 한 끼가 팀의 유대감을 깊게 만듭니다.</div><div class="atags"><span class="ct cto">공동 요리</span><span class="ct cto">바비큐 연계</span><span class="ct cta">장보기 포함</span></div></div>
+    </div>
+    <div class="acard a3">
+      <div class="athumb a3">🚣<div class="wbdg">☀️ 맑을 때</div></div>
+      <div class="abody"><div class="anum">ACTIVITY 03</div><div class="attl">래프팅</div><div class="adesc">비가 오지 않는다면 — 짜릿한 래프팅으로 팀의 한계를 함께 넘어봅니다. 같은 보트에 타고 호흡을 맞추다 보면, 팀워크가 자연스럽게 완성됩니다.</div><div class="atags"><span class="ct ctg">날씨 맑음 시 진행</span><span class="ct ctg">예약 필요</span></div></div>
+    </div>
+    <div class="acard a4">
+      <div class="athumb a4">🎮</div>
+      <div class="abody"><div class="anum">ACTIVITY 04</div><div class="attl">각종 단합 게임</div><div class="adesc">실내외에서 즐길 수 있는 팀 단합 게임 4종 이상 진행. 경쟁보다는 <strong style="color:#93c5fd">웃음과 협업</strong> 중심으로 구성하며, MC 동현·선영 매니저가 흥을 이어갑니다.</div><div class="atags"><span class="ct ctb">MC : 동현·선영 매니저</span><span class="ct cta">상품 &amp; 벌칙 준비</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">🌤 날씨별 Plan A / Plan B</div>
+  <div class="wsplit">
+    <div class="wcard ws"><div class="wlbl">☀️ PLAN A — 맑을 때</div><ul><li>오후 도착 후 래프팅 (장소 예약 필요)</li><li>저녁 바비큐 + 칭찬합시다 세션</li><li>야외 단합 게임 4종</li><li>실내로 이동 후 보드게임</li></ul></div>
+    <div class="wcard wr"><div class="wlbl">🌧 PLAN B — 비 올 때</div><ul><li>실내 보드게임 (래프팅 대체)</li><li>몸 보신 음식 만들기 (요리 시간 확대)</li><li>실내 단합 게임 4종으로 대체 진행</li><li>칭찬합시다 세션 → 저녁 식사 연계</li></ul></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">📅 DAY 1 세부 일정</div>
+  <div class="tlbox">
+    <div class="tli"><div class="tldot td1">🚌</div><div><div class="tltime">15:00 ~ 16:50</div><div class="tlttl">이동 및 집결</div><div class="tldesc">사무실 출발 → 워크샵 장소 도착 및 짐 정리</div></div></div>
+    <div class="tli"><div class="tldot td2">🏃</div><div><div class="tltime">16:50 ~ 18:30</div><div class="tlttl">메인 액티비티</div><div class="tldesc">날씨 맑음 → 래프팅 / 우천 → 보드게임 &amp; 몸 보신 음식 만들기<br>직급·그룹 믹스 팀 구성으로 자연스러운 교류 유도</div></div></div>
+    <div class="tli"><div class="tldot td3">🔥</div><div><div class="tltime">19:00 ~ 21:00</div><div class="tlttl">바비큐 &amp; 칭찬합시다 세션</div><div class="tldesc">하나로마트 장보기(규진·규동 차량) → 함께 만들고 먹는 바비큐<br>칭찬카드 또는 실시간 대화로 서로의 고마웠던 점 공유 · MC : 백동훈 매니저</div></div></div>
+    <div class="tli"><div class="tldot td4">🎮</div><div><div class="tltime">21:00 ~ 22:00</div><div class="tlttl">단합 게임 4종</div><div class="tldesc">웃음과 협업 중심의 팀 게임 · MC : 동현·선영 매니저<br>상품 &amp; 재미있는 벌칙 준비 필요</div></div></div>
+  </div>
+</div>
+
+<a href="cheer.html" class="clink">
+  <div class="cli">🔥</div>
+  <div class="clt"><h3>칭찬합시다 세션 — 지금 바로 참여하기</h3><p>고마웠던 순간, 멋있었던 모습을 팀원에게 전해보세요</p></div>
+  <div class="cla">↗</div>
+</a>
+
+<div class="rbnr">
+  <p>서로의 웃음을 기억하는 것,<br>그것이 <strong>Refresh의 힘</strong>입니다.<br>DAY 1의 에너지를 안고 DAY 2의 <strong>Review &amp; Reboot</strong>으로 이어갑니다.</p>
+</div>
+</div>
+
+<nav class="bnav">
+  <a href="index.html"   class="ni"><span class="ic">🏠</span>메인</a>
+  <a href="refresh.html" class="ni ar"><span class="ic">✨</span>Refresh</a>
+  <a href="review.html"  class="ni"><span class="ic">🔍</span>Review</a>
+  <a href="reboot.html"  class="ni"><span class="ic">🚀</span>Reboot</a>
+  <a href="cheer.html"   class="ni"><span class="ic">🔥</span>칭찬</a>
+</nav>
+</body>
+</html>
