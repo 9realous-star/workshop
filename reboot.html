@@ -83,6 +83,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .sp:hover{background:rgba(167,139,250,.28)}
 .sa{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.4);color:#fbbf24}
 .sa:hover{background:rgba(251,191,36,.28)}
+.sdel{background:transparent;border-color:rgba(148,163,184,.3);color:#64748b}
+.sdel:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.4);color:#f87171}
+.sbtns{display:flex;gap:8px}
+.pdel{border:1px solid rgba(148,163,184,.3);background:transparent;color:#64748b;border-radius:16px;padding:5px 10px;font-size:.7em;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.pdel:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.4);color:#f87171}
 .addbtn{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed rgba(251,191,36,.25);border-radius:14px;background:transparent;color:#94a3b8;font-size:.8em;font-family:'Noto Sans KR',sans-serif;cursor:pointer;padding:16px;transition:border-color .2s,color .2s;min-height:120px}
 .addbtn:hover{border-color:rgba(251,191,36,.5);color:#fbbf24}
 .bbar{display:flex;justify-content:center;align-items:center;gap:16px;padding-bottom:4px}
@@ -147,7 +152,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
         <div class="slot"><div class="slbl">THEME B</div><textarea class="sinp" id="tb" placeholder="하반기 중점 업무 테마를 입력해주세요&#10;&#10;예) 직접소싱 확대 및 경쟁력 강화&#10;- 3Q: ___&#10;- 4Q: ___"></textarea></div>
       </div>
     </div>
-    <div class="sbar"><span class="shint" id="h1">💡 클릭하면 바로 입력할 수 있어요</span><button class="sbtn sg" onclick="sv(1)">💾 저장</button></div>
+    <div class="sbar"><span class="shint" id="h1">💡 클릭하면 바로 입력할 수 있어요</span><div class="sbtns"><button class="sbtn sdel" onclick="clearTeam(1)">🔒 지우기</button><button class="sbtn sg" onclick="sv(1)">💾 저장</button></div></div>
   </div>
 
   <div class="card">
@@ -159,7 +164,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
         <div class="pslot"><div class="plbl pu">약속 3</div><textarea class="pinp" id="t3" placeholder="우리 팀이 함께&#10;지켜나갈 것..."></textarea></div>
       </div>
     </div>
-    <div class="sbar"><span class="shint" id="h2">💡 팀원 모두가 동의한 약속을 적어주세요</span><button class="sbtn sp" onclick="sv(2)">💾 저장</button></div>
+    <div class="sbar"><span class="shint" id="h2">💡 팀원 모두가 동의한 약속을 적어주세요</span><div class="sbtns"><button class="sbtn sdel" onclick="clearTeam(2)">🔒 지우기</button><button class="sbtn sp" onclick="sv(2)">💾 저장</button></div></div>
   </div>
 
   <div class="card">
@@ -189,8 +194,22 @@ function mkSlot(i,data){
   const n=data&&data.name!==undefined?data.name:(MBS[i]?MBS[i]+' 님':'');
   const t=data&&data.text!==undefined?data.text:'';
   const d=document.createElement('div');d.className='pslot am';
-  d.innerHTML=`<div class="plbl pa">🙋 ${i+1}번째</div><input class="ninp" id="in-${i}" placeholder="이름을 입력하세요" value="${esc(n)}"><textarea class="pinp" id="ip-${i}" placeholder="하반기에 내가 실천할 최소 두 가지...">${esc(t)}</textarea><div class="pslotbar"><span class="pshint" id="ph-${i}">💡 다 적으면 저장을 눌러주세요</span><button class="psave" onclick="saveOne(${i})">💾 저장</button></div>`;
+  d.innerHTML=`<div class="plbl pa">🙋 ${i+1}번째</div><input class="ninp" id="in-${i}" placeholder="이름을 입력하세요" value="${esc(n)}"><textarea class="pinp" id="ip-${i}" placeholder="하반기에 내가 실천할 최소 두 가지...">${esc(t)}</textarea><div class="pslotbar"><span class="pshint" id="ph-${i}">💡 다 적으면 저장을 눌러주세요</span><button class="pdel" onclick="clearOne(${i})" title="관리자 전용 지우기">🔒</button><button class="psave" onclick="saveOne(${i})">💾 저장</button></div>`;
   return d;
+}
+
+function askPw(){return prompt('관리자 비밀번호를 입력하세요')}
+
+async function clearOne(i){
+  const pw=askPw();
+  if(pw===null)return;
+  try{
+    const r=await fetch(`${RB_API}?index=${i}&pw=${encodeURIComponent(pw)}`,{method:'DELETE'});
+    if(r.status===403){alert('비밀번호가 올바르지 않습니다.');return}
+    if(!r.ok)throw new Error('fail');
+    iSlots=await r.json();
+    renderSlots();
+  }catch(e){alert('삭제 중 오류가 발생했어요. 다시 시도해주세요.')}
 }
 
 async function saveOne(i){
@@ -267,6 +286,19 @@ async function saveTeam(section){
 
 async function sv(n){
   if(n===1||n===2){await saveTeam(n);return}
+}
+
+async function clearTeam(section){
+  const pw=askPw();
+  if(pw===null)return;
+  const fields=section===1?['ta','tb']:['t1','t2','t3'];
+  try{
+    const r=await fetch(`${RB_TEAM_API}?fields=${fields.join(',')}&pw=${encodeURIComponent(pw)}`,{method:'DELETE'});
+    if(r.status===403){alert('비밀번호가 올바르지 않습니다.');return}
+    if(!r.ok)throw new Error('fail');
+    teamData=await r.json();
+    applyTeamData();
+  }catch(e){alert('삭제 중 오류가 발생했어요. 다시 시도해주세요.')}
 }
 
 function ok(id){const el=document.getElementById(id);const o=el.textContent;el.textContent='✅ 저장되었습니다!';el.classList.add('ok');setTimeout(()=>{el.textContent=o;el.classList.remove('ok')},2200)}

@@ -6,6 +6,7 @@ const redis = new Redis({
 });
 
 const KEY = 'rb_team_v1';
+const ADMIN_PW = '0512';
 const FIELDS = ['ta', 'tb', 't1', 't2', 't3'];
 const DEFAULT = { ta: '', tb: '', t1: '', t2: '', t3: '' };
 
@@ -26,6 +27,17 @@ module.exports = async (req, res) => {
     }
     await redis.set(KEY, clean);
     return res.status(200).json(clean);
+  }
+
+  if (req.method === 'DELETE') {
+    const { fields, pw } = req.query;
+    if (pw !== ADMIN_PW) return res.status(403).json({ error: 'forbidden' });
+    const targets = typeof fields === 'string' ? fields.split(',').filter((f) => FIELDS.includes(f)) : [];
+    if (!targets.length) return res.status(400).json({ error: 'invalid fields' });
+    const data = { ...DEFAULT, ...(await redis.get(KEY) || {}) };
+    targets.forEach((f) => { data[f] = ''; });
+    await redis.set(KEY, data);
+    return res.status(200).json(data);
   }
 
   res.status(405).end();

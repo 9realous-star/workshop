@@ -36,8 +36,8 @@ All three `api/*.js` handlers are CommonJS, default-export an async `(req, res)`
 | File | Methods | Redis key | Auth | Response shape |
 |---|---|---|---|---|
 | `api/praises.js` | GET/POST/PATCH/DELETE | `ws_praises_v4` | `ADMIN_PW='0512'` hardcoded, checked via `?pw=` for bulk DELETE | Full updated array on every mutation; `{error}` + 400/403/404/405 on failure |
-| `api/reboot.js` | GET/POST | `rb_individuals_v1` | none | Supports single-index update (`{index,name,text}`) or full-array replace |
-| `api/reboot-team.js` | GET/POST | `rb_team_v1` | none | Field-whitelisted (`ta,tb,t1,t2,t3`), always returns `{...DEFAULT,...data}` |
+| `api/reboot.js` | GET/POST/DELETE | `rb_individuals_v1` | `ADMIN_PW='0512'`, checked via `?pw=` for DELETE (clears one slot by `?index=`) | POST supports single-index update (`{index,name,text}`) or full-array replace; free to anyone |
+| `api/reboot-team.js` | GET/POST/DELETE | `rb_team_v1` | `ADMIN_PW='0512'`, checked via `?pw=` for DELETE (clears `?fields=` csv, e.g. `ta,tb`) | POST is field-whitelisted (`ta,tb,t1,t2,t3`), always returns `{...DEFAULT,...data}`; free to anyone |
 
 Redis keys are versioned (`_v4`, `_v1`) — this reflects past schema resets; bumping the suffix wipes stored data for that resource.
 
@@ -45,7 +45,7 @@ Redis keys are versioned (`_v4`, `_v1`) — this reflects past schema resets; bu
 
 - **CSS is fully duplicated, not shared** — every HTML page has its own near-identical `<style>` block (nav bar, background gradient, font import, card styles, etc. all copy-pasted). Changing the shared look means editing every file individually.
 - **Member roster duplicated** — `cheer.html` (`MBS`, rich metadata) and `reboot.html` (`MBS`, plain name list) each hardcode the team roster independently. Keep them in sync manually when membership changes.
-- **Hardcoded secret** — `ADMIN_PW = '0512'` lives in both `api/praises.js` and client-side in `cheer.html`. This is a real but weak secret exposed in source; fine for a low-stakes internal event tool, but don't treat it as real auth.
+- **Hardcoded secret** — `ADMIN_PW = '0512'` is duplicated across `api/praises.js`, `api/reboot.js`, and `api/reboot-team.js` (checked server-side via `?pw=`, never sent to the client). This is a real but weak secret exposed in source; fine for a low-stakes internal event tool, but don't treat it as real auth. On `reboot.html`, anyone can freely fill/edit content, but clearing an already-filled entry (🔒 buttons) requires this password.
 - **`esc()` HTML-escaping helper** is reimplemented separately in `cheer.html` and `reboot.html` rather than shared.
 
 ## Workflow
