@@ -54,6 +54,15 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .dd{background:rgba(52,211,153,.2);color:#34d399}
 .dpt{background:rgba(251,146,60,.2);color:#fb923c}
 .dm{background:rgba(148,163,184,.15);color:#64748b}
+.plist{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:6px 0;margin-bottom:30px}
+.pritem{display:flex;align-items:center;gap:18px;padding:18px 30px;border-bottom:1px solid rgba(255,255,255,.06)}
+.pritem:last-child{border-bottom:none}
+.prnum{width:30px;height:30px;border-radius:50%;background:rgba(96,165,250,.18);color:#93c5fd;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9em;flex-shrink:0}
+.prbody{flex:1;min-width:0}
+.prgoal{font-size:.92em;font-weight:700;color:#f1f5f9;margin-bottom:5px}
+.prnow{font-size:.85em;color:#94a3b8;line-height:1.6}
+.prnow b{color:#34d399;font-weight:700}
+.prarrow{color:#60a5fa;font-weight:900;margin-right:6px}
 .psec{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:28px 32px;margin-bottom:30px}
 .pttl{font-size:.8em;letter-spacing:1.5px;color:#64748b;font-weight:700;margin-bottom:20px}
 .pi{margin-bottom:18px}.pi:last-child{margin-bottom:0}
@@ -83,7 +92,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .bbar{display:flex;justify-content:center;align-items:center;gap:16px;padding-bottom:20px}
 .bbar img{height:20px;width:auto;background:#fff;border-radius:6px;padding:3px 8px;opacity:.75;transition:opacity .2s}
 .bbar img:hover{opacity:1}
-@media(max-width:768px){.hdr h1{font-size:2em}.rgrid{grid-template-columns:1fr}.rgrd{grid-template-columns:1fr}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
+@media(max-width:768px){.hdr h1{font-size:2em}.rgrid{grid-template-columns:1fr}.rgrd{grid-template-columns:1fr}.ni{padding:7px 10px;min-width:56px;font-size:.62em}.pritem{padding:14px 18px}}
 </style>
 </head>
 <body>
@@ -101,6 +110,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 <div class="sec">
   <div class="stit">📌 '25년 워크샵에서 우리가 그린 그림</div>
   <div class="gbox"><p>'25년 워크샵은 <strong>팀 구성원 간 신뢰와 소통</strong>을 핵심 과제로 삼았습니다.<br>다양한 배경과 경험을 가진 구성원들이 함께 일하며 <strong>자신의 의견을 자유롭게 낼 수 있는 환경</strong>을 만들고,<br>팀이 단순한 업무 집합이 아닌 <strong>하나의 공동체</strong>로 움직이는 것을 목표로 했습니다.</p></div>
+</div>
+
+<div class="sec">
+  <div class="stit">🤝 '25년, 우리가 잘 해보자고 낸 의견들</div>
+  <div class="plist">
+    <div class="pritem"><div class="prnum">1</div><div class="prbody"><div class="prgoal">팀내 공용폴더 관리</div><div class="prnow"><span class="prarrow">→</span><b>순항 중!</b></div></div></div>
+    <div class="pritem"><div class="prnum">2</div><div class="prbody"><div class="prgoal">M채널 담당 업무 업데이트</div><div class="prnow"><span class="prarrow">→</span>전략소재구매팀 <b>100% 완료</b></div></div></div>
+    <div class="pritem"><div class="prnum">3</div><div class="prbody"><div class="prgoal">품목별 담당자 현장 출장</div><div class="prnow"><span class="prarrow">→</span><b>밸류체인 브릿지, Fastmarket, CIBF, 북미 JV</b> 등</div></div></div>
+    <div class="pritem"><div class="prnum">4</div><div class="prbody"><div class="prgoal">정규 프로세스 정기 교육</div><div class="prnow"><span class="prarrow">→</span><b>팀 세미나, 구매 AI 교육</b> 등 수강</div></div></div>
+    <div class="pritem"><div class="prnum">5</div><div class="prbody"><div class="prgoal">직급에 관계없이 자유로운 소통문화</div><div class="prnow"><span class="prarrow">→</span><b>전략소재구매팀 업무교류회 시즌2</b> 등</div></div></div>
+  </div>
 </div>
 
 <div class="sec">
