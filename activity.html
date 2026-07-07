@@ -8,7 +8,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#fff;padding:20px;padding-bottom:100px}
-.wrap{max-width:800px;margin:0 auto}
+.wrap{max-width:1000px;margin:0 auto}
 .bnav{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:10px 16px 14px;background:rgba(15,12,41,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);gap:6px}
 .ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:14px;text-decoration:none;font-size:.68em;font-weight:700;color:#475569;border:1px solid transparent;transition:all .2s;min-width:64px}
 .ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
@@ -35,11 +35,21 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .bcount{font-size:.85em;color:#64748b;font-weight:700}
 .bdelall{background:transparent;border:1px solid rgba(148,163,184,.3);color:#64748b;border-radius:16px;padding:6px 16px;font-size:.75em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s,border-color .2s,color .2s}
 .bdelall:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.4);color:#f87171}
-.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.bcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
-.bcard img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.bcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;transition:border-color .2s}
+.bcard:has(img):hover{border-color:rgba(167,139,250,.4)}
+.bcard .bimgwrap{position:relative;overflow:hidden;background:rgba(0,0,0,.2)}
+.bcard img{width:100%;height:auto;display:block;cursor:zoom-in;transition:transform .3s}
+.bcard .bimgwrap:hover img{transform:scale(1.04)}
+.bzoomhint{position:absolute;bottom:8px;right:8px;background:rgba(10,8,30,.7);color:#e2e8f0;font-size:.68em;padding:4px 10px;border-radius:12px;pointer-events:none;opacity:0;transition:opacity .2s;backdrop-filter:blur(4px)}
+.bcard .bimgwrap:hover .bzoomhint{opacity:1}
 .bcard p{font-size:.87em;color:#cbd5e1;line-height:1.6;white-space:pre-wrap;padding:14px 16px}
 .bempty{grid-column:1/-1;font-size:.88em;color:#64748b;text-align:center;padding:40px 0}
+.lightbox{position:fixed;inset:0;background:rgba(5,4,15,.94);z-index:2000;display:none;align-items:center;justify-content:center;padding:28px;cursor:zoom-out}
+.lightbox.show{display:flex}
+.lightbox img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lbclose{position:absolute;top:20px;right:24px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.2em;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lbclose:hover{background:rgba(255,255,255,.2)}
 @media(max-width:600px){.bgrid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -69,6 +79,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 </div>
 
 <div class="bgrid" id="board"></div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <button class="lbclose" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="확대된 이미지">
 </div>
 
 <nav class="bnav">
@@ -106,8 +121,17 @@ function renderBoard(){
   const g=document.getElementById('board');
   document.getElementById('bCount').textContent=posts.length+'개의 게시글';
   if(!posts.length){g.innerHTML='<div class="bempty">아직 게시글이 없어요. 첫 번째로 남겨보세요!</div>';return}
-  g.innerHTML=posts.map(p=>`<div class="bcard">${p.dataUrl?`<img src="${p.dataUrl}" alt="첨부 이미지">`:''}<p>${esc(p.text)}</p></div>`).join('');
+  g.innerHTML=posts.map(p=>`<div class="bcard">${p.dataUrl?`<div class="bimgwrap"><img src="${p.dataUrl}" alt="첨부 이미지" onclick="openLightbox(this)"><span class="bzoomhint">🔍 눌러서 크게 보기</span></div>`:''}<p>${esc(p.text)}</p></div>`).join('');
 }
+
+function openLightbox(imgEl){
+  document.getElementById('lightboxImg').src=imgEl.src;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('show');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 
 async function loadBoard(){
   try{
