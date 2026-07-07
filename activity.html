@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>액티비티 게시판 | '26 전략소재구매팀 워크샵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#fff;padding:20px;padding-bottom:100px}
+.wrap{max-width:800px;margin:0 auto}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:10px 16px 14px;background:rgba(15,12,41,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);gap:6px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:14px;text-decoration:none;font-size:.68em;font-weight:700;color:#475569;border:1px solid transparent;transition:all .2s;min-width:64px}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
+.ni .ic{font-size:1.3em;line-height:1}
+.ar{color:#a78bfa;background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.35)}
+.back{display:inline-flex;align-items:center;gap:6px;color:#94a3b8;text-decoration:none;font-size:.85em;font-weight:700;margin-bottom:18px;transition:color .2s}
+.back:hover{color:#c4b5fd}
+.hdr{text-align:center;padding:20px 20px 36px}
+.hdr .ic{font-size:3em;display:block;margin-bottom:10px}
+.hdr h1{font-size:1.9em;font-weight:900;background:linear-gradient(135deg,#fff 0%,#a78bfa 60%,#60a5fa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+.hdesc{font-size:.88em;color:#94a3b8;line-height:1.7;max-width:520px;margin:0 auto}
+.bform{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:22px 24px;margin-bottom:26px}
+.bform textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;color:#e2e8f0;font-family:'Noto Sans KR',sans-serif;font-size:.9em;resize:vertical;min-height:80px;margin-bottom:12px}
+.bform textarea::placeholder{color:#475569}
+.brow{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.battach{background:transparent;border:1px solid rgba(255,255,255,.15);color:#94a3b8;border-radius:16px;padding:8px 16px;font-size:.82em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:border-color .2s,color .2s}
+.battach:hover{border-color:rgba(167,139,250,.5);color:#c4b5fd}
+.bsubmit{background:rgba(167,139,250,.22);border:1px solid rgba(167,139,250,.45);color:#c4b5fd;border-radius:16px;padding:9px 22px;font-size:.85em;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s}
+.bsubmit:hover{background:rgba(167,139,250,.35)}
+.bprev{max-width:140px;border-radius:10px;margin-top:12px;display:block}
+.btoolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.bcount{font-size:.85em;color:#64748b;font-weight:700}
+.bdelall{background:transparent;border:1px solid rgba(148,163,184,.3);color:#64748b;border-radius:16px;padding:6px 16px;font-size:.75em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s,border-color .2s,color .2s}
+.bdelall:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.4);color:#f87171}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
+.bcard img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.bcard p{font-size:.87em;color:#cbd5e1;line-height:1.6;white-space:pre-wrap;padding:14px 16px}
+.bempty{grid-column:1/-1;font-size:.88em;color:#64748b;text-align:center;padding:40px 0}
+@media(max-width:600px){.bgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a href="refresh.html" class="back">← Refresh로 돌아가기</a>
+<div class="hdr">
+  <span class="ic" id="aIcon">🎲</span>
+  <h1 id="aTitle">활동 게시판</h1>
+  <p class="hdesc" id="aDesc"></p>
+</div>
+
+<div class="bform">
+  <textarea id="pText" maxlength="500" placeholder="사진과 함께, 또는 글로만 — 이 활동에 대한 설명·팁·후기를 자유롭게 남겨주세요"></textarea>
+  <div class="brow">
+    <button type="button" class="battach" onclick="document.getElementById('pFile').click()">📷 사진 추가</button>
+    <button type="button" class="bsubmit" onclick="submitPost()">게시하기</button>
+  </div>
+  <input type="file" id="pFile" accept="image/*" style="display:none" onchange="onFileSelected(event)">
+  <img id="pPreview" class="bprev" style="display:none">
+</div>
+
+<div class="btoolbar">
+  <span class="bcount" id="bCount">0개의 게시글</span>
+  <button class="bdelall" onclick="deleteAll()">🔒 전체 삭제 (관리자)</button>
+</div>
+
+<div class="bgrid" id="board"></div>
+</div>
+
+<nav class="bnav">
+  <a href="index.html"   class="ni"><span class="ic">🏠</span>메인</a>
+  <a href="refresh.html" class="ni ar"><span class="ic">✨</span>Refresh</a>
+  <a href="review.html"  class="ni"><span class="ic">🔍</span>Review</a>
+  <a href="reboot.html"  class="ni"><span class="ic">🚀</span>Reboot</a>
+  <a href="cheer.html"   class="ni"><span class="ic">🔥</span>칭찬</a>
+</nav>
+<script>
+const RF_API='/api/refresh-activities';
+const ACT_META={
+  a1:{ic:'🎲',ttl:'보드게임',desc:'직급과 그룹을 섞어 팀을 구성하고 다양한 보드게임을 즐깁니다. 전략과 협력, 그리고 웃음이 넘치는 시간 — 서로를 새로운 눈으로 보게 되는 계기가 됩니다.'},
+  a2:{ic:'🍲',ttl:'몸 보신 음식 만들기',desc:'함께 장을 보고, 직접 몸에 좋은 음식을 만들어 먹는 시간. 요리 과정에서 자연스럽게 대화가 이어지고, 함께 만들어 먹는 밥 한 끼가 팀의 유대감을 깊게 만듭니다.'},
+  a3:{ic:'🚣',ttl:'래프팅',desc:'비가 오지 않는다면 — 짜릿한 래프팅으로 팀의 한계를 함께 넘어봅니다. 같은 보트에 타고 호흡을 맞추다 보면, 팀워크가 자연스럽게 완성됩니다.'},
+  a4:{ic:'🎮',ttl:'각종 단합 게임',desc:'실내외에서 즐길 수 있는 팀 단합 게임 4종 이상 진행. 경쟁보다는 웃음과 협업 중심으로 구성됩니다.'}
+};
+
+const params=new URLSearchParams(location.search);
+const actId=ACT_META[params.get('id')]?params.get('id'):'a1';
+let posts=[];
+let curImageDataUrl=null;
+
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function initMeta(){
+  const m=ACT_META[actId];
+  document.getElementById('aIcon').textContent=m.ic;
+  document.getElementById('aTitle').textContent=m.ttl+' 게시판';
+  document.getElementById('aDesc').textContent=m.desc;
+  document.title=m.ttl+' 게시판 | \'26 전략소재구매팀 워크샵';
+}
+
+function renderBoard(){
+  const g=document.getElementById('board');
+  document.getElementById('bCount').textContent=posts.length+'개의 게시글';
+  if(!posts.length){g.innerHTML='<div class="bempty">아직 게시글이 없어요. 첫 번째로 남겨보세요!</div>';return}
+  g.innerHTML=posts.map(p=>`<div class="bcard">${p.dataUrl?`<img src="${p.dataUrl}" alt="첨부 이미지">`:''}<p>${esc(p.text)}</p></div>`).join('');
+}
+
+async function loadBoard(){
+  try{
+    const r=await fetch(RF_API);
+    if(!r.ok)throw new Error('fail');
+    const data=await r.json();
+    posts=data[actId]||[];
+  }catch(e){posts=[]}
+  renderBoard();
+}
+
+function resizeImage(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>{
+      const img=new Image();
+      img.onload=()=>{
+        const maxW=800;
+        const scale=Math.min(1,maxW/img.width);
+        const w=Math.round(img.width*scale),h=Math.round(img.height*scale);
+        const canvas=document.createElement('canvas');
+        canvas.width=w;canvas.height=h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL('image/jpeg',.7));
+      };
+      img.onerror=reject;
+      img.src=reader.result;
+    };
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function onFileSelected(ev){
+  const file=ev.target.files[0];
+  if(!file)return;
+  resizeImage(file).then(dataUrl=>{
+    curImageDataUrl=dataUrl;
+    const prev=document.getElementById('pPreview');
+    prev.src=dataUrl;prev.style.display='block';
+  }).catch(()=>alert('이미지를 처리하지 못했어요.'));
+}
+
+async function submitPost(){
+  const text=document.getElementById('pText').value.trim();
+  if(!text){alert('내용을 입력해주세요.');return}
+  try{
+    const r=await fetch(RF_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({activity:actId,text,dataUrl:curImageDataUrl})});
+    if(!r.ok){alert('등록 중 오류가 발생했어요.');return}
+    posts=await r.json();
+    document.getElementById('pText').value='';
+    document.getElementById('pFile').value='';
+    curImageDataUrl=null;
+    document.getElementById('pPreview').style.display='none';
+    renderBoard();
+  }catch(e){alert('등록 중 오류가 발생했어요.')}
+}
+
+async function deleteAll(){
+  const pw=prompt('관리자 비밀번호를 입력하세요');
+  if(pw===null)return;
+  try{
+    const r=await fetch(`${RF_API}?activity=${actId}&pw=${encodeURIComponent(pw)}`,{method:'DELETE'});
+    if(r.status===403){alert('비밀번호가 올바르지 않습니다.');return}
+    if(!r.ok){alert('삭제 중 오류가 발생했어요.');return}
+    posts=await r.json();
+    renderBoard();
+  }catch(e){alert('삭제 중 오류가 발생했어요.')}
+}
+
+initMeta();
+loadBoard();
+</script>
+</body>
+</html>

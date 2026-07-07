@@ -16,7 +16,8 @@ A company workshop event site: a landing page plus Day1/Day2 activity pages buil
 | File | Purpose |
 |---|---|
 | `index.html` | Landing page: team-lead message, Refresh/Review/Reboot purpose cards, Day1/Day2 schedule, links to all sub-pages |
-| `refresh.html` | Day 1 activity showcase (board games, cooking, rafting, team games), weather Plan A/B, timeline. Each activity card opens a modal where anyone can add text/photo descriptions via `/api/refresh-activities`. |
+| `refresh.html` | Day 1 activity showcase (board games, cooking, rafting, team games), weather Plan A/B, timeline. Each activity card links to `activity.html?id=aN`. |
+| `activity.html` | Shared per-activity board page (`?id=a1`-`a4`): anyone can post a text+photo entry, admin-only "delete all" for that activity. Talks to `/api/refresh-activities`. |
 | `review.html` | 2025→2026 goals vs. outcomes retrospective, animated progress bars, '25 workshop promise list. Talks to `/api/review-photos` for the intro-box photos. |
 | `quiz.html` | Team trivia quiz, 5 hardcoded Q&A, client-side scoring only, no persistence |
 | `cheer.html` | "칭찬합시다" praise board: write/view/filter/paginate/delete praise messages. Talks to `/api/praises`, polls every 6s |
