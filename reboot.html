@@ -93,6 +93,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .atlas-mini-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,30,.92) 50%,rgba(10,8,30,.15));display:flex;flex-direction:column;justify-content:center;padding:0 28px}
 .atlas-mini-ov span{font-size:.6em;letter-spacing:2px;color:#a78bfa;font-weight:700;margin-bottom:4px}
 .atlas-mini-ov p{font-size:.9em;color:#fff;font-weight:700}
+.formlink{display:flex;align-items:center;gap:14px;text-decoration:none;background:linear-gradient(90deg,rgba(52,211,153,.16),rgba(6,182,212,.12));border:1px solid rgba(52,211,153,.35);border-radius:16px;padding:16px 24px;margin-bottom:24px;transition:border-color .25s,transform .25s,background .25s}
+.formlink:hover{border-color:rgba(52,211,153,.7);transform:translateY(-3px);background:linear-gradient(90deg,rgba(52,211,153,.24),rgba(6,182,212,.18))}
+.formlink .fl-ic{font-size:1.4em;flex-shrink:0}
+.formlink .fl-txt{flex:1;font-size:.95em;font-weight:800;color:#f1f5f9}
+.formlink .fl-sub{display:block;font-size:.8em;font-weight:500;color:#94a3b8;margin-top:2px}
+.formlink .fl-arrow{font-size:1.2em;color:#34d399;transition:transform .25s;flex-shrink:0}
+.formlink:hover .fl-arrow{transform:translateX(4px)}
 @media(max-width:700px){.hdr h1{font-size:2em}.trow{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr 1fr}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
 @media(max-width:480px){.pgrid{grid-template-columns:1fr}}
 </style>
@@ -104,6 +111,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <h1>🚀 Reboot</h1>
   <p class="hsub"><strong>'26년 완주</strong>를 향해 — 우리가 함께 채워가는 하반기 나침반</p>
 </div>
+<a href="https://answer.moaform.com/answers/EJx22r" target="_blank" rel="noopener" class="formlink">
+  <span class="fl-ic">📝</span>
+  <span class="fl-txt">우리팀 돌아보기! 작성<span class="fl-sub">잠깐, 여기 먼저 남겨주세요</span></span>
+  <span class="fl-arrow">→</span>
+</a>
 <div class="bbar">
   <img src="hyundai.webp" alt="Hyundai">
   <img src="kia.webp" alt="Kia">
