@@ -27,6 +27,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .gbox{background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.25);border-radius:20px;padding:28px 32px;margin-bottom:30px}
 .gbox p{font-size:.95em;color:#cbd5e1;line-height:1.85}
 .gbox strong{color:#93c5fd}
+.gphotos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.gphoto{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}
+.gphoto img{width:100%;height:100%;object-fit:cover;display:block}
+.gphoto-del{position:absolute;top:8px;right:8px;background:rgba(15,12,41,.75);border:1px solid rgba(248,113,113,.4);color:#f87171;border-radius:12px;padding:4px 10px;font-size:.7em;cursor:pointer;backdrop-filter:blur(6px);font-family:'Noto Sans KR',sans-serif}
+.gphoto-del:hover{background:rgba(248,113,113,.22)}
+.gphoto-add{border:1px dashed rgba(96,165,250,.35);border-radius:14px;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#64748b;font-size:.8em;cursor:pointer;transition:border-color .2s,color .2s;background:transparent}
+.gphoto-add:hover{border-color:rgba(96,165,250,.7);color:#93c5fd}
 .lgnd{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;font-size:.8em;color:#64748b}
 .li{display:flex;align-items:center;gap:6px}
 .ds{width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.65em}
@@ -75,17 +82,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .bb{background:linear-gradient(90deg,#60a5fa,#2563eb)}
 .bo{background:linear-gradient(90deg,#fb923c,#ea580c)}
 .bp{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
-.retro{background:linear-gradient(135deg,rgba(96,165,250,.12),rgba(167,139,250,.08));border:1px solid rgba(96,165,250,.3);border-radius:24px;padding:36px 40px;margin-bottom:30px}
-.retro h3{font-size:1.1em;font-weight:900;color:#fff;margin-bottom:20px}
-.rgrd{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.rc{background:rgba(255,255,255,.05);border-radius:14px;padding:18px 20px}
-.rcl{font-size:.75em;font-weight:700;letter-spacing:1.2px;margin-bottom:10px}
-.rk .rcl{color:#34d399}.ri .rcl{color:#fb923c}
-.rc ul{list-style:none}
-.rc ul li{font-size:.86em;color:#cbd5e1;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5}
-.rc ul li:last-child{border-bottom:none}
-.rk ul li::before{content:'✓ ';color:#34d399}
-.ri ul li::before{content:'→ ';color:#fb923c}
 .nxt{background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(96,165,250,.1),rgba(52,211,153,.1));border:1px solid rgba(167,139,250,.3);border-radius:20px;padding:30px 36px;text-align:center;margin-bottom:20px}
 .nxt p{font-size:1em;color:#e2e8f0;line-height:1.8}
 .nxt strong{color:#c4b5fd}
@@ -93,6 +89,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .bbar img{height:20px;width:auto;background:#fff;border-radius:6px;padding:3px 8px;opacity:.75;transition:opacity .2s}
 .bbar img:hover{opacity:1}
 @media(max-width:768px){.hdr h1{font-size:2em}.rgrid{grid-template-columns:1fr}.rgrd{grid-template-columns:1fr}.ni{padding:7px 10px;min-width:56px;font-size:.62em}.pritem{padding:14px 18px}}
+@media(max-width:480px){.gphotos{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -109,7 +106,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 
 <div class="sec">
   <div class="stit">📌 '25년 워크샵에서 우리가 그린 그림</div>
-  <div class="gbox"><p>'25년, 우리 팀은 <strong>이제 막 새롭게 꾸려진 조합</strong>이었습니다.<br>서로 다른 문화와 배경에서 온 구성원들이 한 팀으로 모인 지 얼마 되지 않았던 시점, <strong>낯선 사람들이 잘 화합하는 것</strong>이 가장 큰 과제였습니다.<br>서로를 알아가며 <strong>새로운 조합에서도 함께 잘 해보자</strong>는 마음으로, 신뢰와 소통을 바탕으로 <strong>하나의 팀</strong>이 되어가는 것을 목표로 했습니다.</p></div>
+  <div class="gbox"><p>'25년, 우리 팀은 <strong>이제 막 새롭게 꾸려진 조합</strong>이었습니다.<br>서로 다른 문화와 배경에서 온 구성원들이 한 팀으로 모인 지 얼마 되지 않았던 시점, <strong>낯선 사람들이 잘 화합하는 것</strong>이 가장 큰 과제였습니다.<br>서로를 알아가며 <strong>새로운 조합에서도 함께 잘 해보자</strong>는 마음으로, 신뢰와 소통을 바탕으로 <strong>하나의 팀</strong>이 되어가는 것을 목표로 했습니다.</p>
+    <div class="gphotos" id="gphotos"></div>
+  </div>
 </div>
 
 <div class="sec">
@@ -175,17 +174,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   </div>
 </div>
 
-<div class="sec">
-  <div class="stit">💬 돌아보며 — Keep &amp; Improve</div>
-  <div class="retro">
-    <h3>우리가 잘 해온 것, 그리고 더 키워야 할 것</h3>
-    <div class="rgrd">
-      <div class="rc rk"><div class="rcl">✓ KEEP — 계속 강화할 것</div><ul><li>서로를 존중하고 의견을 경청하는 팀 분위기</li><li>어려울 때 자발적으로 돕는 협업 문화</li><li>직급과 그룹을 넘어 편하게 소통하는 관계</li><li>다양한 경험이 공존하는 팀의 강점</li></ul></div>
-      <div class="rc ri"><div class="rcl">→ IMPROVE — '26년에 더 키울 것</div><ul><li>회사 프로세스·기준에 대한 팀 전체의 공통 이해</li><li>그룹 간 연결감 및 업무 맥락 공유 강화</li><li>지식·경험의 체계적인 축적과 공유 방식 정립</li><li>개인 역량 성장 목표의 가시화</li></ul></div>
-    </div>
-  </div>
-</div>
-
 <div class="nxt"><p>이 Review는 <strong>반성이 아닌 출발점</strong>입니다.<br>우리가 함께 만들어온 것을 확인하고,<br><strong>'26년을 더 유기적이고 강한 조직으로</strong> 나아가기 위한 첫 걸음입니다.</p></div>
 </div>
 
@@ -197,7 +185,90 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <a href="cheer.html"   class="ni"><span class="ic">🔥</span>칭찬</a>
 </nav>
 <script>
+const RV_PHOTOS_API='/api/review-photos';
+let gPhotos=[];
+
+function renderPhotos(){
+  const g=document.getElementById('gphotos');
+  g.innerHTML='';
+  gPhotos.forEach(p=>{
+    const d=document.createElement('div');d.className='gphoto';
+    d.innerHTML=`<img src="${p.dataUrl}" alt="'25 워크샵 사진"><button class="gphoto-del" onclick="deletePhoto('${p.id}')">🔒 삭제</button>`;
+    g.appendChild(d);
+  });
+  if(gPhotos.length<2){
+    const add=document.createElement('div');add.className='gphoto-add';add.onclick=addPhoto;
+    add.innerHTML='<span style="font-size:1.6em">＋</span><span>사진 추가 (관리자)</span>';
+    g.appendChild(add);
+  }
+}
+
+async function loadPhotos(){
+  try{
+    const r=await fetch(RV_PHOTOS_API);
+    if(!r.ok)throw new Error('fail');
+    gPhotos=await r.json();
+  }catch(e){gPhotos=[]}
+  renderPhotos();
+}
+
+function resizeImage(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>{
+      const img=new Image();
+      img.onload=()=>{
+        const maxW=1000;
+        const scale=Math.min(1,maxW/img.width);
+        const w=Math.round(img.width*scale),h=Math.round(img.height*scale);
+        const canvas=document.createElement('canvas');
+        canvas.width=w;canvas.height=h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL('image/jpeg',0.75));
+      };
+      img.onerror=reject;
+      img.src=reader.result;
+    };
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function addPhoto(){
+  const pw=prompt('관리자 비밀번호를 입력하세요');
+  if(pw===null)return;
+  const inp=document.createElement('input');
+  inp.type='file';inp.accept='image/*';
+  inp.onchange=async()=>{
+    const file=inp.files[0];
+    if(!file)return;
+    let dataUrl;
+    try{dataUrl=await resizeImage(file)}catch(e){alert('이미지를 처리하지 못했어요.');return}
+    try{
+      const r=await fetch(RV_PHOTOS_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pw,dataUrl})});
+      if(r.status===403){alert('비밀번호가 올바르지 않습니다.');return}
+      if(!r.ok){alert('업로드 중 오류가 발생했어요.');return}
+      gPhotos=await r.json();
+      renderPhotos();
+    }catch(e){alert('업로드 중 오류가 발생했어요.')}
+  };
+  inp.click();
+}
+
+async function deletePhoto(id){
+  const pw=prompt('관리자 비밀번호를 입력하세요');
+  if(pw===null)return;
+  try{
+    const r=await fetch(`${RV_PHOTOS_API}?id=${encodeURIComponent(id)}&pw=${encodeURIComponent(pw)}`,{method:'DELETE'});
+    if(r.status===403){alert('비밀번호가 올바르지 않습니다.');return}
+    if(!r.ok){alert('삭제 중 오류가 발생했어요.');return}
+    gPhotos=await r.json();
+    renderPhotos();
+  }catch(e){alert('삭제 중 오류가 발생했어요.')}
+}
+
 window.addEventListener('DOMContentLoaded',()=>{
+  loadPhotos();
   setTimeout(()=>{document.querySelectorAll('.pbar[data-w]').forEach(b=>{b.style.width=b.dataset.w})},300)
 })
 </script>
