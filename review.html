@@ -90,6 +90,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .bbar{display:flex;justify-content:center;align-items:center;gap:16px;padding-bottom:20px}
 .bbar img{height:20px;width:auto;background:#fff;border-radius:6px;padding:3px 8px;opacity:.75;transition:opacity .2s}
 .bbar img:hover{opacity:1}
+.formlink{display:flex;align-items:center;gap:14px;text-decoration:none;background:linear-gradient(90deg,rgba(52,211,153,.16),rgba(6,182,212,.12));border:1px solid rgba(52,211,153,.35);border-radius:16px;padding:16px 24px;margin-bottom:24px;transition:border-color .25s,transform .25s,background .25s}
+.formlink:hover{border-color:rgba(52,211,153,.7);transform:translateY(-3px);background:linear-gradient(90deg,rgba(52,211,153,.24),rgba(6,182,212,.18))}
+.formlink .fl-ic{font-size:1.4em;flex-shrink:0}
+.formlink .fl-txt{flex:1;font-size:.95em;font-weight:800;color:#f1f5f9}
+.formlink .fl-sub{display:block;font-size:.8em;font-weight:500;color:#94a3b8;margin-top:2px}
+.formlink .fl-sub em{color:#fbbf24;font-style:normal;font-weight:700}
+.formlink .fl-arrow{font-size:1.2em;color:#34d399;transition:transform .25s;flex-shrink:0}
+.formlink:hover .fl-arrow{transform:translateX(4px)}
+.formlink .fl-star{font-size:1.15em;flex-shrink:0;animation:starpop 1.3s infinite}
+.formlink .fl-star:last-of-type{animation-delay:.25s}
+@keyframes starpop{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.3) rotate(15deg)}}
 @media(max-width:768px){.hdr h1{font-size:2em}.rgrid{grid-template-columns:1fr}.rgrd{grid-template-columns:1fr}.ni{padding:7px 10px;min-width:56px;font-size:.62em}.pritem{padding:14px 18px}}
 @media(max-width:480px){.gphotos{grid-template-columns:1fr}}
 </style>
@@ -102,6 +113,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <div class="hsub">'25년 워크샵 약속 → '26년 현재 시점 돌아보기</div>
   <div class="rrtag">R² + R² · <b style="color:#a78bfa">Refresh</b>×<b style="color:#fb923c">Respect</b> + <b style="color:#60a5fa">Review</b>×<b style="color:#34d399">Reboot</b></div>
 </div>
+<a href="https://answer.moaform.com/answers/EJx22r" target="_blank" rel="noopener" class="formlink">
+  <span class="fl-star">⭐</span>
+  <span class="fl-ic">📝</span>
+  <span class="fl-txt">우리팀 돌아보기! 작성<span class="fl-sub">잠깐, 여기 먼저 남겨주세요 · <em>엘지제일검 백동훈</em> 지시사항입니다</span></span>
+  <span class="fl-star">⭐</span>
+  <span class="fl-arrow">→</span>
+</a>
 <div class="bbar">
   <img src="hyundai.webp" alt="Hyundai">
   <img src="kia.webp" alt="Kia">

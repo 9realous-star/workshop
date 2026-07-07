@@ -108,9 +108,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .formlink .fl-sub em{color:#fbbf24;font-style:normal;font-weight:700}
 .formlink .fl-arrow{font-size:1.2em;color:#34d399;transition:transform .25s;flex-shrink:0}
 .formlink:hover .fl-arrow{transform:translateX(4px)}
-.formlink .fl-star{font-size:1.15em;flex-shrink:0;animation:starpop 1.3s infinite}
-.formlink .fl-star:last-of-type{animation-delay:.25s}
-@keyframes starpop{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.3) rotate(15deg)}}
+.flowbox{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);border-radius:20px;padding:20px 26px;margin-bottom:20px;text-align:center}
+.flowbox p{font-size:.9em;color:#cbd5e1;line-height:1.9}
+.flowbox strong{color:#6ee7b7}
+.seatnote{display:flex;align-items:center;gap:10px;background:rgba(251,191,36,.14);border:1px dashed rgba(251,191,36,.45);border-radius:14px;padding:12px 18px;margin-bottom:16px;font-size:.85em;font-weight:700;color:#fde68a}
+.seatnote .ic{font-size:1.3em;flex-shrink:0}
 @media(max-width:700px){.hdr h1{font-size:2em}.trow{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr 1fr}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
 @media(max-width:480px){.pgrid{grid-template-columns:1fr}}
 </style>
@@ -123,11 +125,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <p class="hsub"><strong>'26년 완주</strong>를 향해 — 우리가 함께 채워가는 하반기 나침반</p>
   <div class="rrtag">R² + R² · <b style="color:#a78bfa">Refresh</b>×<b style="color:#fb923c">Respect</b> + <b style="color:#60a5fa">Review</b>×<b style="color:#34d399">Reboot</b></div>
 </div>
-<a href="https://answer.moaform.com/answers/EJx22r" target="_blank" rel="noopener" class="formlink">
-  <span class="fl-star">⭐</span>
-  <span class="fl-ic">📝</span>
-  <span class="fl-txt">우리팀 돌아보기! 작성<span class="fl-sub">잠깐, 여기 먼저 남겨주세요 · <em>엘지제일검 백동훈</em> 지시사항입니다</span></span>
-  <span class="fl-star">⭐</span>
+<div class="flowbox">
+  <p>이 페이지는 하반기를 <strong>세 단계</strong>로 함께 그립니다.<br><strong>① 하반기 중점추진업무</strong>를 먼저 확인하고 → <strong>② 우리 팀이 해야 할 일</strong>을 함께 정하고 → 마지막으로 <strong>③ 내가 해야 할 일</strong>을 스스로 적어보는 순서예요.</p>
+</div>
+<a href="#" class="formlink">
+  <span class="fl-ic">📊</span>
+  <span class="fl-txt">설문결과 보러가기<span class="fl-sub">우리 팀이 남긴 이야기, 결과로 확인해보세요</span></span>
   <span class="fl-arrow">→</span>
 </a>
 <div class="bbar">
@@ -150,6 +153,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <div class="card">
     <div class="chead cg"><div class="cnum">01</div><div class="cht"><div class="cttl">📌 하반기 중점추진 업무</div><div class="cdsc">3Q·4Q 우리 팀이 반드시 완수해야 할 핵심 업무를 함께 확인합니다</div></div><div class="ctag">WORK</div></div>
     <div class="cbody">
+      <div class="seatnote"><span class="ic">🪑</span>그룹별로 모여주세요</div>
       <div class="trow">
         <div class="slot"><div class="slbl">THEME A</div><textarea class="sinp" id="ta" placeholder="하반기 중점 업무 테마를 입력해주세요&#10;&#10;예) 배터리 원소재 공급망 강화&#10;- 3Q: ___&#10;- 4Q: ___"></textarea></div>
         <div class="slot"><div class="slbl">THEME B</div><textarea class="sinp" id="tb" placeholder="하반기 중점 업무 테마를 입력해주세요&#10;&#10;예) 직접소싱 확대 및 경쟁력 강화&#10;- 3Q: ___&#10;- 4Q: ___"></textarea></div>
@@ -161,6 +165,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <div class="card">
     <div class="chead cp"><div class="cnum">02</div><div class="cht"><div class="cttl">🤝 팀이 함께 할 것</div><div class="cdsc">하반기, 우리 팀 전체가 공동으로 실천할 문화·방식·약속을 적어주세요</div></div><div class="ctag">TEAM</div></div>
     <div class="cbody">
+      <div class="seatnote"><span class="ic">🔀</span>팀을 섞겠습니다! 진행요원 안내에 맞춰 자리를 옮겨주세요</div>
       <div class="pgrid">
         <div class="pslot"><div class="plbl pu">약속 1</div><textarea class="pinp" id="t1" placeholder="우리 팀이 함께&#10;지켜나갈 것..."></textarea></div>
         <div class="pslot"><div class="plbl pu">약속 2</div><textarea class="pinp" id="t2" placeholder="우리 팀이 함께&#10;지켜나갈 것..."></textarea></div>

@@ -18,10 +18,10 @@ A company workshop event site: a landing page plus Day1/Day2 activity pages buil
 | `index.html` | Landing page: team-lead message, Refresh/Review/Reboot purpose cards, Day1/Day2 schedule, links to all sub-pages |
 | `refresh.html` | Day 1 activity showcase (board games, cooking, rafting, team games), weather Plan A/B, timeline. Each activity card links to `activity.html?id=aN`. |
 | `activity.html` | Shared per-activity board page (`?id=a1`-`a4`): anyone can post a text+photo entry, admin-only "delete all" for that activity. Talks to `/api/refresh-activities`. |
-| `review.html` | 2025→2026 goals vs. outcomes retrospective, animated progress bars, '25 workshop promise list. Talks to `/api/review-photos` for the intro-box photos. |
+| `review.html` | 2025→2026 goals vs. outcomes retrospective, animated progress bars, '25 workshop promise list. Talks to `/api/review-photos` for the intro-box photos. Also carries the external "우리팀 돌아보기! 작성" moaform link (moved here from reboot.html). |
 | `quiz.html` | Team trivia quiz, 5 hardcoded Q&A, client-side scoring only, no persistence |
 | `cheer.html` | "Respect & Roast" praise board. A slide toggle switches between two fully independent, fully write/delete-enabled boards: **Roast** (default, the original jokey praise board) and **Respect** (a separate, cleaner list). Each mode has its own write form, feed, and per-entry delete. Talks to `/api/praises?mode=roast\|respect`, polls every 6s |
-| `reboot.html` | "하반기 나침반" planning tool: team-wide themes/promises + per-individual action items. Talks to `/api/reboot` and `/api/reboot-team`, polls every 8s |
+| `reboot.html` | "하반기 나침반" planning tool: team-wide themes/promises + per-individual action items, framed by a 3-step flow explainer (① 중점추진업무 → ② 팀 약속 → ③ 개인 실천) and seat-arrangement instructions on cards 01/02. Has a placeholder "설문결과 보러가기" link (`href="#"`, real URL TBD). Talks to `/api/reboot` and `/api/reboot-team`, polls every 8s |
 | `api/praises.js` | GET/POST/PATCH/DELETE for the praise board |
 | `api/reboot.js` | GET/POST/DELETE for per-individual action-item slots |
 | `api/reboot-team.js` | GET/POST/DELETE for team-wide themes/promises |
