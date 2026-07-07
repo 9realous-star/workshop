@@ -17,8 +17,7 @@ module.exports = async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { pw, dataUrl } = req.body || {};
-    if (pw !== ADMIN_PW) return res.status(403).json({ error: 'forbidden' });
+    const { dataUrl } = req.body || {};
     if (typeof dataUrl !== 'string' || !dataUrl.startsWith('data:image/')) {
       return res.status(400).json({ error: 'invalid payload' });
     }

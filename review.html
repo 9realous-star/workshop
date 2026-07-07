@@ -198,7 +198,7 @@ function renderPhotos(){
   });
   if(gPhotos.length<2){
     const add=document.createElement('div');add.className='gphoto-add';add.onclick=addPhoto;
-    add.innerHTML='<span style="font-size:1.6em">＋</span><span>사진 추가 (관리자)</span>';
+    add.innerHTML='<span style="font-size:1.6em">＋</span><span>사진 추가</span>';
     g.appendChild(add);
   }
 }
@@ -235,8 +235,6 @@ function resizeImage(file){
 }
 
 function addPhoto(){
-  const pw=prompt('관리자 비밀번호를 입력하세요');
-  if(pw===null)return;
   const inp=document.createElement('input');
   inp.type='file';inp.accept='image/*';
   inp.onchange=async()=>{
@@ -245,8 +243,7 @@ function addPhoto(){
     let dataUrl;
     try{dataUrl=await resizeImage(file)}catch(e){alert('이미지를 처리하지 못했어요.');return}
     try{
-      const r=await fetch(RV_PHOTOS_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pw,dataUrl})});
-      if(r.status===403){alert('비밀번호가 올바르지 않습니다.');return}
+      const r=await fetch(RV_PHOTOS_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({dataUrl})});
       if(!r.ok){alert('업로드 중 오류가 발생했어요.');return}
       gPhotos=await r.json();
       renderPhotos();
