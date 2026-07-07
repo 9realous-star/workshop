@@ -20,7 +20,7 @@ A company workshop event site: a landing page plus Day1/Day2 activity pages buil
 | `activity.html` | Shared per-activity board page (`?id=a1`-`a4`): anyone can post a text+photo entry, admin-only "delete all" for that activity. Talks to `/api/refresh-activities`. |
 | `review.html` | 2025→2026 goals vs. outcomes retrospective, animated progress bars, '25 workshop promise list. Talks to `/api/review-photos` for the intro-box photos. |
 | `quiz.html` | Team trivia quiz, 5 hardcoded Q&A, client-side scoring only, no persistence |
-| `cheer.html` | "Respect & Roast" praise board. Two modes via a slide-to-unlock control: **Roast** (default, read-only archive of pre-existing praise/joke entries) and **Respect** (unlocked by sliding, a fresh write-enabled mode). Talks to `/api/praises?mode=roast\|respect`, polls every 6s |
+| `cheer.html` | "Respect & Roast" praise board. A slide toggle switches between two fully independent, fully write/delete-enabled boards: **Roast** (default, the original jokey praise board) and **Respect** (a separate, cleaner list). Each mode has its own write form, feed, and per-entry delete. Talks to `/api/praises?mode=roast\|respect`, polls every 6s |
 | `reboot.html` | "하반기 나침반" planning tool: team-wide themes/promises + per-individual action items. Talks to `/api/reboot` and `/api/reboot-team`, polls every 8s |
 | `api/praises.js` | GET/POST/PATCH/DELETE for the praise board |
 | `api/reboot.js` | GET/POST/DELETE for per-individual action-item slots |
