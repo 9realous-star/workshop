@@ -42,7 +42,7 @@ All three `api/*.js` handlers are CommonJS, default-export an async `(req, res)`
 | `api/reboot.js` | GET/POST/DELETE | `rb_individuals_v1` | `ADMIN_PW='0512'`, checked via `?pw=` for DELETE (clears one slot by `?index=`) | POST supports single-index update (`{index,name,text}`) or full-array replace; free to anyone |
 | `api/reboot-team.js` | GET/POST/DELETE | `rb_team_v1` | `ADMIN_PW='0512'`, checked via `?pw=` for DELETE (clears `?fields=` csv, e.g. `ta,tb`) | POST is field-whitelisted (`ta,tb,t1,t2,t3`), always returns `{...DEFAULT,...data}`; free to anyone |
 | `api/review-photos.js` | GET/POST/DELETE | `rv_photos_v1` | none on POST (anyone can add); `ADMIN_PW='0512'` required on DELETE (`?id=&pw=`) | Stores `{id, dataUrl}` objects (client-resized JPEG as base64 data URL), capped at 2 entries and ~1.5MB each |
-| `api/refresh-activities.js` | GET/POST/DELETE | `rf_activities_v1` | none on POST (anyone can add); `ADMIN_PW='0512'` required on DELETE (`?activity=&pw=`, clears all entries for that activity) | Object keyed by activity id (`a1`-`a4`) → array of `{id,text,dataUrl}`; POST returns just that activity's updated array |
+| `api/refresh-activities.js` | GET/POST/DELETE | `rf_activities_v1` | none on POST (anyone can add); `ADMIN_PW='0512'` required on DELETE (`?activity=&pw=`, clears all entries for that activity) | Object keyed by activity id (`a1`-`a4`) → array of `{id,text,dataUrls:[...]}` (up to 8 images/post, text optional if ≥1 image). Older entries may still have a singular `dataUrl` field — `activity.html` normalizes both shapes when rendering. POST returns just that activity's updated array |
 
 Redis keys are versioned (`_v4`, `_v1`) — this reflects past schema resets; bumping the suffix wipes stored data for that resource.
 

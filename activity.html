@@ -30,7 +30,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .battach:hover{border-color:rgba(167,139,250,.5);color:#c4b5fd}
 .bsubmit{background:rgba(167,139,250,.22);border:1px solid rgba(167,139,250,.45);color:#c4b5fd;border-radius:16px;padding:9px 22px;font-size:.85em;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s}
 .bsubmit:hover{background:rgba(167,139,250,.35)}
-.bprev{max-width:140px;border-radius:10px;margin-top:12px;display:block}
+.pprevs{display:none;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pprev-item{position:relative;width:74px;height:74px;border-radius:10px;overflow:hidden;flex-shrink:0}
+.pprev-item img{width:100%;height:100%;object-fit:cover;display:block}
+.pprev-x{position:absolute;top:3px;right:3px;background:rgba(10,8,30,.8);color:#fff;border:none;width:20px;height:20px;border-radius:50%;font-size:.7em;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.pprev-x:hover{background:rgba(248,113,113,.8)}
+.pcount{font-size:.78em;color:#64748b;margin-top:8px}
 .btoolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
 .bcount{font-size:.85em;color:#64748b;font-weight:700}
 .bdelall{background:transparent;border:1px solid rgba(148,163,184,.3);color:#64748b;border-radius:16px;padding:6px 16px;font-size:.75em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s,border-color .2s,color .2s}
@@ -38,11 +43,14 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
 .bcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;transition:border-color .2s}
 .bcard:has(img):hover{border-color:rgba(167,139,250,.4)}
+.bimggrid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.bimggrid.one{grid-template-columns:1fr}
 .bcard .bimgwrap{position:relative;overflow:hidden;background:rgba(0,0,0,.2)}
+.bimggrid.one .bimgwrap{aspect-ratio:auto}
+.bimggrid:not(.one) .bimgwrap{aspect-ratio:1/1}
+.bimggrid:not(.one) .bimgwrap img{height:100%;object-fit:cover}
 .bcard img{width:100%;height:auto;display:block;cursor:zoom-in;transition:transform .3s}
-.bcard .bimgwrap:hover img{transform:scale(1.04)}
-.bzoomhint{position:absolute;bottom:8px;right:8px;background:rgba(10,8,30,.7);color:#e2e8f0;font-size:.68em;padding:4px 10px;border-radius:12px;pointer-events:none;opacity:0;transition:opacity .2s;backdrop-filter:blur(4px)}
-.bcard .bimgwrap:hover .bzoomhint{opacity:1}
+.bcard .bimgwrap:hover img{transform:scale(1.05)}
 .bcard p{font-size:.87em;color:#cbd5e1;line-height:1.6;white-space:pre-wrap;padding:14px 16px}
 .bempty{grid-column:1/-1;font-size:.88em;color:#64748b;text-align:center;padding:40px 0}
 .lightbox{position:fixed;inset:0;background:rgba(5,4,15,.94);z-index:2000;display:none;align-items:center;justify-content:center;padding:28px;cursor:zoom-out}
@@ -64,13 +72,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 </div>
 
 <div class="bform">
-  <textarea id="pText" maxlength="500" placeholder="사진과 함께, 또는 글로만 — 이 활동에 대한 설명·팁·후기를 자유롭게 남겨주세요"></textarea>
+  <textarea id="pText" maxlength="500" placeholder="사진 위주로 자유롭게 올려주세요 — 설명 글은 선택사항이에요"></textarea>
   <div class="brow">
-    <button type="button" class="battach" onclick="document.getElementById('pFile').click()">📷 사진 추가</button>
+    <button type="button" class="battach" onclick="document.getElementById('pFile').click()">📷 사진 추가 (여러 장 가능)</button>
     <button type="button" class="bsubmit" onclick="submitPost()">게시하기</button>
   </div>
-  <input type="file" id="pFile" accept="image/*" style="display:none" onchange="onFileSelected(event)">
-  <img id="pPreview" class="bprev" style="display:none">
+  <input type="file" id="pFile" accept="image/*" multiple style="display:none" onchange="onFileSelected(event)">
+  <div class="pprevs" id="pPreviewWrap"></div>
 </div>
 
 <div class="btoolbar">
@@ -104,8 +112,9 @@ const ACT_META={
 
 const params=new URLSearchParams(location.search);
 const actId=ACT_META[params.get('id')]?params.get('id'):'a1';
+const MAX_IMAGES=8;
 let posts=[];
-let curImageDataUrl=null;
+let curImages=[];
 
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
@@ -121,7 +130,12 @@ function renderBoard(){
   const g=document.getElementById('board');
   document.getElementById('bCount').textContent=posts.length+'개의 게시글';
   if(!posts.length){g.innerHTML='<div class="bempty">아직 게시글이 없어요. 첫 번째로 남겨보세요!</div>';return}
-  g.innerHTML=posts.map(p=>`<div class="bcard">${p.dataUrl?`<div class="bimgwrap"><img src="${p.dataUrl}" alt="첨부 이미지" onclick="openLightbox(this)"><span class="bzoomhint">🔍 눌러서 크게 보기</span></div>`:''}<p>${esc(p.text)}</p></div>`).join('');
+  g.innerHTML=posts.map(p=>{
+    const imgs=p.dataUrls||(p.dataUrl?[p.dataUrl]:[]);
+    const imgsHtml=imgs.length?`<div class="bimggrid ${imgs.length===1?'one':''}">${imgs.map(src=>`<div class="bimgwrap"><img src="${src}" alt="첨부 이미지" onclick="openLightbox(this)"></div>`).join('')}</div>`:'';
+    const textHtml=p.text?`<p>${esc(p.text)}</p>`:'';
+    return `<div class="bcard">${imgsHtml}${textHtml}</div>`;
+  }).join('');
 }
 
 function openLightbox(imgEl){
@@ -165,27 +179,46 @@ function resizeImage(file){
   });
 }
 
-function onFileSelected(ev){
-  const file=ev.target.files[0];
-  if(!file)return;
-  resizeImage(file).then(dataUrl=>{
-    curImageDataUrl=dataUrl;
-    const prev=document.getElementById('pPreview');
-    prev.src=dataUrl;prev.style.display='block';
-  }).catch(()=>alert('이미지를 처리하지 못했어요.'));
+function renderPreview(){
+  const wrap=document.getElementById('pPreviewWrap');
+  if(!curImages.length){wrap.style.display='none';wrap.innerHTML='';return}
+  wrap.style.display='flex';
+  wrap.innerHTML=curImages.map((src,i)=>`<div class="pprev-item"><img src="${src}"><button type="button" class="pprev-x" onclick="removeImage(${i})">✕</button></div>`).join('');
+}
+
+function removeImage(i){
+  curImages.splice(i,1);
+  renderPreview();
+}
+
+async function onFileSelected(ev){
+  const files=Array.from(ev.target.files||[]);
+  if(!files.length)return;
+  const room=MAX_IMAGES-curImages.length;
+  if(room<=0){
+    alert(`사진은 게시글 하나에 최대 ${MAX_IMAGES}장까지 첨부할 수 있어요.`);
+    ev.target.value='';return;
+  }
+  const toProcess=files.slice(0,room);
+  if(files.length>room)alert(`최대 ${MAX_IMAGES}장까지만 추가돼요. 나머지는 제외했어요.`);
+  for(const f of toProcess){
+    try{curImages.push(await resizeImage(f))}catch(e){/* skip failed image */}
+  }
+  ev.target.value='';
+  renderPreview();
 }
 
 async function submitPost(){
   const text=document.getElementById('pText').value.trim();
-  if(!text){alert('내용을 입력해주세요.');return}
+  if(!text&&!curImages.length){alert('사진이나 글 중 하나는 남겨주세요.');return}
   try{
-    const r=await fetch(RF_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({activity:actId,text,dataUrl:curImageDataUrl})});
+    const r=await fetch(RF_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({activity:actId,text,images:curImages})});
     if(!r.ok){alert('등록 중 오류가 발생했어요.');return}
     posts=await r.json();
     document.getElementById('pText').value='';
     document.getElementById('pFile').value='';
-    curImageDataUrl=null;
-    document.getElementById('pPreview').style.display='none';
+    curImages=[];
+    renderPreview();
     renderBoard();
   }catch(e){alert('등록 중 오류가 발생했어요.')}
 }

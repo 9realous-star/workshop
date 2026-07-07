@@ -10,6 +10,7 @@ const ADMIN_PW = '0512';
 const IDS = ['a1', 'a2', 'a3', 'a4'];
 const MAX_TEXT = 500;
 const MAX_DATA_URL_LEN = 900_000;
+const MAX_IMAGES = 8;
 
 async function getData() {
   const data = await redis.get(KEY);
@@ -24,19 +25,22 @@ module.exports = async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    const { activity, text, dataUrl } = req.body || {};
+    const { activity, text, images } = req.body || {};
     if (!IDS.includes(activity)) return res.status(400).json({ error: 'invalid activity' });
-    if (typeof text !== 'string' || !text.trim()) return res.status(400).json({ error: 'invalid payload' });
-    if (dataUrl !== undefined && dataUrl !== null) {
-      if (typeof dataUrl !== 'string' || !dataUrl.startsWith('data:image/') || dataUrl.length > MAX_DATA_URL_LEN) {
+    const cleanText = typeof text === 'string' ? text.trim() : '';
+    const imgs = Array.isArray(images) ? images.filter((d) => typeof d === 'string' && d) : [];
+    if (!cleanText && !imgs.length) return res.status(400).json({ error: 'invalid payload' });
+    if (imgs.length > MAX_IMAGES) return res.status(400).json({ error: 'too many images' });
+    for (const d of imgs) {
+      if (!d.startsWith('data:image/') || d.length > MAX_DATA_URL_LEN) {
         return res.status(400).json({ error: 'invalid image' });
       }
     }
     const data = await getData();
     data[activity].unshift({
       id: Date.now().toString(36) + Math.random().toString(36).slice(2),
-      text: text.slice(0, MAX_TEXT),
-      dataUrl: dataUrl || null,
+      text: cleanText.slice(0, MAX_TEXT),
+      dataUrls: imgs,
     });
     await redis.set(KEY, data);
     return res.status(200).json(data[activity]);
