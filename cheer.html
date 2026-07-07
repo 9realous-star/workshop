@@ -24,6 +24,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .hdr h1{font-size:2.6em;font-weight:900;background:linear-gradient(135deg,#fff 0%,#fb923c 50%,#f59e0b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;line-height:1.2}
 .hsub{font-size:.9em;color:#64748b;line-height:1.7}
 .hsub strong{color:#fdba74}
+.slidewrap{position:relative;height:58px;border-radius:30px;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.35);margin-bottom:24px;overflow:hidden;user-select:none;touch-action:none}
+.slidewrap.unlocked{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.4)}
+.slidelabel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.85em;font-weight:700;color:#c4b5fd;letter-spacing:.5px;pointer-events:none;padding:0 60px;text-align:center}
+.slidewrap.unlocked .slidelabel{color:#6ee7b7}
+.slidethumb{position:absolute;left:4px;top:4px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:1.3em;cursor:grab;box-shadow:0 4px 14px rgba(124,58,237,.45);transition:left .3s ease,background .3s}
+.slidethumb:active{cursor:grabbing;transition:background .3s}
+.slidewrap.unlocked .slidethumb{background:linear-gradient(135deg,#34d399,#059669);box-shadow:0 4px 14px rgba(5,150,105,.45)}
 .wgtabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 .wb{padding:7px 18px;border-radius:20px;font-size:.78em;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#475569;transition:all .2s}
 .wb:hover{color:#e2e8f0;background:rgba(255,255,255,.08)}
@@ -122,13 +129,18 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 <body>
 <div class="wrap">
 <div class="hdr">
-  <div class="bdg">DAY 1 · 칭찬합시다 세션</div>
-  <h1>🔥 칭찬합시다</h1>
-  <p class="hsub">서로에게 전하고 싶었던 마음을 지금 이 자리에서 —<br><strong>고마웠던 순간, 멋있었던 모습</strong>을 솔직하게 적어주세요</p>
+  <div class="bdg" id="modeBadge">DAY 1 · RESPECT &amp; ROAST</div>
+  <h1>🔥 Respect <span style="color:#64748b;font-size:.7em">&amp;</span> Roast 💜</h1>
+  <p class="hsub">R² + R² — 장난은 여기까지, 이제는 진짜 마음을 전해보세요<br>기존 칭찬은 <strong>🔥 Roast 아카이브</strong>로 남고, 밀어서 잠금해제하면 <strong style="color:#c4b5fd">💜 Respect 모드</strong>로 새롭게 시작합니다</p>
 </div>
 <div class="bbar">
   <img src="hyundai.webp" alt="Hyundai">
   <img src="kia.webp" alt="Kia">
+</div>
+
+<div class="slidewrap" id="slideWrap">
+  <div class="slidelabel" id="slideLabel">🔒 밀어서 Respect 모드 잠금해제 →</div>
+  <div class="slidethumb" id="slideThumb">💜</div>
 </div>
 
 <div class="wgtabs">
@@ -143,10 +155,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <div class="mgrid" id="mgrid"></div>
 </div>
 
-<div class="wsec">
+<div class="wsec" id="wsec">
   <div class="whead">
     <div class="whi">✍️</div>
-    <div class="wht"><div class="whttl">칭찬 메시지 작성</div><div class="whsub" id="wsub">위에서 대상을 먼저 선택해주세요</div></div>
+    <div class="wht"><div class="whttl">💜 Respect 메시지 작성</div><div class="whsub" id="wsub">위에서 대상을 먼저 선택해주세요</div></div>
     <div class="tobdg" id="tobdg">대상 미선택</div>
   </div>
   <div class="wbody">
@@ -165,12 +177,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
       <button class="eb" data-e="🎯" onclick="sEmoji(this)">🎯</button>
     </div>
     <textarea class="ta" id="msg" placeholder="예) 야근할 때 옆에서 같이 도와줘서 정말 고마웠어요 😊" maxlength="300" oninput="updCC(this)"></textarea>
-    <div class="srow"><span class="cc" id="cc">0 / 300자</span><button class="sbtn" id="sbtn" onclick="submit()" disabled>🔥 칭찬 남기기</button></div>
+    <div class="srow"><span class="cc" id="cc">0 / 300자</span><button class="sbtn" id="sbtn" onclick="submit()" disabled>💜 Respect 남기기</button></div>
   </div>
 </div>
 
 <div class="fhdr">
-  <div class="fttl">💌 칭찬 모아보기 <span class="fcnt" id="fcnt">0개</span></div>
+  <div class="fttl" id="fttl">🔥 Roast 아카이브 <span class="fcnt" id="fcnt">0개</span></div>
   <button class="clrbtn" onclick="clrAll()">전체 초기화</button>
 </div>
 <div class="sbar2" id="sbar"><span style="font-size:.78em;color:#334155">아직 칭찬이 없어요 — 첫 번째 칭찬을 남겨보세요! 🔥</span></div>
@@ -212,16 +224,81 @@ const MBS=[
 const API='/api/praises';
 let PRAISES=[];
 let sel=null,emj='🔥',view='all',wg='all',curPage=1;
+let mode='roast';
 
 async function loadPraises(){
   try{
-    const r=await fetch(API);
+    const r=await fetch(`${API}?mode=${mode}`);
     PRAISES=await r.json();
   }catch(e){PRAISES=[]}
   rGrid();rFeed();rStats();rCnt();
 }
 
+function switchMode(newMode){
+  if(mode===newMode)return;
+  mode=newMode;
+  const wrap=document.getElementById('slideWrap');
+  const thumb=document.getElementById('slideThumb');
+  const label=document.getElementById('slideLabel');
+  const wsec=document.getElementById('wsec');
+  const fttl=document.getElementById('fttl');
+  const maxLeft=wrap.clientWidth-thumb.clientWidth-8;
+  if(mode==='respect'){
+    thumb.style.left=maxLeft+'px';
+    wrap.classList.add('unlocked');
+    label.textContent='✅ Respect 모드 — 밀어서 Roast 아카이브로 →';
+    wsec.style.display='';
+    fttl.innerHTML='💜 Respect 모아보기 <span class="fcnt" id="fcnt">0개</span>';
+  }else{
+    thumb.style.left='4px';
+    wrap.classList.remove('unlocked');
+    label.textContent='🔒 밀어서 Respect 모드 잠금해제 →';
+    wsec.style.display='none';
+    fttl.innerHTML='🔥 Roast 아카이브 <span class="fcnt" id="fcnt">0개</span>';
+  }
+  curPage=1;sel=null;
+  document.getElementById('tobdg').textContent='대상 미선택';
+  document.getElementById('wsub').textContent='위에서 대상을 먼저 선택해주세요';
+  loadPraises();
+}
+
+function initSlider(){
+  const wrap=document.getElementById('slideWrap');
+  const thumb=document.getElementById('slideThumb');
+  let dragging=false,startX=0,thumbStartLeft=0;
+  const maxLeft=()=>wrap.clientWidth-thumb.clientWidth-8;
+
+  function down(e){
+    dragging=true;
+    startX=e.touches?e.touches[0].clientX:e.clientX;
+    thumbStartLeft=thumb.offsetLeft;
+  }
+  function move(e){
+    if(!dragging)return;
+    const x=e.touches?e.touches[0].clientX:e.clientX;
+    let left=thumbStartLeft+(x-startX);
+    left=Math.max(4,Math.min(maxLeft(),left));
+    thumb.style.left=left+'px';
+  }
+  function up(){
+    if(!dragging)return;
+    dragging=false;
+    const left=thumb.offsetLeft;
+    if(left>=maxLeft()-6)switchMode('respect');
+    else if(left<=10)switchMode('roast');
+    else thumb.style.left=(mode==='respect'?maxLeft():4)+'px';
+  }
+  thumb.addEventListener('mousedown',down);
+  thumb.addEventListener('touchstart',down,{passive:true});
+  window.addEventListener('mousemove',move);
+  window.addEventListener('touchmove',move,{passive:true});
+  window.addEventListener('mouseup',up);
+  window.addEventListener('touchend',up);
+}
+
 window.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('wsec').style.display='none';
+  initSlider();
   loadPraises();
   setInterval(loadPraises,6000);
   document.getElementById('msg').addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px';tBtn()});
@@ -290,7 +367,7 @@ async function submit(){
   const p={id:Date.now(),from:f,to:m.name,tr:m.role,ti:sel,emoji:emj,text:t,time:new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})};
   document.getElementById('sbtn').disabled=true;
   try{
-    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+    const r=await fetch(`${API}?mode=${mode}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
     if(!r.ok)throw new Error('fail');
     PRAISES=await r.json();
   }catch(e){
@@ -315,7 +392,8 @@ function rFeed(){
   const items=ps.slice((curPage-1)*5,curPage*5);
   let html=items.map(p=>{
     const m=MBS[p.ti]||{color:'#fb923c',bg:'rgba(251,146,60,.15)',emoji:'🔥'};
-    return`<div class="pcard"><div class="ptop"><div class="pei" style="background:${m.bg};border-color:${m.color}40">${p.emoji}</div><div class="pmeta"><div class="pfrom"><span style="color:#94a3b8">${esc(p.from)}</span><span class="arr">→</span><span class="ton">${esc(p.to)}</span><span class="trl">${esc(p.tr||'')}</span></div><div class="ptm">${p.time}</div></div></div><div class="ptxt">${esc(p.text)}</div><button class="pdel" onclick="del(${p.id})">✕</button></div>`;
+    const delBtn=mode==='respect'?`<button class="pdel" onclick="del(${p.id})">✕</button>`:'';
+    return`<div class="pcard"><div class="ptop"><div class="pei" style="background:${m.bg};border-color:${m.color}40">${p.emoji}</div><div class="pmeta"><div class="pfrom"><span style="color:#94a3b8">${esc(p.from)}</span><span class="arr">→</span><span class="ton">${esc(p.to)}</span><span class="trl">${esc(p.tr||'')}</span></div><div class="ptm">${p.time}</div></div></div><div class="ptxt">${esc(p.text)}</div>${delBtn}</div>`;
   }).join('');
   if(totalPg>1){
     const nums=Array.from({length:totalPg},(_,i)=>`<button class="pgnum ${i+1===curPage?'on':''}" onclick="goPg(${i+1})">${i+1}</button>`).join('');
@@ -334,7 +412,7 @@ function rStats(){
 async function del(id){
   if(!confirm('이 칭찬을 삭제할까요?'))return;
   try{
-    const r=await fetch(`${API}?id=${id}`,{method:'DELETE'});
+    const r=await fetch(`${API}?mode=${mode}&id=${id}`,{method:'DELETE'});
     PRAISES=await r.json();
   }catch(e){alert('삭제 중 오류가 발생했어요.');return}
   rGrid();rFeed();rStats();rCnt();
@@ -344,9 +422,9 @@ async function clrAll(){
   const pw=prompt('관리자 비밀번호를 입력하세요');
   if(pw===null)return;
   if(pw!=='0512'){alert('비밀번호가 올바르지 않습니다.');return}
-  if(!confirm('칭찬을 모두 삭제할까요?'))return;
+  if(!confirm(`${mode==='respect'?'Respect':'Roast'} 항목을 모두 삭제할까요?`))return;
   try{
-    const r=await fetch(`${API}?pw=${encodeURIComponent(pw)}`,{method:'DELETE'});
+    const r=await fetch(`${API}?mode=${mode}&pw=${encodeURIComponent(pw)}`,{method:'DELETE'});
     if(!r.ok)throw new Error('fail');
     PRAISES=await r.json();
   }catch(e){alert('초기화에 실패했어요.');return}

@@ -5,10 +5,13 @@ const redis = new Redis({
   token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN,
 });
 
-const KEY = 'ws_praises_v4';
+const KEYS = { roast: 'ws_praises_v4', respect: 'ws_praises_respect_v1' };
 const ADMIN_PW = '0512';
 
 module.exports = async (req, res) => {
+  const mode = req.query.mode === 'respect' ? 'respect' : 'roast';
+  const KEY = KEYS[mode];
+
   if (req.method === 'GET') {
     const list = (await redis.get(KEY)) || [];
     return res.status(200).json(list);
