@@ -16,7 +16,7 @@ A company workshop event site: a landing page plus Day1/Day2 activity pages buil
 | File | Purpose |
 |---|---|
 | `index.html` | Landing page: team-lead message, Refresh/Review/Reboot purpose cards, Day1/Day2 schedule, links to all sub-pages |
-| `refresh.html` | Day 1 activity showcase (board games, cooking, rafting, team games), weather Plan A/B, timeline. Static, no API. |
+| `refresh.html` | Day 1 activity showcase (board games, cooking, rafting, team games), weather Plan A/B, timeline. Each activity card opens a modal where anyone can add text/photo descriptions via `/api/refresh-activities`. |
 | `review.html` | 2025→2026 goals vs. outcomes retrospective, animated progress bars, '25 workshop promise list. Talks to `/api/review-photos` for the intro-box photos. |
 | `quiz.html` | Team trivia quiz, 5 hardcoded Q&A, client-side scoring only, no persistence |
 | `cheer.html` | "칭찬합시다" praise board: write/view/filter/paginate/delete praise messages. Talks to `/api/praises`, polls every 6s |
@@ -25,6 +25,7 @@ A company workshop event site: a landing page plus Day1/Day2 activity pages buil
 | `api/reboot.js` | GET/POST/DELETE for per-individual action-item slots |
 | `api/reboot-team.js` | GET/POST/DELETE for team-wide themes/promises |
 | `api/review-photos.js` | GET/POST/DELETE for up to 2 admin-uploaded photos shown in review.html's intro box |
+| `api/refresh-activities.js` | GET/POST/DELETE for per-activity text+photo entries on refresh.html (4 activities, anyone can post, admin-only clear-all per activity) |
 | `hyundai.webp`, `kia.webp` | Sponsor/company logos used in page nav headers |
 | `atlas.jpg` | Boston Dynamics Atlas banner image (`index.html`, `reboot.html`) |
 
@@ -40,6 +41,7 @@ All three `api/*.js` handlers are CommonJS, default-export an async `(req, res)`
 | `api/reboot.js` | GET/POST/DELETE | `rb_individuals_v1` | `ADMIN_PW='0512'`, checked via `?pw=` for DELETE (clears one slot by `?index=`) | POST supports single-index update (`{index,name,text}`) or full-array replace; free to anyone |
 | `api/reboot-team.js` | GET/POST/DELETE | `rb_team_v1` | `ADMIN_PW='0512'`, checked via `?pw=` for DELETE (clears `?fields=` csv, e.g. `ta,tb`) | POST is field-whitelisted (`ta,tb,t1,t2,t3`), always returns `{...DEFAULT,...data}`; free to anyone |
 | `api/review-photos.js` | GET/POST/DELETE | `rv_photos_v1` | `ADMIN_PW='0512'`, required on both POST (add) and DELETE (`?id=&pw=`) | Stores `{id, dataUrl}` objects (client-resized JPEG as base64 data URL), capped at 2 entries and ~1.5MB each |
+| `api/refresh-activities.js` | GET/POST/DELETE | `rf_activities_v1` | none on POST (anyone can add); `ADMIN_PW='0512'` required on DELETE (`?activity=&pw=`, clears all entries for that activity) | Object keyed by activity id (`a1`-`a4`) → array of `{id,text,dataUrl}`; POST returns just that activity's updated array |
 
 Redis keys are versioned (`_v4`, `_v1`) — this reflects past schema resets; bumping the suffix wipes stored data for that resource.
 
