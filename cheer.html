@@ -26,11 +26,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .hsub strong{color:#fdba74}
 .rrtag{display:block;margin-top:12px;font-size:.7em;color:#475569;letter-spacing:.3px}
 .rrtag b{font-weight:700}
-.slidewrap{position:relative;height:52px;width:80%;min-width:240px;max-width:480px;margin:0 auto 24px;border-radius:26px;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.35);overflow:hidden;user-select:none;touch-action:none}
+.slidewrap{position:relative;height:66px;width:96%;min-width:280px;max-width:620px;margin:0 auto 24px;border-radius:33px;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.35);overflow:hidden;user-select:none;touch-action:none}
 .slidewrap.unlocked{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.4)}
-.slidelabel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.78em;font-weight:700;color:#c4b5fd;letter-spacing:.3px;pointer-events:none;padding:0 52px;text-align:center;white-space:nowrap}
+.slidelabel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.76em;font-weight:700;color:#c4b5fd;letter-spacing:.2px;pointer-events:none;padding:0 62px;text-align:center;line-height:1.35}
 .slidewrap.unlocked .slidelabel{color:#6ee7b7}
-.slidethumb{position:absolute;left:4px;top:4px;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:1.2em;cursor:grab;box-shadow:0 4px 14px rgba(124,58,237,.45);transition:left .3s ease,background .3s}
+.slidethumb{position:absolute;left:4px;top:4px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:1.4em;cursor:grab;box-shadow:0 4px 14px rgba(124,58,237,.45);transition:left .3s ease,background .3s}
 .slidethumb:active{cursor:grabbing;transition:background .3s}
 .slidewrap.unlocked .slidethumb{background:linear-gradient(135deg,#34d399,#059669);box-shadow:0 4px 14px rgba(5,150,105,.45)}
 .wgtabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
@@ -142,7 +142,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 </div>
 
 <div class="slidewrap" id="slideWrap">
-  <div class="slidelabel" id="slideLabel">밀어서 전환 →</div>
+  <div class="slidelabel" id="slideLabel">🔥 Roast 모드에서 💜 Respect 모드로<br>전환하기 →</div>
   <div class="slidethumb" id="slideThumb">💜</div>
 </div>
 
@@ -200,10 +200,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 
 <nav class="bnav">
   <a href="index.html"   class="ni"><span class="ic">🏠</span>메인</a>
+  <a href="cheer.html"   class="ni ac"><span class="ic">🔥</span>Respect<br>&amp; Roast</a>
   <a href="refresh.html" class="ni"><span class="ic">✨</span>Refresh</a>
   <a href="review.html"  class="ni"><span class="ic">🔍</span>Review</a>
   <a href="reboot.html"  class="ni"><span class="ic">🚀</span>Reboot</a>
-  <a href="cheer.html"   class="ni ac"><span class="ic">🔥</span>Respect<br>&amp; Roast</a>
 </nav>
 
 <script>
@@ -250,14 +250,14 @@ function switchMode(newMode){
   if(mode==='respect'){
     thumb.style.left=maxLeft+'px';
     wrap.classList.add('unlocked');
-    label.textContent='← 밀어서 전환';
+    label.innerHTML='← 전환하기<br>💜 Respect 모드에서 🔥 Roast 모드로';
     whttl.textContent='💜 Respect 메시지 작성';
     sbtn.textContent='💜 Respect 남기기';
     fttl.innerHTML='💜 Respect 모아보기 <span class="fcnt" id="fcnt">0개</span>';
   }else{
     thumb.style.left='4px';
     wrap.classList.remove('unlocked');
-    label.textContent='밀어서 전환 →';
+    label.innerHTML='🔥 Roast 모드에서 💜 Respect 모드로<br>전환하기 →';
     whttl.textContent='🔥 Roast 메시지 작성';
     sbtn.textContent='🔥 Roast 남기기';
     fttl.innerHTML='🔥 Roast 모아보기 <span class="fcnt" id="fcnt">0개</span>';
