@@ -2,7 +2,7 @@
 
 ## Project overview
 
-A company workshop event site: a landing page plus Day1/Day2 activity pages built around a Refresh / Review / Reboot theme, an interactive team praise board, and a "next-half planning" tool. Deployed as a static site with a couple of Vercel serverless functions for shared (Redis-backed) state.
+A company workshop event site: a landing page plus Day1/Day2 activity pages built around the catchphrase **R² + R² = Refresh × Respect + Review × Reboot** (Refresh/Respect are Day 1 themes, Review/Reboot are Day 2 themes), an interactive team praise board, and a "next-half planning" tool. Deployed as a static site with a couple of Vercel serverless functions for shared (Redis-backed) state. See [design.md](design.md) for how the catchphrase is reflected on every page.
 
 ## Tech stack
 

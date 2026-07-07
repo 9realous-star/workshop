@@ -42,3 +42,9 @@ Style guide describing the visual design system as it currently exists across th
 ## Responsive
 
 - Primary breakpoint: `@media (max-width: 768px)` — collapses multi-column grids to 1–2 columns, shrinks nav and heading font sizes. Some pages add narrower breakpoints beyond this for smaller phones.
+
+## Catchphrase / brand mark
+
+- Workshop-wide formula: **R² + R²** = Refresh × Respect + Review × Reboot. Refresh pairs with Respect (Day 1 themes), Review pairs with Reboot (Day 2 themes).
+- `index.html`'s hero (`.catch`/`.csub`) is the full-size version; every other page carries a small `.rrtag` line right under its `.hsub`/`.hdesc` with the same four terms, color-coded consistently: Refresh `#a78bfa`, Respect `#fb923c`, Review `#60a5fa`, Reboot `#34d399`.
+- When adding a new page, copy the `.rrtag` markup verbatim (see any existing page's `.hdr` block) to keep the brand mark consistent.
