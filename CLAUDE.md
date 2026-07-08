@@ -15,7 +15,8 @@ A company workshop event site: a landing page plus Day1/Day2 activity pages buil
 
 | File | Purpose |
 |---|---|
-| `index.html` | Landing page: team-lead message, Refresh/Review/Reboot purpose cards, Day1/Day2 schedule, links to all sub-pages |
+| `index.html` | Landing page: team-lead message, Refresh/Review/Reboot purpose cards, Day1/Day2 schedule, links to all sub-pages. Has a banner link to `carpool.html` near the top. |
+| `carpool.html` | Static notice page: departure and post-workshop-return carpool groups, first name in each group marked as driver (🚗). No API, no persistence — edit the HTML directly to change group assignments. |
 | `refresh.html` | Day 1 activity showcase (board games, cooking, rafting, team games), weather Plan A/B, timeline. Each activity card links to `activity.html?id=aN`. |
 | `activity.html` | Shared per-activity board page (`?id=a1`-`a4`): anyone can post a text+photo entry, admin-only "delete all" for that activity. Talks to `/api/refresh-activities`. |
 | `review.html` | 2025→2026 goals vs. outcomes retrospective, animated progress bars, '25 workshop promise list. Talks to `/api/review-photos` for the intro-box photos. Also carries the external "우리팀 돌아보기! 작성" moaform link (moved here from reboot.html). |
