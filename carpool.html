@@ -36,6 +36,19 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .carmember{font-size:.92em;color:#cbd5e1;display:flex;align-items:center;gap:6px}
 .driver{font-weight:900;color:#fbbf24}
 .drvic{font-size:1.05em}
+.cmts{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+.cmtlist{display:flex;flex-direction:column;gap:5px;margin-bottom:8px}
+.cmtitem{font-size:.78em;color:#94a3b8;display:flex;align-items:center;gap:6px}
+.cmtitem b{color:#e2e8f0;font-weight:700;flex-shrink:0}
+.cmtitem span{flex:1;word-break:break-word}
+.cmtdel{background:none;border:none;color:#475569;cursor:pointer;font-size:.9em;padding:0 2px;flex-shrink:0}
+.cmtdel:hover{color:#f87171}
+.cmtform{display:flex;gap:6px}
+.cmtform input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#e2e8f0;font-size:.78em;padding:6px 8px;font-family:'Noto Sans KR',sans-serif;min-width:0}
+.cmtname{width:56px;flex-shrink:0}
+.cmttext{flex:1}
+.cmtadd{background:rgba(96,165,250,.2);border:1px solid rgba(96,165,250,.4);color:#93c5fd;border-radius:8px;padding:6px 10px;font-size:.78em;cursor:pointer;flex-shrink:0;font-family:'Noto Sans KR',sans-serif}
+.cmtadd:hover{background:rgba(96,165,250,.32)}
 @media(max-width:600px){.cargrid{grid-template-columns:1fr}.hdr h1{font-size:1.8em}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
 </style>
 </head>
@@ -52,26 +65,26 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 <div class="sec">
   <div class="stit dep">🚏 워크샵 출발</div>
   <div class="cargrid">
-    <div class="carcard dep"><div class="carlbl">1조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>류지상</div><div class="carmember">박선영</div></div></div>
-    <div class="carcard dep"><div class="carlbl">2조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>이동현</div><div class="carmember">신민호</div><div class="carmember">백종관</div><div class="carmember">황승하</div></div></div>
-    <div class="carcard dep"><div class="carlbl">3조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김규진</div><div class="carmember">백동훈</div><div class="carmember">이은솔</div></div></div>
-    <div class="carcard dep"><div class="carlbl">4조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김규동</div><div class="carmember">한병주</div></div></div>
-    <div class="carcard dep"><div class="carlbl">5조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김민재</div><div class="carmember">한성영</div></div></div>
-    <div class="carcard dep"><div class="carlbl">6조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김군주</div></div></div>
-    <div class="carcard dep"><div class="carlbl">7조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>팀장님</div></div></div>
+    <div class="carcard dep" data-group="dep-1"><div class="carlbl">1조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>류지상</div><div class="carmember">박선영</div></div></div>
+    <div class="carcard dep" data-group="dep-2"><div class="carlbl">2조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>이동현</div><div class="carmember">신민호</div><div class="carmember">백종관</div><div class="carmember">황승하</div></div></div>
+    <div class="carcard dep" data-group="dep-3"><div class="carlbl">3조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김규진</div><div class="carmember">백동훈</div><div class="carmember">이은솔</div></div></div>
+    <div class="carcard dep" data-group="dep-4"><div class="carlbl">4조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김규동</div><div class="carmember">한병주</div></div></div>
+    <div class="carcard dep" data-group="dep-5"><div class="carlbl">5조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김민재</div><div class="carmember">한성영</div></div></div>
+    <div class="carcard dep" data-group="dep-6"><div class="carlbl">6조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김군주</div></div></div>
+    <div class="carcard dep" data-group="dep-7"><div class="carlbl">7조</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>팀장님</div></div></div>
   </div>
 </div>
 
 <div class="sec">
   <div class="stit ret">🏠 워크샵 종료 후 복귀</div>
   <div class="cargrid">
-    <div class="carcard ret"><div class="carlbl">목적지 · 강남</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김규진</div><div class="carmember">이은솔</div><div class="carmember">백동훈</div></div></div>
-    <div class="carcard ret"><div class="carlbl">목적지 · 하남</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김규동</div><div class="carmember">황승하</div><div class="carmember">한성영</div></div></div>
-    <div class="carcard ret"><div class="carlbl">목적지 · 인천</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김민재</div><div class="carmember">백종관</div><div class="carmember">한병주</div></div></div>
-    <div class="carcard ret"><div class="carlbl">목적지 · 강남</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>이동현</div><div class="carmember">신민호</div></div></div>
-    <div class="carcard ret"><div class="carlbl">목적지 · 선릉</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>류지상</div><div class="carmember">박선영</div></div></div>
-    <div class="carcard ret"><div class="carlbl">목적지 · 송파</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김군주</div></div></div>
-    <div class="carcard ret"><div class="carlbl">목적지 · 동탄</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>팀장님</div></div></div>
+    <div class="carcard ret" data-group="ret-1"><div class="carlbl">목적지 · 강남</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김규진</div><div class="carmember">이은솔</div><div class="carmember">백동훈</div></div></div>
+    <div class="carcard ret" data-group="ret-2"><div class="carlbl">목적지 · 하남</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김규동</div><div class="carmember">황승하</div><div class="carmember">한성영</div></div></div>
+    <div class="carcard ret" data-group="ret-3"><div class="carlbl">목적지 · 인천</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김민재</div><div class="carmember">백종관</div><div class="carmember">한병주</div></div></div>
+    <div class="carcard ret" data-group="ret-4"><div class="carlbl">목적지 · 강남</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>이동현</div><div class="carmember">신민호</div></div></div>
+    <div class="carcard ret" data-group="ret-5"><div class="carlbl">목적지 · 선릉</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>류지상</div><div class="carmember">박선영</div></div></div>
+    <div class="carcard ret" data-group="ret-6"><div class="carlbl">목적지 · 송파</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>김군주</div></div></div>
+    <div class="carcard ret" data-group="ret-7"><div class="carlbl">목적지 · 동탄</div><div class="carmembers"><div class="carmember driver"><span class="drvic">🚗</span>팀장님</div></div></div>
   </div>
 </div>
 </div>
@@ -83,5 +96,68 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <a href="review.html"  class="ni"><span class="ic">🔍</span>Review</a>
   <a href="reboot.html"  class="ni"><span class="ic">🚀</span>Reboot</a>
 </nav>
+<script>
+const CP_API='/api/carpool-comments';
+let cpData={};
+
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function buildForms(){
+  document.querySelectorAll('.carcard[data-group]').forEach(card=>{
+    const g=card.dataset.group;
+    const cmts=document.createElement('div');
+    cmts.className='cmts';
+    cmts.innerHTML=`<div class="cmtlist" id="cmt-${g}"></div><div class="cmtform"><input class="cmtname" id="cn-${g}" placeholder="이름" maxlength="10"><input class="cmttext" id="ct-${g}" placeholder="추가 탑승 요청..." maxlength="80" onkeydown="if(event.key==='Enter')submitComment('${g}')"><button class="cmtadd" onclick="submitComment('${g}')">➕</button></div>`;
+    card.appendChild(cmts);
+  });
+}
+
+function renderComments(g){
+  const wrap=document.getElementById(`cmt-${g}`);
+  const list=cpData[g]||[];
+  wrap.innerHTML=list.map(c=>`<div class="cmtitem"><b>${esc(c.name)}</b><span>${esc(c.text)}</span><button class="cmtdel" onclick="deleteComment('${g}','${c.id}')">✕</button></div>`).join('');
+}
+
+function renderAll(){
+  document.querySelectorAll('.carcard[data-group]').forEach(card=>renderComments(card.dataset.group));
+}
+
+async function loadComments(){
+  try{
+    const r=await fetch(CP_API);
+    if(!r.ok)throw new Error('fail');
+    cpData=await r.json();
+  }catch(e){/* keep whatever we have */}
+  renderAll();
+}
+
+async function submitComment(g){
+  const nameEl=document.getElementById(`cn-${g}`);
+  const textEl=document.getElementById(`ct-${g}`);
+  const name=nameEl.value.trim();
+  const text=textEl.value.trim();
+  if(!text){alert('요청 내용을 입력해주세요.');return}
+  try{
+    const r=await fetch(CP_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:g,name,text})});
+    if(!r.ok){alert('등록 중 오류가 발생했어요.');return}
+    cpData[g]=await r.json();
+    textEl.value='';
+    renderComments(g);
+  }catch(e){alert('등록 중 오류가 발생했어요.')}
+}
+
+async function deleteComment(g,id){
+  try{
+    const r=await fetch(`${CP_API}?group=${g}&id=${encodeURIComponent(id)}`,{method:'DELETE'});
+    if(!r.ok)throw new Error('fail');
+    cpData[g]=await r.json();
+    renderComments(g);
+  }catch(e){alert('삭제 중 오류가 발생했어요.')}
+}
+
+buildForms();
+loadComments();
+setInterval(loadComments,8000);
+</script>
 </body>
 </html>

@@ -16,7 +16,7 @@ A company workshop event site: a landing page plus Day1/Day2 activity pages buil
 | File | Purpose |
 |---|---|
 | `index.html` | Landing page: team-lead message, Refresh/Review/Reboot purpose cards, Day1/Day2 schedule, links to all sub-pages. Has a banner link to `carpool.html` near the top. |
-| `carpool.html` | Static notice page: departure and post-workshop-return carpool groups, first name in each group marked as driver (🚗). No API, no persistence — edit the HTML directly to change group assignments. |
+| `carpool.html` | Notice page: departure and post-workshop-return carpool groups (`data-group="dep-N"`/`"ret-N"`), first name in each group marked as driver (🚗). Group membership is static HTML (edit directly to change); each group has a "추가 탑승 요청" comment thread backed by `/api/carpool-comments`, polls every 8s. |
 | `refresh.html` | Day 1 activity showcase (board games, cooking, rafting, team games), weather Plan A/B, timeline. Each activity card links to `activity.html?id=aN`. |
 | `activity.html` | Shared per-activity board page (`?id=a1`-`a4`): anyone can post a text+photo entry, admin-only "delete all" for that activity. Talks to `/api/refresh-activities`. |
 | `review.html` | 2025→2026 goals vs. outcomes retrospective, animated progress bars, '25 workshop promise list. Talks to `/api/review-photos` for the intro-box photos. Also carries the external "우리팀 돌아보기! 작성" moaform link (moved here from reboot.html). |
@@ -35,7 +35,7 @@ See [design.md](design.md) for the visual design system.
 
 ## API conventions
 
-All three `api/*.js` handlers are CommonJS, default-export an async `(req, res)` function, and connect to Redis with the same env var fallback: `process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL` (and the token equivalent). This is duplicated identically in all three files rather than shared.
+All `api/*.js` handlers are CommonJS, default-export an async `(req, res)` function, and connect to Redis with the same env var fallback: `process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL` (and the token equivalent). This is duplicated identically in every file rather than shared.
 
 | File | Methods | Redis key | Auth | Response shape |
 |---|---|---|---|---|
@@ -44,6 +44,7 @@ All three `api/*.js` handlers are CommonJS, default-export an async `(req, res)`
 | `api/reboot-team.js` | GET/POST/DELETE | `rb_team_v1` | `ADMIN_PW='0512'`, checked via `?pw=` for DELETE (clears `?fields=` csv, e.g. `ta,tb`) | POST is field-whitelisted (`ta,tb,t1,t2,t3`), always returns `{...DEFAULT,...data}`; free to anyone |
 | `api/review-photos.js` | GET/POST/DELETE | `rv_photos_v1` | none on POST (anyone can add); `ADMIN_PW='0512'` required on DELETE (`?id=&pw=`) | Stores `{id, dataUrl}` objects (client-resized JPEG as base64 data URL), capped at 2 entries and ~1.5MB each |
 | `api/refresh-activities.js` | GET/POST/DELETE | `rf_activities_v1` | none on POST (anyone can add); `ADMIN_PW='0512'` required on DELETE (`?activity=&pw=`, clears all entries for that activity) | Object keyed by activity id (`a1`-`a4`) → array of `{id,text,dataUrls:[...]}` (up to 8 images/post, text optional if ≥1 image). Older entries may still have a singular `dataUrl` field — `activity.html` normalizes both shapes when rendering. POST returns just that activity's updated array |
+| `api/carpool-comments.js` | GET/POST/DELETE | `cp_comments_v1` | none — anyone can add or delete any comment | Object keyed by group id (`dep-1`..`dep-7`, `ret-1`..`ret-7`) → array of `{id,name,text}`. POST/DELETE return just that group's updated array |
 
 Redis keys are versioned (`_v4`, `_v1`) — this reflects past schema resets; bumping the suffix wipes stored data for that resource.
 
