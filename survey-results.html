@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>설문결과 | '26 전략소재구매팀 워크샵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f0c29,#1a1a2e,#16213e);min-height:100vh;color:#fff;padding:20px;padding-bottom:100px}
+.wrap{max-width:900px;margin:0 auto}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:10px 16px 14px;background:rgba(15,12,41,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);gap:6px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:14px;text-decoration:none;font-size:.68em;font-weight:700;color:#475569;border:1px solid transparent;transition:all .2s;min-width:64px}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
+.ni .ic{font-size:1.3em;line-height:1}
+.ab{color:#34d399;background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.35)}
+.back{display:inline-flex;align-items:center;gap:6px;color:#94a3b8;text-decoration:none;font-size:.85em;font-weight:700;margin-bottom:18px;transition:color .2s}
+.back:hover{color:#6ee7b7}
+.hdr{text-align:center;padding:20px 20px 32px}
+.bdg{display:inline-block;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.4);color:#6ee7b7;padding:5px 18px;border-radius:20px;font-size:11px;letter-spacing:2.5px;margin-bottom:18px;font-weight:700}
+.hdr h1{font-size:2.2em;font-weight:900;background:linear-gradient(135deg,#fff 0%,#34d399 55%,#06b6d4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+.hsub{font-size:.9em;color:#94a3b8;line-height:1.7}
+.hsub strong{color:#6ee7b7}
+.rrtag{display:block;margin-top:12px;font-size:.7em;color:#475569;letter-spacing:.3px}
+.rrtag b{font-weight:700}
+.countbar{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);border-radius:14px;padding:12px 20px;margin-bottom:30px;font-size:.86em;color:#94a3b8}
+.countbar strong{color:#34d399;font-size:1.2em}
+.qcard{border-radius:24px;overflow:hidden;border:1px solid;margin-bottom:22px}
+.qhead{padding:18px 24px;display:flex;align-items:center;gap:14px}
+.qnum{width:40px;height:40px;border-radius:12px;font-weight:900;font-size:1.1em;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qttl{font-size:1.05em;font-weight:900;color:#f1f5f9}
+.qbody{background:rgba(255,255,255,.03);padding:22px 24px}
+.theme{margin-bottom:18px}
+.theme:last-child{margin-bottom:0}
+.themettl{font-size:.92em;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.themettl .top{font-size:.64em;font-weight:900;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a1206;padding:3px 10px;border-radius:10px}
+.theme ul{list-style:none}
+.theme li{font-size:.86em;color:#cbd5e1;line-height:1.75;padding:2px 0 2px 16px;position:relative}
+.theme li::before{content:'·';position:absolute;left:2px;font-weight:900;color:#64748b}
+.quotelbl{font-size:.78em;font-weight:700;color:#64748b;margin:16px 0 8px}
+.quotes{display:flex;flex-wrap:wrap;gap:8px}
+.quote{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:7px 14px;font-size:.8em;color:#94a3b8;font-style:italic}
+.q1{border-color:rgba(167,139,250,.3)}
+.q1 .qhead{background:linear-gradient(135deg,rgba(167,139,250,.2),rgba(124,58,237,.08))}
+.q1 .qnum{background:rgba(167,139,250,.2);color:#a78bfa}
+.q1 .themettl{color:#c4b5fd}
+.q2{border-color:rgba(96,165,250,.3)}
+.q2 .qhead{background:linear-gradient(135deg,rgba(96,165,250,.2),rgba(37,99,235,.08))}
+.q2 .qnum{background:rgba(96,165,250,.2);color:#60a5fa}
+.q2 .themettl{color:#93c5fd}
+.q3{border-color:rgba(52,211,153,.3)}
+.q3 .qhead{background:linear-gradient(135deg,rgba(52,211,153,.2),rgba(5,150,105,.08))}
+.q3 .qnum{background:rgba(52,211,153,.2);color:#34d399}
+.q3 .themettl{color:#6ee7b7}
+.q4{border-color:rgba(251,191,36,.3)}
+.q4 .qhead{background:linear-gradient(135deg,rgba(251,191,36,.18),rgba(217,119,6,.08))}
+.q4 .qnum{background:rgba(251,191,36,.2);color:#fbbf24}
+.q4 .themettl{color:#fde68a}
+@media(max-width:600px){.hdr h1{font-size:1.8em}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a href="reboot.html" class="back">← Reboot로 돌아가기</a>
+<div class="hdr">
+  <div class="bdg">PRE-WORKSHOP SURVEY</div>
+  <h1>📊 설문결과 한눈에 보기</h1>
+  <p class="hsub">"워크샵 사전 조사" — 다들 진솔하게 남겨주셔서<br>정리하는 저도 <strong>웃다가 뭉클했다가</strong> 했습니다 😄</p>
+  <div class="rrtag">R² + R² · <b style="color:#a78bfa">Refresh</b>×<b style="color:#fb923c">Respect</b> + <b style="color:#60a5fa">Review</b>×<b style="color:#34d399">Reboot</b></div>
+</div>
+
+<div class="countbar">🙋 총 <strong>14명</strong> 참여 · 적격 응답 <strong>14건</strong> (100%)</div>
+
+<div class="qcard q1">
+  <div class="qhead"><div class="qnum">Q1</div><div class="qttl">📌 지난 워크샵 이후 잘 지켜온 것</div></div>
+  <div class="qbody">
+    <div class="theme">
+      <div class="themettl">🗣️ 자유로운 소통 문화 <span class="top">🥇 최다 언급</span></div>
+      <ul>
+        <li>직급에 관계없이 자유롭게 의견을 나눌 수 있는 문화가 정착됨</li>
+        <li>리더와 중간관리자가 소통 문화를 적극 장려함</li>
+        <li>팀의 가장 큰 강점으로 평가</li>
+        <li>다른 팀과 비교해도 소통이 잘 되는 팀이라는 의견</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">📋 M채널 담당업무 관리</div>
+      <ul>
+        <li>담당 업무가 체계적으로 정리되어 있음</li>
+        <li>검색과 업무 파악이 쉬워짐</li>
+        <li>관리 수준이 안정적으로 유지되고 있다는 평가</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">🚗 현장 출장 활성화</div>
+      <ul>
+        <li>이전보다 적극적으로 장려되는 분위기</li>
+        <li>담당자의 현장 이해도 향상에 도움</li>
+        <li>다만 더 적극적인 참여가 필요하다는 의견도 존재</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">📁 공용폴더 관리</div>
+      <ul><li>공용 자료 관리가 이전보다 개선됨</li></ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">📚 프로세스 교육</div>
+      <ul><li>정기 교육이 잘 운영되고 있다는 의견</li></ul>
+    </div>
+    <div class="quotelbl">💬 기타 의견</div>
+    <div class="quotes">
+      <div class="quote">"다 잘하고 있다."</div>
+      <div class="quote">"특별히 자랑할 만큼은 없는 것 같다."</div>
+    </div>
+  </div>
+</div>
+
+<div class="qcard q2">
+  <div class="qhead"><div class="qnum">Q2</div><div class="qttl">📌 우리 팀 분위기가 좋은 이유</div></div>
+  <div class="qbody">
+    <div class="theme">
+      <div class="themettl">🤝 자유로운 의견 교환</div>
+      <ul>
+        <li>눈치 보지 않고 의견을 말할 수 있음</li>
+        <li>직급과 관계없이 자유롭게 토론 가능</li>
+        <li>의사결정을 함께 고민하는 문화</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">👂 리더십</div>
+      <ul>
+        <li>팀장과 그룹장의 경청</li>
+        <li>솔선수범하는 모습</li>
+        <li>권위적인 문화가 없음</li>
+        <li>어려운 상황에서도 긍정적인 방향을 제시</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">💙 서로 배려하는 문화</div>
+      <ul>
+        <li>서로 도와주는 분위기</li>
+        <li>업무를 미루지 않음</li>
+        <li>부족한 부분을 함께 보완</li>
+        <li>업무 노하우 공유</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">😊 팀원들의 긍정적인 에너지</div>
+      <ul>
+        <li>분위기 메이커 존재</li>
+        <li>묵묵히 자신의 역할을 하는 구성원들</li>
+        <li>자유롭게 웃고 이야기하는 분위기</li>
+        <li>사적인 이야기까지 편하게 할 수 있는 신뢰</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">👥 팀 구성</div>
+      <ul><li>좋은 사람들을 잘 채용한 것도 큰 이유라는 의견</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="qcard q3">
+  <div class="qhead"><div class="qnum">Q3</div><div class="qttl">📌 다양한 업무를 통해 얻은 경험</div></div>
+  <div class="qbody">
+    <div class="theme">
+      <div class="themettl">🏭 현장 경험의 중요성</div>
+      <ul>
+        <li>공정감사 참여</li>
+        <li>업체 방문</li>
+        <li>연구소 동행</li>
+        <li>제조공정 이해도 향상</li>
+        <li>원가 산출 이해</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">🤝 대면 커뮤니케이션</div>
+      <ul>
+        <li>직접 만나면 협상이 훨씬 잘 진행됨</li>
+        <li>출장 이후 문제가 해결된 경험</li>
+        <li>"말로 안되면 일단 만나라."</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">📚 경험 및 자료 공유</div>
+      <ul>
+        <li>다른 담당자의 보고서 참고</li>
+        <li>업무와 직접 관련 없어도 자료 공유가 큰 도움</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">🌍 시야 확대</div>
+      <ul>
+        <li>원소재 산업에 대한 새로운 이해</li>
+        <li>다양한 전문가를 접하며 배움</li>
+        <li>업무 범위가 넓어 어렵지만 성장 기회가 많음</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">🎯 협상과 전략</div>
+      <ul>
+        <li>장기적인 시각 필요</li>
+        <li>정보 확보의 중요성</li>
+        <li>큰 그림을 보는 사고 필요</li>
+      </ul>
+    </div>
+    <div class="quotelbl">😅 기타 의견</div>
+    <div class="quotes">
+      <div class="quote">"전구체는 노답"</div>
+      <div class="quote">"업무 범위가 너무 넓다."</div>
+      <div class="quote">"JV와 원소재 업무가 더 연결되면 좋겠다."</div>
+      <div class="quote">"입사 후 다양한 조직 경험을 했다."</div>
+    </div>
+  </div>
+</div>
+
+<div class="qcard q4">
+  <div class="qhead"><div class="qnum">Q4</div><div class="qttl">📌 프로세스 이해도를 높이는 방법</div></div>
+  <div class="qbody">
+    <div class="theme">
+      <div class="themettl">🔄 결국은 경험</div>
+      <ul>
+        <li>직접 해보는 것이 가장 효과적</li>
+        <li>한 사이클을 경험하면 이해가 쉬워짐</li>
+        <li>시간과 반복이 중요</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">📂 자료 관리</div>
+      <ul>
+        <li>이전 프로젝트 자료 공유</li>
+        <li>사례를 쉽게 찾아볼 수 있는 구조 필요</li>
+        <li>창고 폴더 운영</li>
+        <li>파일명 표준화</li>
+        <li>버전 관리</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">🤖 AI 활용</div>
+      <ul>
+        <li>AI 기반 업무 교안 작성</li>
+        <li>Confluence 활용</li>
+        <li>AI를 통한 지식관리</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">📚 교육</div>
+      <ul>
+        <li>반복 교육 필요</li>
+        <li>신입교육 함께 참여</li>
+        <li>지속적인 학습 필요</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">📖 업무 매뉴얼</div>
+      <ul>
+        <li>회사 프로세스를 한 권으로 정리한 자료 필요</li>
+        <li>업무 바이블 제작 제안</li>
+      </ul>
+    </div>
+    <div class="theme">
+      <div class="themettl">🤝 다양한 경험</div>
+      <ul>
+        <li>여러 품목 경험</li>
+        <li>여러 팀 경험</li>
+        <li>다양한 상황 경험</li>
+      </ul>
+    </div>
+    <div class="quotelbl">😅 현실적인 어려움</div>
+    <div class="quotes">
+      <div class="quote">프로세스가 너무 방대함</div>
+      <div class="quote">회사 일정 변경이 많아 이해가 어려움</div>
+      <div class="quote">교육 당시에는 이해하지만 시간이 지나면 잊어버림</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<nav class="bnav">
+  <a href="index.html"   class="ni"><span class="ic">🏠</span>메인</a>
+  <a href="cheer.html"   class="ni"><span class="ic">🔥</span>Respect<br>&amp; Roast</a>
+  <a href="refresh.html" class="ni"><span class="ic">✨</span>Refresh</a>
+  <a href="review.html"  class="ni"><span class="ic">🔍</span>Review</a>
+  <a href="reboot.html"  class="ni ab"><span class="ic">🚀</span>Reboot</a>
+</nav>
+</body>
+</html>

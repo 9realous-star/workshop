@@ -22,7 +22,8 @@ A company workshop event site: a landing page plus Day1/Day2 activity pages buil
 | `review.html` | 2025→2026 goals vs. outcomes retrospective, animated progress bars, '25 workshop promise list. Talks to `/api/review-photos` for the intro-box photos. Also carries the external "우리팀 돌아보기! 작성" moaform link (moved here from reboot.html). |
 | `quiz.html` | Team trivia quiz, 5 hardcoded Q&A, client-side scoring only, no persistence |
 | `cheer.html` | "Respect & Roast" praise board. A slide toggle switches between two fully independent, fully write/delete-enabled boards: **Roast** (default, the original jokey praise board) and **Respect** (a separate, cleaner list). Each mode has its own write form, feed, and per-entry delete. Talks to `/api/praises?mode=roast\|respect`, polls every 6s |
-| `reboot.html` | "하반기 나침반" planning tool: team-wide themes/promises + per-individual action items, framed by a 3-step flow explainer (① 중점추진업무 → ② 팀 약속 → ③ 개인 실천) and seat-arrangement instructions on cards 01/02. Has a placeholder "설문결과 보러가기" link (`href="#"`, real URL TBD). Talks to `/api/reboot` and `/api/reboot-team`, polls every 8s |
+| `reboot.html` | "하반기 나침반" planning tool: team-wide themes/promises + per-individual action items, framed by a 3-step flow explainer (① 중점추진업무 → ② 팀 약속 → ③ 개인 실천) and seat-arrangement instructions on cards 01/02. Links to `survey-results.html` via a "설문결과 보러가기" tab. Talks to `/api/reboot` and `/api/reboot-team`, polls every 8s |
+| `survey-results.html` | Static summary of the pre-workshop survey (14 respondents), hand-curated into 4 themed question cards (Q1-Q4) with grouped sub-themes and quote chips. No API — content is hardcoded HTML; re-edit directly if the survey is re-run. |
 | `api/praises.js` | GET/POST/PATCH/DELETE for the praise board |
 | `api/reboot.js` | GET/POST/DELETE for per-individual action-item slots |
 | `api/reboot-team.js` | GET/POST/DELETE for team-wide themes/promises |
