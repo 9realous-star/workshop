@@ -53,6 +53,16 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 .bcard .bimgwrap:hover img{transform:scale(1.05)}
 .bcard p{font-size:.87em;color:#cbd5e1;line-height:1.6;white-space:pre-wrap;padding:14px 16px}
 .bempty{grid-column:1/-1;font-size:.88em;color:#64748b;text-align:center;padding:40px 0}
+.atabs{display:flex;gap:8px;margin-bottom:20px}
+.atab{flex:1;padding:11px;border-radius:14px;font-size:.85em;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#94a3b8;transition:all .2s}
+.atab:hover{background:rgba(255,255,255,.08);color:#e2e8f0}
+.atab.active{background:rgba(167,139,250,.2);border-color:rgba(167,139,250,.5);color:#c4b5fd}
+.teamgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px}
+.teamcard{background:rgba(255,255,255,.04);border:1px solid rgba(167,139,250,.25);border-radius:18px;padding:20px 22px}
+.teamlbl{font-size:.85em;font-weight:900;letter-spacing:1px;color:#c4b5fd;margin-bottom:12px}
+.teammembers{display:flex;flex-wrap:wrap;gap:8px}
+.teammember{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:#e2e8f0;font-size:.85em;font-weight:700;padding:6px 14px;border-radius:20px}
+@media(max-width:600px){.teamgrid{grid-template-columns:1fr}}
 .lightbox{position:fixed;inset:0;background:rgba(5,4,15,.94);z-index:2000;display:none;align-items:center;justify-content:center;padding:28px;cursor:zoom-out}
 .lightbox.show{display:flex}
 .lightbox img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
@@ -71,6 +81,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
   <div class="rrtag">R² + R² · <b style="color:#a78bfa">Refresh</b>×<b style="color:#fb923c">Respect</b> + <b style="color:#60a5fa">Review</b>×<b style="color:#34d399">Reboot</b></div>
 </div>
 
+<div class="atabs" id="aTabs" style="display:none">
+  <button class="atab active" id="tabBoard" onclick="showTab('board')">📸 게시판</button>
+  <button class="atab" id="tabTeams" onclick="showTab('teams')">👥 조 편성</button>
+</div>
+
+<div id="boardView">
 <div class="bform">
   <textarea id="pText" maxlength="500" placeholder="사진 위주로 자유롭게 올려주세요 — 설명 글은 선택사항이에요"></textarea>
   <div class="brow">
@@ -87,6 +103,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f
 </div>
 
 <div class="bgrid" id="board"></div>
+</div>
+
+<div id="teamsView" style="display:none">
+  <div class="teamgrid" id="teamGrid"></div>
+</div>
 </div>
 
 <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
@@ -110,6 +131,11 @@ const ACT_META={
   a4:{ic:'🎮',ttl:'각종 단합 게임',desc:'실내외에서 즐길 수 있는 팀 단합 게임 4종 이상 진행. 경쟁보다는 웃음과 협업 중심으로 구성됩니다.'}
 };
 
+const TEAMS=[
+  {lbl:'1조',members:['팀장님','군주','민호','은솔','승하','동현']},
+  {lbl:'2조',members:['병주','민재','성영','규동','종관','동훈','선영']}
+];
+
 const params=new URLSearchParams(location.search);
 const actId=ACT_META[params.get('id')]?params.get('id'):'a1';
 const MAX_IMAGES=8;
@@ -124,6 +150,22 @@ function initMeta(){
   document.getElementById('aTitle').textContent=m.ttl+' 게시판';
   document.getElementById('aDesc').textContent=m.desc;
   document.title=m.ttl+' 게시판 | \'26 전략소재구매팀 워크샵';
+  if(actId==='a4'){
+    document.getElementById('aTabs').style.display='flex';
+    renderTeams();
+  }
+}
+
+function renderTeams(){
+  const g=document.getElementById('teamGrid');
+  g.innerHTML=TEAMS.map(t=>`<div class="teamcard"><div class="teamlbl">${t.lbl}</div><div class="teammembers">${t.members.map(m=>`<span class="teammember">${esc(m)}</span>`).join('')}</div></div>`).join('');
+}
+
+function showTab(tab){
+  document.getElementById('tabBoard').classList.toggle('active',tab==='board');
+  document.getElementById('tabTeams').classList.toggle('active',tab==='teams');
+  document.getElementById('boardView').style.display=tab==='board'?'block':'none';
+  document.getElementById('teamsView').style.display=tab==='teams'?'block':'none';
 }
 
 function renderBoard(){
