@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>결과보고 | '26 전략소재구매팀 워크샵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(135deg,#0f0c29,#1a1a2e,#16213e);min-height:100vh;color:#fff;padding:20px;padding-bottom:100px}
+.wrap{max-width:1000px;margin:0 auto}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:10px 16px 14px;background:rgba(15,12,41,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);gap:6px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:14px;text-decoration:none;font-size:.68em;font-weight:700;color:#475569;border:1px solid transparent;transition:all .2s;min-width:64px}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
+.ni .ic{font-size:1.3em;line-height:1}
+.back{display:inline-flex;align-items:center;gap:6px;color:#94a3b8;text-decoration:none;font-size:.85em;font-weight:700;margin-bottom:18px;transition:color .2s}
+.back:hover{color:#fbbf24}
+.hdr{text-align:center;padding:20px 20px 32px}
+.bdg{display:inline-block;background:rgba(251,191,36,.14);border:1px solid rgba(251,191,36,.45);color:#fde68a;padding:5px 18px;border-radius:20px;font-size:11px;letter-spacing:2.5px;margin-bottom:18px;font-weight:700}
+.hdr h1{font-size:2.3em;font-weight:900;background:linear-gradient(135deg,#fff 0%,#fbbf24 55%,#fb923c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;line-height:1.3}
+.catch{font-size:1.3em;font-weight:700;color:#e2e8f0;margin-bottom:8px}
+.hsub{font-size:.88em;color:#94a3b8;letter-spacing:.5px}
+.sec{margin-bottom:30px}
+.stit{font-size:1.15em;font-weight:700;color:#fde68a;border-left:4px solid #fbbf24;padding-left:15px;margin-bottom:18px;letter-spacing:1px}
+.ovbox{background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(251,146,60,.06));border:1px solid rgba(251,191,36,.35);border-radius:24px;padding:32px 36px;position:relative;overflow:hidden}
+.ovbox::before{content:'"';position:absolute;top:-10px;left:20px;font-size:7em;color:rgba(251,191,36,.15);font-family:Georgia,serif;line-height:1}
+.ovbox p{position:relative;z-index:1;font-size:.95em;color:#e2e8f0;line-height:1.9;margin-bottom:12px}
+.ovbox p:last-child{margin-bottom:0}
+.kp{color:#fde68a;font-weight:700}.kb{color:#7dd3fc;font-weight:700}.kg{color:#6ee7b7;font-weight:700}.ka{color:#c4b5fd;font-weight:700}
+.warnbox{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.4);border-radius:20px;padding:26px 28px;display:flex;gap:16px;align-items:flex-start}
+.warnbox .wic{font-size:1.8em;flex-shrink:0}
+.warnbox p{font-size:.92em;color:#fecaca;line-height:1.85}
+.warnbox strong{color:#fca5a5}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.dcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:24px;overflow:hidden}
+.dhead{padding:20px 26px}
+.d1 .dhead{background:linear-gradient(135deg,rgba(167,139,250,.3),rgba(124,58,237,.2));border-bottom:1px solid rgba(167,139,250,.3)}
+.d2 .dhead{background:linear-gradient(135deg,rgba(96,165,250,.3),rgba(37,99,235,.2));border-bottom:1px solid rgba(96,165,250,.3)}
+.dlbl{font-size:.78em;letter-spacing:2px;color:rgba(255,255,255,.6);margin-bottom:5px}
+.dttl{font-size:1.2em;font-weight:900;color:#fff}
+.dbody{padding:24px 26px}
+.dbody p{font-size:.88em;color:#cbd5e1;line-height:1.85;margin-bottom:12px}
+.dbody p:last-child{margin-bottom:0}
+.dbody strong{color:#f1f5f9}
+.kmsg{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.22);border-radius:20px;padding:26px 28px}
+.mi{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.07)}
+.mi:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.mic{width:30px;height:30px;border-radius:50%;background:rgba(251,191,36,.2);display:flex;align-items:center;justify-content:center;font-size:.85em;flex-shrink:0}
+.mt{font-size:.9em;color:#e2e8f0;line-height:1.7}
+.thxbox{background:linear-gradient(135deg,rgba(251,191,36,.14),rgba(251,146,60,.08));border:1px solid rgba(251,191,36,.4);border-radius:24px;padding:32px 36px}
+.thxbox p{font-size:.92em;color:#e2e8f0;line-height:1.9;margin-bottom:12px}
+.thxbox p:last-child{margin-bottom:0}
+.thxbox strong{color:#fde68a}
+.pgal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pgal figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04)}
+.pgal img{display:block;width:100%;height:170px;object-fit:cover;background:rgba(255,255,255,.03)}
+.pgal figcaption{padding:8px 10px;font-size:.72em;color:#94a3b8;text-align:center}
+.vwrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.vitem{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.vframe{position:relative;width:100%;padding-top:56.25%;background:#000}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vcap{padding:10px 14px;font-size:.78em;color:#94a3b8;background:rgba(255,255,255,.03)}
+.finalbox{background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(251,146,60,.1),rgba(96,165,250,.08));border:1px solid rgba(251,191,36,.3);border-radius:24px;padding:38px 40px;text-align:center}
+.finalbox p{font-size:.95em;color:#e2e8f0;line-height:1.9;margin-bottom:12px}
+.finalbox p:last-child{margin-bottom:0}
+.finalbox strong{color:#fde68a}
+.lfrm{margin-top:18px;font-size:.85em;color:#64748b;font-weight:700}
+@media(max-width:768px){.hdr h1{font-size:1.7em}.dgrid{grid-template-columns:1fr}.pgal{grid-template-columns:repeat(2,1fr)}.vwrap{grid-template-columns:1fr}.ovbox,.thxbox,.finalbox{padding:26px 22px}.ni{padding:7px 10px;min-width:56px;font-size:.62em}}
+@media(max-width:480px){.pgal{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a href="index.html" class="back">← 메인으로 돌아가기</a>
+
+<div class="hdr">
+  <div class="bdg">WORKSHOP RESULT REPORT</div>
+  <h1>🏆 '26년도 하반기 워크샵<br>결과 보고</h1>
+  <div class="catch"><span style="color:#a78bfa">R²</span> + <span style="color:#60a5fa">R²</span></div>
+  <div class="hsub"><span style="color:#a78bfa;font-weight:700">Refresh</span> <span style="color:#64748b">×</span> <span style="color:#fb923c;font-weight:700">Respect</span> &nbsp;+&nbsp; <span style="color:#60a5fa;font-weight:700">Review</span> <span style="color:#64748b">×</span> <span style="color:#34d399;font-weight:700">Reboot</span></div>
+</div>
+
+<div class="sec">
+  <div class="stit">📋 개요</div>
+  <div class="ovbox">
+    <p>금번 워크샵은 <span class="kp">R²+R² (Refresh × Respect + Review × Reboot)</span>를 컨셉으로, 구성원 간 <span class="kb">소통과 신뢰를 강화</span>하고 지난 1년간의 성과를 돌아보며 <span class="kg">하반기 방향성을 함께 고민</span>하기 위해 진행되었습니다.</p>
+    <p>워크샵을 통해 구성원 간 신뢰와 유대감을 높일 수 있었으며, 하반기 조직 운영 방향과 업무 개선 아이디어를 함께 고민하는 <span class="ka">의미 있는 시간</span>을 가질 수 있었습니다.</p>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">⚠️ 일정 변경 안내</div>
+  <div class="warnbox">
+    <div class="wic">☔</div>
+    <p>당초 강원도 홍천에서 <strong>래프팅</strong>을 진행할 예정이었으나, 워크샵 기간 중 <strong>집중호우</strong>로 인해 참가자 안전을 최우선으로 고려하여 일정을 취소하였습니다. 대신 <strong>실내 단합 프로그램과 소통 활동을 확대 운영</strong>하였으며, 예상치 못한 일정 변경에도 불구하고 구성원 모두가 적극적으로 참여하여 오히려 더욱 깊이 있는 교류와 소통의 시간을 가질 수 있었습니다.</p>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">📅 활동 내역</div>
+  <div class="dgrid">
+    <div class="dcard d1">
+      <div class="dhead"><div class="dlbl">DAY 1</div><div class="dttl">Refresh &amp; Respect</div></div>
+      <div class="dbody">
+        <p>당초 예정되었던 래프팅은 폭우로 인해 진행하지 못하였으나, 이를 대신하여 <strong>실내 단합 프로그램과 팀별 활동</strong>을 확대 운영하였습니다. 예상치 못한 상황에도 모든 구성원이 적극적으로 참여하였으며, 장시간 함께 활동하고 소통하는 과정에서 자연스럽게 서로를 이해하고 공감하는 시간을 가질 수 있었습니다.</p>
+        <p>특히 <strong>신입사원이 직접 기획하고 진행한 프로그램</strong>들은 구성원들의 높은 참여를 이끌어냈으며, 평소 업무 중에는 나누기 어려웠던 다양한 이야기와 경험을 공유할 수 있었습니다. 또한 감사와 존중의 메시지를 나누는 시간을 통해 서로의 노력과 기여를 돌아보았습니다.</p>
+        <p>무엇보다 <strong>팀장님과 그룹장님들</strong>께서 식자재·장비 준비, 재료 손질, 행사장 정리 등에 솔선수범하며 구성원들과 격의 없이 함께 소통하는 모습을 보여주셨습니다. 이를 통해 직급보다 팀의 목표와 역할이 우선되는, 전략소재구매팀만의 <strong>One-Team 문화</strong>를 더욱 공고히 하는 계기가 되었습니다.</p>
+      </div>
+    </div>
+    <div class="dcard d2">
+      <div class="dhead"><div class="dlbl">DAY 2</div><div class="dttl">Review &amp; Reboot</div></div>
+      <div class="dbody">
+        <p>지난 1년간 팀이 실행해 온 변화와 성과를 함께 돌아보고, 하반기 조직 운영 방향 및 업무 개선 아이디어를 논의하는 시간을 가졌습니다. 그룹별 업무 현황과 추진 방향을 공유하며 서로의 업무를 이해하는 시간을 가졌고, <strong>AI 활용 확대, 업무 프로세스 개선, 협업 문화 강화</strong> 등 다양한 주제에 대해 자유롭게 의견을 나누었습니다.</p>
+        <p>직급과 역할에 관계없이 다양한 의견이 공유되며 조직 발전을 위한 실행 가능한 아이디어가 다수 도출되었으며, 구성원 모두가 팀의 방향성과 목표를 함께 고민하는 의미 있는 시간이 되었습니다.</p>
+        <p>이번 토의를 통해 팀원들은 조직 운영에 대한 이해도를 높일 수 있었고, 향후 업무 추진 과정에서도 보다 활발한 소통과 협업이 가능할 것으로 기대됩니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">✨ 주요 성과</div>
+  <div class="kmsg">
+    <div class="mi"><div class="mic">👥</div><div class="mt">신입사원이 주도하고 선배 구성원이 함께 참여하는 <strong>참여형 워크샵</strong> 운영</div></div>
+    <div class="mi"><div class="mic">🤝</div><div class="mt">팀장·그룹장을 포함한 전 구성원이 함께 준비하고 운영하며 <strong>One-Team 문화</strong> 강화</div></div>
+    <div class="mi"><div class="mic">💬</div><div class="mt">직급과 세대를 넘어서는 자연스러운 <strong>소통 및 공감대 형성</strong></div></div>
+    <div class="mi"><div class="mic">🤖</div><div class="mt"><strong>AI 기반 콘텐츠</strong> 기획 및 운영을 통한 새로운 협업 방식 경험</div></div>
+    <div class="mi"><div class="mic">🧭</div><div class="mt">하반기 업무 추진 방향 및 <strong>조직 발전 아이디어</strong> 도출</div></div>
+    <div class="mi"><div class="mic">🔗</div><div class="mt">조직 내 심리적 거리감 축소 및 <strong>신뢰 기반 협업 문화</strong> 강화</div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">🙏 특별 감사사항</div>
+  <div class="thxbox">
+    <p>금번 워크샵이 성공적으로 진행될 수 있도록 지원해주신 <strong>사업부장님</strong>께 감사드립니다.</p>
+    <p>특히 사업부장님께서 찬조해주신 덕분에 구성원들은 고단백 스태미너 식단과 함께 충분한 재충전의 시간을 가질 수 있었으며, 현장에서는 전략소재구매팀의 <strong>류지상 셰프</strong>가 수준급 요리 실력을 발휘하여 참석자들의 높은 만족도를 이끌어냈습니다.</p>
+    <p>사업부장님 찬조금은 구성원들의 체력 증진과 사기 진작에 크게 기여하였으며, <strong>전량 완식</strong>이라는 우수한 투자 성과(?)를 달성하였음을 함께 보고드립니다.</p>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">📷 워크샵 사진</div>
+  <!-- result-photos/ 폴더에 photo1.jpg ~ photo6.jpg 파일을 넣으면 아래 사진들이 채워집니다. -->
+  <div class="pgal">
+    <figure><img src="result-photos/photo1.jpg" alt="Day1 실내 단합 프로그램"><figcaption>Day1 · 실내 단합 프로그램</figcaption></figure>
+    <figure><img src="result-photos/photo2.jpg" alt="Day1 바비큐 & 칭찬합시다"><figcaption>Day1 · 바비큐 &amp; 칭찬합시다</figcaption></figure>
+    <figure><img src="result-photos/photo3.jpg" alt="Day1 단합 게임"><figcaption>Day1 · 단합 게임</figcaption></figure>
+    <figure><img src="result-photos/photo4.jpg" alt="Day2 팀 세미나"><figcaption>Day2 · 팀 세미나</figcaption></figure>
+    <figure><img src="result-photos/photo5.jpg" alt="Day2 전략소재구매팀 퀴즈"><figcaption>Day2 · 전략소재구매팀 퀴즈</figcaption></figure>
+    <figure><img src="result-photos/photo6.jpg" alt="전체 단체 사진"><figcaption>전체 단체 사진</figcaption></figure>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stit">🎬 워크샵 영상</div>
+  <!-- 아래 iframe의 src를 실제 유튜브(embed) 또는 구글드라이브 embed 링크로 교체하세요.
+       유튜브 예: https://www.youtube.com/embed/VIDEO_ID
+       구글드라이브 예: https://drive.google.com/file/d/FILE_ID/preview -->
+  <div class="vwrap">
+    <div class="vitem">
+      <div class="vframe"><iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="워크샵 하이라이트 영상" allowfullscreen></iframe></div>
+      <div class="vcap">Day1 하이라이트</div>
+    </div>
+    <div class="vitem">
+      <div class="vframe"><iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="워크샵 하이라이트 영상 2" allowfullscreen></iframe></div>
+      <div class="vcap">Day2 하이라이트</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="finalbox">
+    <p>이번 워크샵은 비록 홍천의 급류는 경험하지 못했지만, 그보다 더 의미 있는 <strong>구성원 간 소통과 신뢰</strong>를 쌓을 수 있었던 시간이었습니다.</p>
+    <p>앞으로도 전략소재구매팀은 금번 워크샵을 통해 얻은 에너지와 아이디어를 바탕으로 <strong>더욱 유기적이고 실행력 있는 조직</strong>으로 성장할 수 있도록 노력하겠습니다.</p>
+    <div class="lfrm">감사합니다.</div>
+  </div>
+</div>
+
+</div>
+
+<nav class="bnav">
+  <a href="index.html"   class="ni"><span class="ic">🏠</span>메인</a>
+  <a href="cheer.html"   class="ni"><span class="ic">🔥</span>Respect<br>&amp; Roast</a>
+  <a href="refresh.html" class="ni"><span class="ic">✨</span>Refresh</a>
+  <a href="review.html"  class="ni"><span class="ic">🔍</span>Review</a>
+  <a href="reboot.html"  class="ni"><span class="ic">🚀</span>Reboot</a>
+</nav>
+</body>
+</html>
